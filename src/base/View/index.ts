@@ -2,8 +2,8 @@ import Router from '../Router';
 import Component from '../Component';
 import Routes from '../../enums/Routes';
 
-class View<T extends Routes> extends Router {
-  constructor(public view: Component, route: T, isErrorView = false) {
+class View extends Router {
+  constructor(readonly view: Component, readonly route: Routes, readonly isErrorView = false) {
     super();
     const currentView = { [route]: view };
     if (!isErrorView) {
