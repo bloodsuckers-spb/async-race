@@ -1,27 +1,17 @@
-/* eslint-disable max-len */
-/* eslint-disable implicit-arrow-linebreak */
-const createElement = (htmlString: string) =>
-  document.createRange().createContextualFragment(htmlString).firstChild as ChildNode;
+import { ComponentProps } from '../../models';
 
-const createMarkup = (tag: string) => (className: string) => (innerText: string) =>
-  `<${tag} class=${className}>${innerText}</${tag}}`;
+class Component {
+  public readonly node: HTMLElement;
+  constructor({ tagName = 'div', classList = [], nodeProps = {}, parent }: ComponentProps) {
+    this.node = document.createElement(tagName);
+    this.node.className = classList.join(' ');
+    Object.assign(this.node, nodeProps);
+    parent?.append(this.node);
+  }
 
-const data = [
-  {
-    tag: 'div',
-    classList: 'red',
-    innerText: '<div class="box"><p>Hello world</p></div>',
-  },
-  {
-    tag: 'button',
-    classList: 'red',
-    innerText: 'Привет всем',
-  },
-];
+  remove() {
+    this.node.remove();
+  }
+}
 
-const elements = data.map(({ tag, classList, innerText }) => createElement(createMarkup(tag)(classList)(innerText)));
-
-const fragment = document.createDocumentFragment();
-fragment.append(...elements);
-
-document.body.append(fragment);
+export default Component;

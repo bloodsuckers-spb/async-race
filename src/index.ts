@@ -1,8 +1,11 @@
-/* eslint-disable implicit-arrow-linebreak */
-console.log('hello world');
+import Component from './base/Component';
+import View from './base/View';
+import Routes from './enums/Routes';
 
-const createEl = (htmlString: string) =>
-  document.createRange().createContextualFragment(htmlString).firstChild as ChildNode;
+const garageView = new Component({
+  tagName: 'div',
+  classList: ['myTestComponent'],
+});
 
-const div = createEl('<div><p>Some strange text...</p><button>HELLO WORLD</button></div>');
-document.body.append(div);
+const view1 = new View(garageView, Routes.garage);
+console.log(view1);
