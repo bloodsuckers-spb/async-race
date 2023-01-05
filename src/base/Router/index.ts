@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
-import Component from '../Component';
 
-type View = Record<string, Component>;
+import { AppView } from '../../models';
+
 abstract class Router {
   #root: HTMLElement = document.body;
-  protected views: Array<View> = [];
-  protected currentView: View | null = null;
-  protected initialView: View | null = null;
-  protected errorView: View | null = null;
+  protected views: Array<AppView> = [];
+  protected currentView: AppView | null = null;
+  protected initialView: AppView | null = null;
+  protected errorView: AppView | null = null;
 
   protected listen() {
     console.log('listen');

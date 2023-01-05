@@ -18,6 +18,8 @@ export type ComponentProps = {
   parent?: HTMLElement;
 };
 
-export type Route<T extends Routes> = {
-  [key in T]: Component;
+export type Route = {
+  [key in Routes]: Component;
 };
+
+export type AppView = Partial<Route>;

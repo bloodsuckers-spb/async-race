@@ -17,9 +17,6 @@ const errorComponent = new Component({
   classList: ['myTestComponent'],
 });
 
-const garageView = new View(garageComponent, Routes.garage);
-const winnersView = new View(winnersComponent, Routes.winners);
-const errorView = new View(errorComponent, Routes.page404, true);
-console.log(garageView);
-console.log(winnersView);
-console.log(errorView);
+export const garageView = new View(garageComponent, Routes.garage);
+export const winnersView = new View(winnersComponent, Routes.winners);
+export const errorView = new View(errorComponent, Routes.page404, true);

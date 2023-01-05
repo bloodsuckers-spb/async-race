@@ -1,18 +1,18 @@
 import Router from '../Router';
 import Component from '../Component';
-import Routes from '../../enums/Routes';
+import { Route } from '../../models';
 
-class View extends Router {
-  constructor(readonly view: Component, readonly route: Routes, readonly isErrorView = false) {
+class View<T extends keyof Route> extends Router {
+  constructor(readonly view: Component, readonly route: T, readonly isErrorView = false) {
     super();
     const currentView = { [route]: view };
     if (!isErrorView) {
+      this.views.push(currentView);
       if (!this.initialView) {
         this.initialView = currentView;
         this.currentView = currentView;
         this.listen();
       }
-      this.views.push(currentView);
     } else {
       this.errorView = currentView;
     }
