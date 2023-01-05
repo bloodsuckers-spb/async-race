@@ -1,20 +1,14 @@
 /* eslint-disable max-len */
 import Router from '../Router';
 import Component from '../Component';
-import { Route } from '../../models';
-
-type ViewOptions = {
-  isErrorView: boolean;
-  navLinks: Array<Component>;
-};
+import { Route, ViewOptions } from '../../models';
 
 class View<T extends keyof Route> extends Router {
   constructor(readonly view: Component, readonly route: T, readonly options: Partial<ViewOptions> = {}) {
     super();
     const currentView = { [route]: view };
     if (!options.isErrorView) {
-      this.views.push(currentView);
-
+      Router.views.push(currentView);
       if (!this.initialView && options.navLinks) {
         this.initialView = currentView;
         this.currentView = currentView;

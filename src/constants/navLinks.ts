@@ -1,3 +1,6 @@
+const nav = document.createElement('nav');
+document.body.append(nav);
+
 const navLinksProps = [
   {
     tagName: 'a',
@@ -6,6 +9,7 @@ const navLinksProps = [
       href: '/',
       textContent: 'Garage',
     },
+    parent: nav,
   },
   {
     tagName: 'a',
@@ -14,6 +18,7 @@ const navLinksProps = [
       href: '/winners',
       textContent: 'Winners',
     },
+    parent: nav,
   },
 ];
 

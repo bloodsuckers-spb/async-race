@@ -5,44 +5,60 @@ import { AppView } from '../../models';
 
 abstract class Router {
   #root: HTMLElement = document.body;
-  protected views: Array<AppView> = [];
+  protected static views: Array<Record<string, Component>> = [];
   protected currentView: AppView | null = null;
   protected initialView: AppView | null = null;
-  protected errorView: AppView | null = null;
+  protected errorView: Record<string, Component> = {};
 
   protected listen(navlinks: Array<Component>) {
     navlinks.forEach((link: Component) => {
-      link.node.onclick = () => console.log('handleNavigate');
+      link.node.onclick = this.handleNavigate;
     });
-    window.onpopstate = () => console.log('onpopstate');
-    document.onreadystatechange = () => {
-      console.log(document.readyState);
-      if (document.readyState === 'interactive') {
-        console.log('interactive');
-        this.handleLocation();
-      }
-    };
+    window.onpopstate = this.handlePopstate;
+    window.addEventListener('DOMContentLoaded', this.handleLoading);
   }
 
-  // private handleLoading() {
-  //   const { pathname } = window.location;
-  //   if (pathname !== this.#appConstants.home) {
-  //     // this.navigate();
-  //     console.log(this);
-  //   }
-  // }
+  private handlePopstate = (event: Event) => {
+    event.preventDefault();
+    this.navigate();
+  };
 
-  private handleLocation() {
+  private handleNavigate = (event: Event) => {
+    const { target } = event;
+    event.preventDefault();
+    if (!(target instanceof HTMLAnchorElement)) {
+      throw new Error('Ошибка! Элемент не является ссылкой');
+    }
+    window.history.pushState({}, '', target.href);
+    this.navigate();
+  };
+
+  private handleLoading = () => {
     const { pathname } = window.location;
-    const component = this.views.find((view) => pathname in view);
-    const route = component || this.errorView;
-    return route;
-  }
+    if (pathname !== '/') {
+      this.navigate();
+    }
+  };
 
-  // private renderView(node: HTMLDivElement) {
-  //   this.currentView = node;
-  //   this.#root.append(this.currentView);
-  // }
+  // eslint-disable-next-line class-methods-use-this
+  private navigate = () => {
+    const View = this.handleLocation();
+    this.renderView(View);
+  };
+
+  private handleLocation = () => {
+    const { pathname } = window.location;
+    const component = Router.views.find((view) => pathname in view);
+    this.currentView = component || this.errorView;
+    const route = component ? component[pathname] : this.errorView[pathname];
+    return route;
+  };
+
+  private renderView(view: Component) {
+    // this.currentView = view;
+    console.log(this.currentView);
+    this.#root.append(view.node);
+  }
 }
 
 export default Router;

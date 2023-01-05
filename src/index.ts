@@ -2,7 +2,7 @@ import Component from './base/Component';
 import View from './base/View';
 import Routes from './enums/Routes';
 
-import navLinks from './Components/navLinks';
+import navLinks from './Components/NavLinks';
 
 const garageComponent = new Component({
   tagName: 'div',
