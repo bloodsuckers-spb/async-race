@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
-
+import Component from '../Component';
 import { AppView } from '../../models';
 
 abstract class Router {
@@ -9,9 +10,10 @@ abstract class Router {
   protected initialView: AppView | null = null;
   protected errorView: AppView | null = null;
 
-  protected listen() {
-    console.log('listen');
-    // navlinks.forEach((link: HTMLAnchorElement) => link.addEventListener('click', this.handleNavigate));
+  protected listen(navlinks: Array<Component>) {
+    navlinks.forEach((link: Component) => {
+      link.node.onclick = () => console.log('handleNavigate');
+    });
     window.onpopstate = () => console.log('onpopstate');
     document.onreadystatechange = () => {
       console.log(document.readyState);

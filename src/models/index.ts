@@ -8,13 +8,14 @@ export type EventMap = {
 };
 
 export type NodeData = {
-  textContent?: string;
+  textContent: string;
+  href: string;
 };
 
 export type ComponentProps = {
   tagName: string;
   classList: Array<string>;
-  nodeProps?: NodeData;
+  nodeProps?: Partial<NodeData>;
   parent?: HTMLElement;
 };
 
