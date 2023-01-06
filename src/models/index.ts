@@ -24,8 +24,3 @@ export type Route = {
 };
 
 export type AppView = Partial<Route>;
-
-export type ViewOptions = {
-  isErrorView: boolean;
-  navLinks: Array<Component>;
-};

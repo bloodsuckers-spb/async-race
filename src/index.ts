@@ -1,5 +1,8 @@
 import Component from './base/Component';
-import View from './base/View';
+import View from './Views/View';
+import ErrorView from './Views/ErrorView';
+import InitialView from './Views/InitialView';
+
 import Routes from './enums/Routes';
 
 import navLinks from './Components/NavLinks';
@@ -19,6 +22,6 @@ const errorComponent = new Component({
   classList: ['myTestComponent'],
 });
 
-export const garageView = new View(garageComponent, Routes.garage, { navLinks });
+export const garageView = new InitialView(garageComponent, Routes.garage, navLinks);
+export const errorView = new ErrorView(errorComponent, Routes.page404);
 export const winnersView = new View(winnersComponent, Routes.winners);
-export const errorView = new View(errorComponent, Routes.page404, { isErrorView: true });
