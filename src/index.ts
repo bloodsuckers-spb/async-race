@@ -7,17 +7,17 @@ import Routes from './enums/Routes';
 
 import navLinks from './Components/NavLinks';
 
-const garageComponent = new Component({
+const garageComponent = new Component<HTMLDivElement>({
   tagName: 'div',
   classList: ['myTestComponent'],
 });
 
-const winnersComponent = new Component({
+const winnersComponent = new Component<HTMLDivElement>({
   tagName: 'div',
   classList: ['myTestComponent'],
 });
 
-const errorComponent = new Component({
+const errorComponent = new Component<HTMLDivElement>({
   tagName: 'div',
   classList: ['myTestComponent'],
 });

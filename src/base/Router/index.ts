@@ -6,9 +6,9 @@ import { AppView } from '../../models';
 abstract class Router {
   #root: HTMLElement = document.body;
   protected static views: Array<Record<string, Component>> = [];
-  protected currentView: AppView | null = null;
-  protected initialView: AppView | null = null;
-  protected errorView: Record<string, Component> = {};
+  protected currentView: AppView = {};
+  protected initialView: AppView = {};
+  protected errorView: Record<string, Component<HTMLDivElement>> = {};
 
   protected listen(navlinks: Array<Component>) {
     navlinks.forEach((link: Component) => {
