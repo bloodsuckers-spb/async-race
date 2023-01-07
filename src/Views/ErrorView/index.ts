@@ -3,10 +3,10 @@ import Component from '../../base/Component';
 
 import { Route } from '../../models';
 
-class ErrorView<T extends keyof Route> extends Router {
-  constructor(readonly view: Component<HTMLDivElement>, readonly route: T) {
+class ErrorView<T extends keyof Route<'div'>> extends Router {
+  constructor(readonly viewModel: Component<'div'>, readonly route: T) {
     super();
-    this.errorView = { [route]: view };
+    this.errorView = { [route]: viewModel };
   }
 }
 

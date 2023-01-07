@@ -1,7 +1,9 @@
+import { ComponentProps } from '../models';
+
 const nav = document.createElement('nav');
 document.body.append(nav);
 
-const navLinksProps = [
+const navLinksProps: Array<ComponentProps<'a'>> = [
   {
     tagName: 'a',
     classList: ['nav-link'],

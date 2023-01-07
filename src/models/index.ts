@@ -12,15 +12,15 @@ export type NodeData = {
   href: string;
 };
 
-export type ComponentProps = {
-  tagName: string;
+export type ComponentProps<T extends keyof HTMLElementTagNameMap> = {
+  tagName: T,
   classList: Array<string>;
   nodeProps?: Partial<NodeData>;
   parent?: HTMLElement;
 };
 
-export type Route = {
-  [key in Routes]: Component;
+export type Route<T extends keyof HTMLElementTagNameMap> = {
+  [key in Routes]: Component<T>;
 };
 
-export type AppView = Partial<Route>;
+export type AppView = Partial<Route<'div'>>;

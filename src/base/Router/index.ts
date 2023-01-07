@@ -5,13 +5,13 @@ import { AppView } from '../../models';
 
 abstract class Router {
   #root: HTMLElement = document.body;
-  protected static views: Array<Record<string, Component>> = [];
+  protected static views: Array<Record<string, Component<'div'>>> = [];
   protected currentView: AppView = {};
   protected initialView: AppView = {};
-  protected errorView: Record<string, Component<HTMLDivElement>> = {};
+  protected errorView: Record<string, Component<'div'>> = {};
 
-  protected listen(navlinks: Array<Component>) {
-    navlinks.forEach((link: Component) => {
+  protected listen(navlinks: Array<Component<'a'>>) {
+    navlinks.forEach((link: Component<'a'>) => {
       link.node.onclick = this.handleNavigate;
     });
     window.onpopstate = this.handlePopstate;
@@ -54,7 +54,7 @@ abstract class Router {
     return route;
   };
 
-  private renderView(view: Component) {
+  private renderView(view: Component<'div'>) {
     // this.currentView = view;
     console.log(this.currentView);
     this.#root.append(view.node);
