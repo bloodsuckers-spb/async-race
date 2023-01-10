@@ -4,9 +4,10 @@ abstract class Loader {
     // миграция на ТС
   }
   // <T>
-  getResp(options = {}, callback) {
+  getResp() {
     // this.load();
     console.log(this);
+    this.load();
   }
 
   // options, endpoint
@@ -14,7 +15,7 @@ abstract class Loader {
     console.log(this);
   }
 
-  // method, endpoint, callback, options = {}
+  // method, callback, options = {}
   load() {
     // <T>
     console.log(this);

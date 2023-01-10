@@ -6,7 +6,7 @@ import { Route } from '../../models';
 class ErrorView<T extends keyof Route<'div'>> extends Router {
   constructor(readonly viewModel: Component<'div'>, readonly route: T) {
     super();
-    this.errorView = { [route]: viewModel };
+    Router.errorView = { [route]: viewModel };
   }
 }
 

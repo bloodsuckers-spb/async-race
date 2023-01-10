@@ -15,6 +15,4 @@ class Component<T extends keyof HTMLElementTagNameMap> {
   }
 }
 
-const el = new Component({ tagName: 'div', classList: [] });
-console.log(el.node);
 export default Component;

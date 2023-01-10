@@ -4,32 +4,31 @@ import Component from '../Component';
 import { AppView } from '../../models';
 
 abstract class Router {
-  #root: HTMLElement = document.body;
   protected static views: Array<Record<string, Component<'div'>>> = [];
-  protected currentView: AppView = {};
+  protected static errorView: Record<string, Component<'div'>> = {};
+  protected root: HTMLElement | null = null;
   protected initialView: AppView = {};
-  protected errorView: Record<string, Component<'div'>> = {};
+  protected currentView: AppView = {};
 
-  protected listen(navlinks: Array<Component<'a'>>) {
-    navlinks.forEach((link: Component<'a'>) => {
-      link.node.onclick = this.handleNavigate;
+  protected listen(navlinks: Array<Component<'a'>>): void {
+    navlinks.forEach(({ node }: Component<'a'>) => {
+      node.onclick = (): false => {
+        this.handleNavigate(node.href);
+        return false;
+      };
     });
     window.onpopstate = this.handlePopstate;
     window.addEventListener('DOMContentLoaded', this.handleLoading);
   }
 
-  private handlePopstate = (event: Event) => {
-    event.preventDefault();
+  private handlePopstate = (): false => {
     this.navigate();
+    return false;
   };
 
-  private handleNavigate = (event: Event) => {
-    const { target } = event;
-    event.preventDefault();
-    if (!(target instanceof HTMLAnchorElement)) {
-      throw new Error('Ошибка! Элемент не является ссылкой');
-    }
-    window.history.pushState({}, '', target.href);
+  // ToDo
+  private handleNavigate = (href: string) => {
+    window.history.pushState({}, '', href);
     this.navigate();
   };
 
@@ -40,24 +39,23 @@ abstract class Router {
     }
   };
 
-  // eslint-disable-next-line class-methods-use-this
+  // Todo
   private navigate = () => {
-    const View = this.handleLocation();
-    this.renderView(View);
+    const view = this.handleLocation();
+    this.renderView(view);
   };
 
-  private handleLocation = () => {
+  private handleLocation = (): Component<'div'> => {
     const { pathname } = window.location;
     const component = Router.views.find((view) => pathname in view);
-    this.currentView = component || this.errorView;
-    const route = component ? component[pathname] : this.errorView[pathname];
+    this.currentView = component ?? Router.errorView;
+    const route = component ? component[pathname] : Router.errorView['/404'];
     return route;
   };
 
-  private renderView(view: Component<'div'>) {
-    // this.currentView = view;
-    console.log(this.currentView);
-    this.#root.append(view.node);
+  protected renderView(view: Component<'div'>): void {
+    this.root?.firstChild?.remove();
+    this.root?.append(view.node);
   }
 }
 
