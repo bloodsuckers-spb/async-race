@@ -10,6 +10,7 @@ export type EventMap = {
 export type NodeData = {
   textContent: string;
   href: string;
+  id: string;
 };
 
 export type ComponentProps<T extends keyof HTMLElementTagNameMap> = {

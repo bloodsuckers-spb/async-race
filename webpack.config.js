@@ -6,7 +6,6 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
-// const isDev = mode === 'development';
 const SOURCES = path.resolve(__dirname, 'src');
 const OUTPUT = path.resolve(__dirname, 'dist');
 
@@ -62,9 +61,24 @@ module.exports = {
         loader: 'ts-loader',
         exclude: ['/node_modules/'],
       },
+      // {
+      //   test: /\.(s[ac]|c)ss$/i,
+      //   use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      // },
       {
-        test: /\.(s[ac]|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        test: /index\.css$/,
+        exclude: /node_modules/,
+        use: [
+          mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]_[hash:base64:5]',
+              },
+            },
+          },
+        ],
       },
     ],
   },
