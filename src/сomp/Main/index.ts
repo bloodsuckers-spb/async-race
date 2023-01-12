@@ -1,6 +1,6 @@
 import Component from '../../base/Component';
 
-class ViewRoot extends Component<'main'> {
+class Main extends Component<'main'> {
   constructor() {
     super({
       tagName: 'main',
@@ -9,4 +9,4 @@ class ViewRoot extends Component<'main'> {
   }
 }
 
-export default ViewRoot;
+export default Main;
