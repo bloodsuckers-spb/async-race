@@ -14,8 +14,9 @@ abstract class EventEmitter {
   off(eventName: keyof EventMap, listener: Listener) {
     EventEmitter.listeners[eventName] = EventEmitter.listeners[eventName].filter((cb) => cb !== listener);
   }
-  emit<T>(eventName: keyof EventMap, ...params: Array<T>) {
-    EventEmitter.listeners[eventName].forEach((listener) => listener(...params));
+
+  emit<T>(eventName: keyof EventMap, params: T) {
+    EventEmitter.listeners[eventName].forEach((listener) => listener(params));
   }
 }
 

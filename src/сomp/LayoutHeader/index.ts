@@ -1,4 +1,4 @@
-import AppComponent from '../App';
+import AppComponent from '../AppComponent';
 import NavLink from '../NavLinks';
 import ListItem from '../ListItem';
 import List from '../List';
@@ -9,7 +9,7 @@ import Header from '../Header';
 
 import Routes from '../../enums/Routes';
 
-const AppHeader = (app: AppComponent) => {
+const LayoutHeader = (app: AppComponent) => {
   const header = new Header(app);
   const headerBounding = new BoundingComponent(header);
   const headerContent = new ContentComponent(headerBounding);
@@ -29,4 +29,4 @@ const AppHeader = (app: AppComponent) => {
   return { FirstNavLink, SecondNavLink };
 };
 
-export default AppHeader;
+export default LayoutHeader;

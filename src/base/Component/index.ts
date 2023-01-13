@@ -1,9 +1,8 @@
-/* eslint-disable max-classes-per-file */
-import EventEmitter from '../EventEmitter';
+import State from '../State';
 
 import { ComponentProps } from '../../models';
 
-class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
+class Component<T extends keyof HTMLElementTagNameMap> extends State {
   public readonly node: HTMLElementTagNameMap[T];
   constructor({ tagName, classList = [], nodeProps = {}, parent }: ComponentProps<T>) {
     super();

@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable implicit-arrow-linebreak */
 import Router from './base/Router';
 import Loader from './base/Loader';
 import Component from './base/Component';
 
-import AppComponent from './сomp/App';
-import AppHeader from './сomp/AppHeader';
-import AppMain from './сomp/AppMain';
+import AppComponent from './сomp/AppComponent';
+import LayoutHeader from './сomp/LayoutHeader';
+import MainLayout from './layout/MainLayout';
+import GarageLayout from './layout/GarageLayout';
+
 import NavLink from './сomp/NavLinks';
+import RaceTracksList from './сomp/RaceTracksList';
 
 import ErrorView from './сomp/ErrorView';
 import GarageView from './сomp/GarageView';
@@ -27,15 +31,19 @@ const createRoutes = <T extends Routes>(key: T, view: Component<'div'>) => ({ [k
 const initApp = (loader: Loader) => {
   document.body.textContent = '';
   const app = new AppComponent();
-  const { FirstNavLink, SecondNavLink } = AppHeader(app);
-  const { root } = AppMain(app);
-
+  const { FirstNavLink, SecondNavLink } = LayoutHeader(app);
+  const { root } = MainLayout(app);
   // Views
   const errorView = new ErrorView();
   const garageView = new GarageView();
   const winnersView = new WinnersView();
+  const list = new RaceTracksList(garageView);
+  GarageLayout(garageView);
+  // можно добавить класс
 
-  loader.getCars();
+  setTimeout(() => {
+    loader.getCars();
+  }, 1000);
   // loader.getCars();
 
   // generate views

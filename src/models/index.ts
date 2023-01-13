@@ -14,7 +14,7 @@ export type NodeData = {
 };
 
 export type ComponentProps<T extends keyof HTMLElementTagNameMap> = {
-  tagName: T,
+  tagName: T;
   classList: Array<string>;
   nodeProps?: Partial<NodeData>;
   parent?: HTMLElement;

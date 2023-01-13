@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
+// { AxiosResponse }
+
 import EventEmitter from '../EventEmitter';
 
 class Loader extends EventEmitter {

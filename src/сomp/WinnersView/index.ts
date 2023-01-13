@@ -9,7 +9,6 @@ class WinnersView extends Component<'div'> {
         textContent: 'Winners',
       },
     });
-    // this.node.append(child.node);
   }
 }
 
