@@ -1,10 +1,10 @@
 import EventEmitter from '../EventEmitter';
 
 class State extends EventEmitter {
-  winners = [];
+  cars = [];
   constructor() {
     super();
-    this.winners = [];
+    this.cars = [];
   }
   changeWinners() {
     // EventEmitter.triger(event)

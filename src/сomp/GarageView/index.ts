@@ -1,7 +1,6 @@
 import Component from '../../base/Component';
 
 class GarageView extends Component<'div'> {
-  // child: Component<'div'>
   constructor() {
     super({
       tagName: 'div',
@@ -10,8 +9,14 @@ class GarageView extends Component<'div'> {
         textContent: 'Garage',
       },
     });
-    // this.node.append(child.node);
+    this.on('updateCars', this.onUpdate);
   }
+
+  onUpdate = (data: any) => {
+    console.log(data);
+    const { textContent } = this.node;
+    this.node.textContent = `${textContent}1`;
+  };
 }
 
 export default GarageView;

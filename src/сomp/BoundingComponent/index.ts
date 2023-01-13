@@ -4,12 +4,12 @@ import styles from './index.css';
 const { container } = styles;
 
 class BoundingComponent extends Component<'div'> {
-  constructor(child: Component<'div'>) {
+  constructor(parent: Component<keyof HTMLElementTagNameMap>) {
     super({
       tagName: 'div',
       classList: [container],
+      parent: parent.node,
     });
-    this.node.append(child.node);
   }
 }
 

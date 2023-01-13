@@ -1,4 +1,9 @@
+import Component from '../../base/Component';
+
 export type Props = {
-  textContent: string;
-  href: string;
+  nodeProps: {
+    textContent: string;
+    href: string;
+  };
+  parent: Component<keyof HTMLElementTagNameMap>;
 };

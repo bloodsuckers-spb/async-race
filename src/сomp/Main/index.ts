@@ -1,10 +1,11 @@
 import Component from '../../base/Component';
 
 class Main extends Component<'main'> {
-  constructor() {
+  constructor(parent: Component<keyof HTMLElementTagNameMap>) {
     super({
       tagName: 'main',
       classList: ['main'],
+      parent: parent.node,
     });
   }
 }

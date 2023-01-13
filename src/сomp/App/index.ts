@@ -2,7 +2,7 @@ import Component from '../../base/Component';
 
 class AppComponent extends Component<'div'> {
   static count = 0;
-  constructor(children: Array<Component<keyof HTMLElementTagNameMap>>) {
+  constructor() {
     super({
       tagName: 'div',
       classList: ['app'],
@@ -10,7 +10,6 @@ class AppComponent extends Component<'div'> {
     });
     if (AppComponent.count > 0) return;
     AppComponent.count += 1;
-    this.node.append(...children.map((child) => child.node));
   }
 }
 

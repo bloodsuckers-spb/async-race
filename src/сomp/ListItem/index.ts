@@ -1,12 +1,12 @@
 import Component from '../../base/Component';
 
 class ListItem extends Component<'li'> {
-  constructor(children: Array<Component<keyof HTMLElementTagNameMap>>) {
+  constructor(parent: Component<keyof HTMLElementTagNameMap>) {
     super({
       tagName: 'li',
       classList: ['list-item'],
+      parent: parent.node,
     });
-    this.node.append(...children.map((child) => child.node));
   }
 }
 

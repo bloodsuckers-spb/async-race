@@ -3,14 +3,12 @@ import Component from '../../base/Component';
 import { Props } from './types';
 
 class NavLink extends Component<'a'> {
-  constructor({ textContent, href }: Props) {
+  constructor({ parent, nodeProps }: Props) {
     super({
       tagName: 'a',
       classList: ['nav-link'],
-      nodeProps: {
-        textContent,
-        href,
-      },
+      nodeProps,
+      parent: parent.node,
     });
   }
 }

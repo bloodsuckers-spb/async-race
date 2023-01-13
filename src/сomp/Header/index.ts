@@ -5,12 +5,12 @@ import styles from './index.css';
 const { header } = styles;
 
 class Header extends Component<'header'> {
-  constructor(child: Component<'div'>) {
+  constructor(parent: Component<keyof HTMLElementTagNameMap>) {
     super({
       tagName: 'header',
       classList: [header],
+      parent: parent.node,
     });
-    this.node.append(child.node);
   }
 }
 
