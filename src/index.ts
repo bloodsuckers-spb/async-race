@@ -7,7 +7,8 @@ import Component from './base/Component';
 import AppComponent from './сomp/AppComponent';
 import LayoutHeader from './сomp/LayoutHeader';
 import MainLayout from './layout/MainLayout';
-import GarageLayout from './layout/GarageLayout';
+import initGarageLayout from './layout/InitGarageLayout';
+import initWinnersLayout from './layout/InitWinnersLayout';
 
 import NavLink from './сomp/NavLinks';
 import RaceTracksList from './сomp/RaceTracksList';
@@ -37,11 +38,13 @@ const initApp = (loader: Loader) => {
   const errorView = new ErrorView();
   const garageView = new GarageView();
   const winnersView = new WinnersView();
+  initGarageLayout(garageView);
+  initWinnersLayout(winnersView);
   const list = new RaceTracksList(garageView);
-  GarageLayout(garageView);
   // можно добавить класс
 
   setTimeout(() => {
+    loader.getCars();
     loader.getCars();
   }, 1000);
   // loader.getCars();

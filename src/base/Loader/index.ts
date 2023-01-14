@@ -1,10 +1,10 @@
 /* eslint-disable class-methods-use-this */
 
-import axios from 'axios';
-
-// { AxiosResponse }
+import axios, { AxiosResponse } from 'axios';
 
 import EventEmitter from '../EventEmitter';
+
+import { GetCarsResponse } from '../../models/API';
 
 class Loader extends EventEmitter {
   garagePage = 1;
@@ -26,10 +26,10 @@ class Loader extends EventEmitter {
 
   errorHandler() {}
 
-  public getCars = () => {
+  public getCars = (): void => {
     axios
       .get(`${this.baseLink}/garage/?_page=1&_limit=7`)
-      .then((response) => this.emit('updateCars', response))
+      .then((response: AxiosResponse<GetCarsResponse>) => this.emit('updateCars', response))
       .catch((error: Error) => console.log(error.message));
   };
 }

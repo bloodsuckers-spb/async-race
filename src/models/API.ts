@@ -4,4 +4,8 @@ export interface Car {
   id: number;
 }
 
+export type GetCarsResponse = {
+  data: Array<Car>;
+};
+
 // color: '#e6e6fa';
