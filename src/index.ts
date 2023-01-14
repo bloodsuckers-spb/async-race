@@ -45,7 +45,6 @@ const initApp = (loader: Loader) => {
 
   setTimeout(() => {
     loader.getCars();
-    loader.getCars();
   }, 1000);
   // loader.getCars();
 
