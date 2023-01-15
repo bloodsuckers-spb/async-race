@@ -16,8 +16,7 @@ export type NodeData = {
 };
 
 type SvgNodeData = {
-  'xlink:href': string;
-  style: string;
+  style: `fill:${HashType}`;
 };
 
 export type Route<T extends keyof HTMLElementTagNameMap> = {

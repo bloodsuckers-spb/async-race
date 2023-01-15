@@ -1,18 +1,19 @@
 import SvgComponent from '../../base/SvgComponent';
+
+import carSVG from '../../assets/car.svg';
+
 import SVGTags from '../../enums/SVGTags';
 
-import carSVG from '../../assets/carSVG.svg';
+import { xLink } from '../../constants';
 
 class SvgUse extends SvgComponent<SVGTags.use> {
   constructor(readonly parent: SvgComponent<keyof SVGElementTagNameMap>) {
     super({
       tagName: SVGTags.use,
       classList: [],
-      nodeProps: {
-        'xlink:href': `href="${carSVG}#car"`,
-      },
       parent: parent.node,
     });
+    this.node.setAttributeNS(xLink, 'xlink:href', `${carSVG}#car`);
   }
 }
 

@@ -2,19 +2,21 @@
 import Component from '../../base/Component';
 import RaceItemHeader from '../RaceItemHeader';
 
+import CarSvg from '../CarSvg';
+
 import styles from './index.css';
 
-import { carTemplate } from '../../constants';
-
+import { HashType } from '../../models';
 import { Car } from '../../models/API';
 
 const { racetrack } = styles;
 
 class TracksListItem extends Component<'li'> {
-  private readonly header: RaceItemHeader;
-  name: string;
-  color: string;
-  readonly id: number;
+  protected readonly header: RaceItemHeader;
+  protected readonly carSvg: CarSvg;
+  protected readonly name: string;
+  protected readonly color: HashType;
+  protected readonly id: number;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
       tagName: 'li',
@@ -25,7 +27,7 @@ class TracksListItem extends Component<'li'> {
     this.name = name;
     this.color = color;
     this.id = id;
-    this.node.innerHTML = carTemplate;
+    this.carSvg = new CarSvg(this, color);
   }
   startAnimation() {}
   stopAnimation() {}
