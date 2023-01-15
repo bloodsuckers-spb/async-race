@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-spaces */
 import EventEmitter from '../EventEmitter';
 import { ComponentProps } from '../../models';
 

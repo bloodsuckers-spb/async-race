@@ -4,7 +4,8 @@ import RaceItemHeader from '../RaceItemHeader';
 
 import styles from './index.css';
 
-// import { renderCar } from '../../utils';
+import { carTemplate } from '../../constants';
+
 import { Car } from '../../models/API';
 
 const { racetrack } = styles;
@@ -24,7 +25,7 @@ class TracksListItem extends Component<'li'> {
     this.name = name;
     this.color = color;
     this.id = id;
-    // this.node.innerHTML = renderCar('#000');
+    this.node.innerHTML = carTemplate;
   }
   startAnimation() {}
   stopAnimation() {}

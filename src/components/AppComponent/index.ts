@@ -7,7 +7,7 @@ class AppComponent extends Component<Tags.div> {
   constructor() {
     super({
       tagName: Tags.div,
-      classList: ['app'],
+      classList: ['app-root'],
       parent: document.body,
     });
     if (AppComponent.count > 0) return;

@@ -1,11 +1,11 @@
+import { HashType } from '.';
+
 export interface Car {
   name: string;
-  color: string;
+  color: HashType;
   id: number;
 }
 
 export type GetCarsResponse = {
   data: Array<Car>;
 };
-
-// color: '#e6e6fa';

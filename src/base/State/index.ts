@@ -2,7 +2,7 @@ import { Car } from '../../models/API';
 
 abstract class State {
   static cars: Map<Car['name'], Car> = new Map();
-  static winners = new Set();
+  static winners = new Map();
   static carsCount = 4;
   static winnersCount = 1;
   static garageCurrentPage = 1;

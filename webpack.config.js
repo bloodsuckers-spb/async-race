@@ -61,10 +61,6 @@ module.exports = {
         loader: 'ts-loader',
         exclude: ['/node_modules/'],
       },
-      // {
-      //   test: /\.(s[ac]|c)ss$/i,
-      //   use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      // },
       {
         test: /index\.css$/,
         exclude: /node_modules/,
@@ -79,6 +75,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
+        type: mode === 'production' ? 'asset' : 'asset/resource',
       },
     ],
   },
