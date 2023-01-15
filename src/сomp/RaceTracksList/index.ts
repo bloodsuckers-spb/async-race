@@ -6,7 +6,7 @@
 import Component from '../../base/Component';
 import State from '../../base/State';
 
-import Racer from '../Racer';
+import TracksListItem from '../TracksListItem';
 
 import { totalCount } from '../../constants/API';
 import { errorMessage } from '../../constants';
@@ -44,7 +44,7 @@ class RaceTracksList extends Component<'ul'> {
 
     cars.forEach((car) => {
       State.cars.set(car.name, car);
-      const racer = new Racer(this);
+      const racer = new TracksListItem(this, car);
     });
   };
 }

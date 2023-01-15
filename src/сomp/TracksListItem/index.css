@@ -1,5 +1,6 @@
 .racetrack {
   display: block;
   height: 200px;
+  width: 400px;
   border: 2px dashed black;
 }
