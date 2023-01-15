@@ -4,18 +4,18 @@ import Router from './base/Router';
 import Loader from './base/Loader';
 import Component from './base/Component';
 
-import AppComponent from './сomp/AppComponent';
-import LayoutHeader from './сomp/LayoutHeader';
-import MainLayout from './layout/MainLayout';
-import initGarageLayout from './layout/InitGarageLayout';
-import initWinnersLayout from './layout/InitWinnersLayout';
+import AppComponent from './components/AppComponent';
+import LayoutHeader from './components/LayoutHeader';
+import MainLayout from './init/MainLayout';
+import initGarageLayout from './init/InitGarageLayout';
+import initWinnersLayout from './init/InitWinnersLayout';
 
-import NavLink from './сomp/NavLinks';
-import RaceTracksList from './сomp/RaceTracksList';
+import NavLink from './components/NavLinks';
+import RaceTracksList from './components/RaceTracksList';
 
-import ErrorView from './сomp/ErrorView';
-import GarageView from './сomp/GarageView';
-import WinnersView from './сomp/WinnersView';
+import ErrorView from './components/ErrorView';
+import GarageView from './components/GarageView';
+import WinnersView from './components/WinnersView';
 
 import API from './enums/API';
 import Routes from './enums/Routes';

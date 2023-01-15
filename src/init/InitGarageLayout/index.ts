@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import Form from '../../сomp/Form';
-import List from '../../сomp/List';
-import GarageView from '../../сomp/GarageView';
-import Heading from '../../сomp/Heading';
-import Title from '../../сomp/Title';
+import Form from '../../components/Form';
+import List from '../../components/List';
+import GarageView from '../../components/GarageView';
+import Heading from '../../components/Heading';
+import Title from '../../components/Title';
 
 import HeadingKeys from '../../enums/HeadingKeys';
 import TitleKeys from '../../enums/TitleKeys';

@@ -1,10 +1,12 @@
 import Component from '../../base/Component';
 
-class AppComponent extends Component<'div'> {
+import Tags from '../../enums/Tags';
+
+class AppComponent extends Component<Tags.div> {
   static count = 0;
   constructor() {
     super({
-      tagName: 'div',
+      tagName: Tags.div,
       classList: ['app'],
       parent: document.body,
     });

@@ -1,5 +1,5 @@
-import WinnersView from '../../сomp/WinnersView';
-import Heading from '../../сomp/Heading';
+import WinnersView from '../../components/WinnersView';
+import Heading from '../../components/Heading';
 
 import HeadingKeys from '../../enums/HeadingKeys';
 import Views from '../../enums/Views';

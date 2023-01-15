@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-param-reassign */
 import Component from '../Component';
-import NavLink from '../../сomp/NavLinks';
+import NavLink from '../../components/NavLinks';
 
 import { AppView } from '../../models';
 

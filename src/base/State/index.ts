@@ -1,8 +1,6 @@
-import EventEmitter from '../EventEmitter';
-
 import { Car } from '../../models/API';
 
-abstract class State extends EventEmitter {
+abstract class State {
   static cars: Map<Car['name'], Car> = new Map();
   static winners = new Set();
   static carsCount = 4;

@@ -1,8 +1,7 @@
-import State from '../State';
-
+import EventEmitter from '../EventEmitter';
 import { ComponentProps } from '../../models';
 
-class Component<T extends keyof HTMLElementTagNameMap> extends State {
+class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
   public readonly node: HTMLElementTagNameMap[T];
   constructor({ tagName, classList = [], nodeProps = {}, parent }: ComponentProps<T>) {
     super();
