@@ -1,8 +1,9 @@
 const enum RequestMethods {
-  get = 'GET',
-  post = 'POST',
-  put = 'PUT',
-  delete = 'DELETE',
+  get = 'get',
+  post = 'post',
+  put = 'put',
+  delete = 'delete',
+  patch = 'patch',
 }
 
 export default RequestMethods;

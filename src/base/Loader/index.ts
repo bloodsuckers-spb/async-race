@@ -1,37 +1,15 @@
-/* eslint-disable class-methods-use-this */
-
 import axios, { AxiosResponse } from 'axios';
 
-import EventEmitter from '../EventEmitter';
+import { Load } from '../../models/API';
+import CustomEvents from '../../enums/CustomEvents';
 
-import { GetCarsResponse } from '../../models/API';
+// `${this.baseLink}/garage?_page=1&_limit=7`
+// `${this.baseLink}/winners?_page=1&_limit=10`
 
-class Loader extends EventEmitter {
-  garagePage = 1;
-  constructor(private readonly baseLink: string) {
-    super();
-  }
-  // <T>
-  getResp() {
-    this.load();
-  }
+const load = <T>({ method, queryString, eventName, cb }: Load): void => {
+  axios[method](queryString)
+    .then((response: AxiosResponse<T>) => cb(CustomEvents[eventName], response))
+    .catch((error: Error) => console.log(error.message));
+};
 
-  // options, endpoint
-  createUrl() {}
-
-  // method, callback, options = {}
-  load() {
-    // <T>
-  }
-
-  errorHandler() {}
-
-  public getCars = (): void => {
-    axios
-      .get(`${this.baseLink}/garage/?_page=1&_limit=7`)
-      .then((response: AxiosResponse<GetCarsResponse>) => this.emit('updateCars', response))
-      .catch((error: Error) => console.log(error.message));
-  };
-}
-
-export default Loader;
+export default load;

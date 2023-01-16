@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable implicit-arrow-linebreak */
 import Router from './base/Router';
-import Loader from './base/Loader';
+import Load from './base/Loader';
 import Component from './base/Component';
 
 import AppComponent from './components/AppComponent';
@@ -18,7 +18,10 @@ import GarageView from './components/GarageView';
 import WinnersView from './components/WinnersView';
 
 import API from './enums/API';
+import RequestMethods from './enums/RequestMethods';
 import Routes from './enums/Routes';
+import CustomEvents from './enums/CustomEvents';
+import { GetCarsResponse } from './models/API';
 
 import { AppView } from './models';
 
@@ -29,7 +32,7 @@ const initRouter = (root: Component<'main'>, navLinks: Array<NavLink>, errorView
 
 const createRoutes = <T extends Routes>(key: T, view: Component<'div'>) => ({ [key]: view });
 
-const initApp = (loader: Loader) => {
+const initApp = () => {
   document.body.textContent = '';
   const app = new AppComponent();
   const { FirstNavLink, SecondNavLink } = LayoutHeader(app);
@@ -44,9 +47,13 @@ const initApp = (loader: Loader) => {
   // можно добавить класс
 
   setTimeout(() => {
-    loader.getCars();
-  }, 1000);
-  // loader.getCars();
+    Load<GetCarsResponse>({
+      method: RequestMethods.get,
+      queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
+      eventName: CustomEvents.updateCars,
+      cb: app.emit,
+    });
+  }, 3000);
 
   // generate views
   const errorRoute = createRoutes(Routes.page404, errorView);
@@ -59,4 +66,4 @@ const initApp = (loader: Loader) => {
   return initApp;
 };
 
-initApp(new Loader(API.baseLink));
+initApp();

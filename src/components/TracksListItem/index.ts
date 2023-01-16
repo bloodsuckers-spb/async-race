@@ -8,10 +8,11 @@ import styles from './index.css';
 
 import { HashType } from '../../models';
 import { Car } from '../../models/API';
+import Tags from '../../enums/Tags';
 
 const { racetrack } = styles;
 
-class TracksListItem extends Component<'li'> {
+class TracksListItem extends Component<Tags.li> {
   protected readonly header: RaceItemHeader;
   protected readonly carSvg: CarSvg;
   protected readonly name: string;
@@ -19,7 +20,7 @@ class TracksListItem extends Component<'li'> {
   protected readonly id: number;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
-      tagName: 'li',
+      tagName: Tags.li,
       classList: [racetrack],
       parent: parent.node,
     });
