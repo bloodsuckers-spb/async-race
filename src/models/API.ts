@@ -1,4 +1,4 @@
-import { HashType, EventMap } from '.';
+import { HashType } from '.';
 import CustomEvents from '../enums/CustomEvents';
 import RequestMethods from '../enums/RequestMethods';
 
@@ -18,5 +18,5 @@ export type Load = {
   method: RequestMethods;
   queryString: QueryString;
   eventName: CustomEvents;
-  cb: <T>(eventName: keyof EventMap, params: T) => void;
+  // cb: <T>(eventName: keyof EventMap, params: T) => void;
 };

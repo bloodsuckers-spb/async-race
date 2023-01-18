@@ -5,10 +5,7 @@ import TitleKeys from '../../enums/TitleKeys';
 import CustomEvents from '../../enums/CustomEvents';
 
 class Title extends Component<'h2'> {
-  constructor(
-    protected readonly parent: Component<keyof HTMLElementTagNameMap>,
-    private readonly key: TitleKeys,
-  ) {
+  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, private readonly key: TitleKeys) {
     super({
       tagName: 'h2',
       classList: ['subtitle'],

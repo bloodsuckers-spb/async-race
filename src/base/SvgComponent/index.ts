@@ -1,8 +1,6 @@
 import { SVGNamespaceURI } from '../../constants';
 import { SvgComponentProps } from '../../models';
 
-// import SvgUse from '../../components/SvgUse';
-
 class SvgComponent<T extends keyof SVGElementTagNameMap> {
   readonly node: SVGElementTagNameMap[T];
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,6 +10,10 @@ class SvgComponent<T extends keyof SVGElementTagNameMap> {
     Object.assign(this.node, nodeProps);
     parent?.append(this.node);
   }
+
+  addChildren = <U extends keyof SVGElementTagNameMap>(...children: Array<SvgComponent<U>>) => {
+    this.node.append(...children.map((component) => component.node));
+  };
 }
 
 export default SvgComponent;
