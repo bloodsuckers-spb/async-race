@@ -3,23 +3,24 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-param-reassign */
 import Component from '../Component';
-import NavLink from '../../components/NavLinks';
+// import NavLink from '../../components/NavLinks';
 
 import { AppView } from '../../models';
+import Tags from '../../enums/Tags';
 
 class Router {
   static count = 0;
   private initialView: AppView = {};
   private currentView: AppView = {};
   constructor(
-    readonly root: Component<'main'>,
-    readonly navLinks: Array<NavLink>,
+    readonly root: Component<Tags.div>,
+    readonly navLinks: Array<Component<Tags.a>>,
     readonly errorView: AppView,
-    readonly views: Array<Record<string, Component<'div'>>>
+    readonly views: Array<Record<string, Component<Tags.div>>>
   ) {
     if (Router.count > 0) return;
     Router.count += 1;
-    navLinks.forEach(({ node }: Component<'a'>) => {
+    navLinks.forEach(({ node }: Component<Tags.a>) => {
       node.onclick = (): false => {
         this.handleNavigate(node.href);
         return false;

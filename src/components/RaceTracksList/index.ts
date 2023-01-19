@@ -5,6 +5,7 @@
 // import { AxiosResponseHeaders } from 'axios';
 import Component from '../../base/Component';
 import State from '../../base/State';
+import EventEmitter from '../../base/EventEmitter';
 
 import TracksListItem from '../TracksListItem';
 
@@ -12,18 +13,18 @@ import { totalCount } from '../../constants/API';
 import { errorMessage } from '../../constants';
 
 import { Car } from '../../models/API';
+import CustomEvents from '../../enums/CustomEvents';
+import Tags from '../../enums/Tags';
 
-class RaceTracksList extends Component<'ul'> {
+class RaceTracksList extends Component<Tags.ul> {
   constructor(parent: Component<keyof HTMLElementTagNameMap>) {
     super({
-      tagName: 'ul',
+      tagName: Tags.ul,
       classList: ['race-tracks-list'],
-      nodeProps: {
-        textContent: 'RaceTracksList',
-      },
       parent: parent.node,
     });
-    this.on('updateCars', this.onUpdate);
+    this.on(CustomEvents.updateCars, this.onUpdate);
+    console.log(EventEmitter.listeners);
   }
 
   onUpdate = <T>(args: T) => {
@@ -40,7 +41,7 @@ class RaceTracksList extends Component<'ul'> {
     const cars: Array<Car> = data;
     const carsCount = `${headers[totalCount]}`;
     State.carsCount = +carsCount;
-    this.emit('updateAmount', []);
+    this.emit(CustomEvents.updateAmount, []);
 
     cars.forEach((car) => {
       State.cars.set(car.name, car);

@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
-import EventEmitter from '../EventEmitter';
-import { ComponentProps } from '../../models';
 
+import EventEmitter from '../EventEmitter';
+
+import { ComponentProps } from '../../models';
 import { Load } from '../../models/API';
 import CustomEvents from '../../enums/CustomEvents';
 
@@ -15,7 +16,7 @@ class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
     parent?.append(this.node);
   }
 
-  addChildren = <U extends keyof HTMLElementTagNameMap>(...children: Array<Component<U>>) => {
+  append = <U extends keyof HTMLElementTagNameMap>(...children: Array<Component<U>>) => {
     this.node.append(...children.map((component) => component.node));
   };
 
