@@ -3,6 +3,7 @@ enum CustomEvents {
   updateCars = 'updateCars',
   updateAmount = 'updateAmount',
   typeCarName = 'typeCarName',
+  createNewCar = 'createNewCar',
 }
 
 export default CustomEvents;

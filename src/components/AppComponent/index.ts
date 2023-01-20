@@ -39,6 +39,7 @@ class AppComponent extends Component<Tags.div> {
       method: RequestMethods.get,
       queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
       eventName: CustomEvents.updateCars,
+      options: {},
     });
   };
 

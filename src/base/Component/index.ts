@@ -20,9 +20,12 @@ class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
     this.node.append(...children.map((component) => component.node));
   };
 
-  load = <U>({ method, queryString, eventName }: Load): void => {
-    axios[method](queryString)
-      .then((response: AxiosResponse<U>) => this.emit(CustomEvents[eventName], response))
+  load = <U>({ method, queryString, eventName, options = {} }: Load): void => {
+    axios[method](queryString, options)
+      .then((response: AxiosResponse<U>) => {
+        // console.log(response);
+        this.emit(CustomEvents[eventName], response);
+      })
       .catch((error: Error) => console.log(error.message));
   };
 }

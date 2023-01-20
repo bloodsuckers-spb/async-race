@@ -8,15 +8,24 @@ export interface Car {
   id: number;
 }
 
+export type NewCar = {
+  id: number;
+  body: string;
+};
+
 export type GetCarsResponse = {
   data: Array<Car>;
 };
 
 export type QueryString = `http://${string}`;
 
+export type RequestOptions = {
+  body?: {};
+};
+
 export type Load = {
   method: RequestMethods;
   queryString: QueryString;
   eventName: CustomEvents;
-  // cb: <T>(eventName: keyof EventMap, params: T) => void;
+  options: RequestOptions;
 };
