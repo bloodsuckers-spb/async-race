@@ -1,15 +1,36 @@
 import Component from '../../base/Component';
 
-class Form extends Component<'form'> {
-  constructor(parent: Component<keyof HTMLElementTagNameMap>) {
+import Tags from '../../enums/Tags';
+// import CustomEvents from '../../enums/CustomEvents';
+
+interface FormProps {
+  textInput: Component<Tags.input>;
+  colorInput: Component<Tags.input>;
+  btn: Component<Tags.button>;
+}
+
+interface Form extends FormProps {}
+
+class Form extends Component<Tags.form> {
+  constructor({ textInput, colorInput, btn }: FormProps) {
     super({
-      tagName: 'form',
+      tagName: Tags.form,
       classList: ['form'],
-      nodeProps: {
-        textContent: 'Form',
-      },
-      parent: parent.node,
     });
+    this.textInput = textInput;
+    this.colorInput = colorInput;
+    this.btn = btn;
+    this.append(textInput, colorInput, btn);
+    this.textInput.node.oninput = () => {
+      const { node } = this.btn;
+      if (!node.disabled) return;
+      node.disabled = false;
+    };
+    this.btn.node.onclick = () => {
+      this.btn.node.disabled = true;
+      this.textInput.node.value = '';
+      console.log('click');
+    };
   }
 }
 

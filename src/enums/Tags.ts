@@ -8,6 +8,9 @@ enum Tags {
   main = 'main',
   nav = 'nav',
   a = 'a',
+  form = 'form',
+  input = 'input',
+  button = 'button',
 }
 
 export default Tags;

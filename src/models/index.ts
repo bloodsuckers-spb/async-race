@@ -13,6 +13,8 @@ export type NodeData = {
   textContent: string;
   href: string;
   id: string;
+  type: 'text' | 'color';
+  disabled: 'true' | 'false';
 };
 
 type SvgNodeData = {
