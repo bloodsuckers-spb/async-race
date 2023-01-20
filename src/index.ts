@@ -11,7 +11,7 @@ import WinnersView from './Layout/WinnersView';
 import './index.css';
 
 const app = new AppComponent();
-app.start(skeleton, headerProps, mainChildren);
+app.start({ skeleton, headerProps, mainChildren });
 app.initRouter(errorRoute, [garageRoute, winnersRoute]);
 
 // Temp

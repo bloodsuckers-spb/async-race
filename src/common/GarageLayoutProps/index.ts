@@ -11,13 +11,6 @@ import Views from '../../enums/Views';
 
 import Tags from '../../enums/Tags';
 
-const initGarageLayout = (view: Component<Tags.div>) => {
-  const createForm = new Form(view);
-  const updateForm = new Form(view);
-  const heading = new Heading(view, Views.garage, HeadingKeys.garage);
-  const title = new Title(view, TitleKeys.garage);
-  const raceTrackList = new RaceTracksList(view);
-  return { createForm, updateForm, raceTrackList, heading, title };
+const GarageLayoutProps = {
+  createCarform: new Form(),
 };
-
-export default initGarageLayout;

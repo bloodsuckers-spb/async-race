@@ -19,3 +19,9 @@ export type MainChildren = {
   boundingBox: Component<Tags.div>;
   contentBox: Component<Tags.div>;
 };
+
+export type InitProps = {
+  skeleton: Skeleton;
+  headerProps: HeaderChildren;
+  mainChildren: MainChildren;
+};
