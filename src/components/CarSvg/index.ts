@@ -6,7 +6,7 @@ import SvgUse from '../SvgUse';
 import { HashType } from '../../models';
 
 class CarSvg extends SvgComponent<SVGTags.svg> {
-  use: SvgUse;
+  private readonly use: SvgUse;
   constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, protected color: HashType) {
     super({
       tagName: SVGTags.svg,

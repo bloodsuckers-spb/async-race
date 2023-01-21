@@ -2,7 +2,7 @@ import { SVGNamespaceURI } from '../../constants';
 import { SvgComponentProps } from '../../models';
 
 class SvgComponent<T extends keyof SVGElementTagNameMap> {
-  readonly node: SVGElementTagNameMap[T];
+  public node: SVGElementTagNameMap[T];
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor({ tagName, classList = [], nodeProps = {}, parent }: SvgComponentProps<T>) {
     this.node = document.createElementNS(SVGNamespaceURI, tagName);

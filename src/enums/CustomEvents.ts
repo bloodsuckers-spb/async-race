@@ -5,6 +5,7 @@ enum CustomEvents {
   typeCarName = 'typeCarName',
   createNewCar = 'createNewCar',
   selectCar = 'selectCar',
+  updateSelectedCar = 'updateSelectedCar',
 }
 
 export default CustomEvents;

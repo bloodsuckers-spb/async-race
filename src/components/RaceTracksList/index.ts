@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Component from '../../base/Component';
 import State from '../../base/State';
-import EventEmitter from '../../base/EventEmitter';
+// import EventEmitter from '../../base/EventEmitter';
 
 import TracksListItem from '../TracksListItem';
 
@@ -32,8 +32,10 @@ class RaceTracksList extends Component<Tags.ul> {
       classList: ['race-tracks-list'],
       parent: parent.node,
     });
+
     this.on(CustomEvents.updateCars, this.onUpdate);
     this.on(CustomEvents.createNewCar, this.onCarAdded);
+    this.on(CustomEvents.updateSelectedCar, this.onCarUpdated);
   }
 
   onUpdate = <T>(args: T) => {
@@ -52,12 +54,17 @@ class RaceTracksList extends Component<Tags.ul> {
     // this.incrementCarsCount(+carsCount);
     this.emit(CustomEvents.updateAmount, {});
 
-    cars.forEach((car) => {
-      this.addCarToStore(car);
-      // State.cars.set(car.name, car);
-      // this.render(car);
-      // const racer = new TracksListItem(this, car);
-    });
+    cars.forEach((car) => this.addCarToStore(car));
+  };
+
+  onCarUpdated = <T>(arg: T) => {
+    if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
+      throw new Error(errorMessage);
+    }
+    if (!isNewCar(arg.data)) {
+      throw new Error(errorMessage);
+    }
+    this.updateCar(arg.data);
   };
 
   onCarAdded = <T>(arg: T) => {
@@ -75,11 +82,18 @@ class RaceTracksList extends Component<Tags.ul> {
     this.addCarToStore(car);
   };
 
+  private updateCar = ({ id, body }: NewCar) => {
+    const car: Car = Object.assign(JSON.parse(body), { id });
+    State.cars.set(`${id}`, car);
+    console.log(id);
+    console.log(State.cars);
+  };
+
   private addCarToStore = (car: Car) => {
-    if (State.cars.get(car.name)) {
+    if (State.cars.get(`${car.id}`)) {
       return;
     }
-    State.cars.set(car.name, car);
+    State.cars.set(`${car.id}`, car);
     this.incrementCarsCount();
     this.render(car);
   };
