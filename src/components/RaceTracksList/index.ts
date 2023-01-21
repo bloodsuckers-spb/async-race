@@ -13,6 +13,8 @@ import { Car, NewCar, GetCarsResponse } from '../../models/API';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
+import { isCar } from '../../common/IsCar';
+
 const isNewCar = <T>(data: T | NewCar): data is NewCar => {
   if (typeof data !== 'object' || data === null) {
     return false;
@@ -61,7 +63,7 @@ class RaceTracksList extends Component<Tags.ul> {
     if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
       throw new Error(errorMessage);
     }
-    if (!isNewCar(arg.data)) {
+    if (!isCar(arg.data)) {
       throw new Error(errorMessage);
     }
     this.updateCar(arg.data);
@@ -71,22 +73,20 @@ class RaceTracksList extends Component<Tags.ul> {
     if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
       throw new Error(errorMessage);
     }
-    if (!isNewCar(arg.data)) {
+    if (!isCar(arg.data)) {
       throw new Error(errorMessage);
     }
     this.createCar(arg.data);
   };
 
-  private createCar = ({ id, body }: NewCar) => {
-    const car: Car = Object.assign(JSON.parse(body), { id });
-    this.addCarToStore(car);
+  private createCar = (data: Car) => {
+    // const car: Car = Object.assign(JSON.parse(body), { id });
+    this.addCarToStore(data);
   };
 
-  private updateCar = ({ id, body }: NewCar) => {
-    const car: Car = Object.assign(JSON.parse(body), { id });
-    State.cars.set(`${id}`, car);
-    console.log(id);
-    console.log(State.cars);
+  private updateCar = (data: Car) => {
+    // const car: Car = Object.assign(JSON.parse(body), { id });
+    State.cars.set(`${data.id}`, data);
   };
 
   private addCarToStore = (car: Car) => {

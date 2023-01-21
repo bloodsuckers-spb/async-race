@@ -9,14 +9,6 @@ import RequestMethods from '../../enums/RequestMethods';
 import API from '../../enums/API';
 import { isCar } from '../../common/IsCar';
 
-// const isCar = <T>(data: T | Car): data is Car => {
-//   const keys = ['id', 'color', 'name'];
-//   if (typeof data !== 'object' || data === null) {
-//     throw new Error(errorMessage);
-//   }
-//   return keys.every((key) => key in data);
-// };
-
 interface UpdateCarForm extends FormProps {}
 
 class UpdateCarForm extends Component<Tags.form> {
@@ -75,10 +67,8 @@ class UpdateCarForm extends Component<Tags.form> {
       queryString: `${API.baseLink}/garage/${this.selectedId}`,
       eventName: CustomEvents.updateSelectedCar,
       options: {
-        body: JSON.stringify({
-          name: nameValue,
-          color: colorValue,
-        }),
+        name: nameValue,
+        color: colorValue,
       },
     });
 

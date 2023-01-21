@@ -5,6 +5,8 @@ import CarSvg from '../CarSvg';
 
 import styles from './index.css';
 
+import { isCar } from '../../common/IsCar';
+
 import { HashType } from '../../models';
 import { Car } from '../../models/API';
 import Tags from '../../enums/Tags';
@@ -14,33 +16,15 @@ import { errorMessage } from '../../constants';
 
 const { racetrack } = styles;
 
-type UpdateCarData = {
-  id: number;
-  body: string;
+export type Response = {
+  data: Car;
 };
 
-type UpdateCar = {
-  data: UpdateCarData;
-};
-
-type CarProperties = {
-  name: string;
-  color: HashType;
-};
-
-const isUpdateCar = <T>(arg: T | UpdateCar): arg is UpdateCar => {
+const isResponse = <T>(arg: T | Response): arg is Response => {
   if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
     return false;
   }
   return true;
-};
-
-const isUpdateCarData = <T>(data: T | UpdateCarData): data is UpdateCarData => {
-  const keys = ['id', 'body'];
-  if (typeof data !== 'object' || data === null) {
-    return false;
-  }
-  return keys.every((key) => key in data);
 };
 
 class TracksListItem extends Component<Tags.li> {
@@ -66,17 +50,12 @@ class TracksListItem extends Component<Tags.li> {
   }
 
   onUpdate = <T>(arg: T) => {
-    if (!isUpdateCar(arg) || !isUpdateCarData(arg.data)) {
+    if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
 
-    const { data } = arg;
-    if (data.id !== this.id) {
-      return;
-    }
-
-    const carProperties: CarProperties = JSON.parse(data.body);
-    const { name, color } = carProperties;
+    const { id, name, color } = arg.data;
+    if (id !== this.id) return;
 
     if (this.name !== name) {
       const { heading } = this.header;

@@ -20,12 +20,12 @@ export type GetCarsResponse = {
 export type QueryString = `http://${string}`;
 
 export type RequestOptions = {
-  body?: {};
+  headers?: {};
 };
 
 export type Load = {
   method: RequestMethods;
   queryString: QueryString;
   eventName: CustomEvents;
-  options: RequestOptions;
+  options: Record<string, string>;
 };
