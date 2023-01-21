@@ -24,11 +24,11 @@ class TracksListItem extends Component<Tags.li> {
       classList: [racetrack],
       parent: parent.node,
     });
-    this.header = new RaceItemHeader(this, name);
+    this.header = new RaceItemHeader(this, { name, color, id });
+    this.carSvg = new CarSvg(this, color);
     this.name = name;
     this.color = color;
     this.id = id;
-    this.carSvg = new CarSvg(this, color);
   }
   startAnimation() {}
   stopAnimation() {}

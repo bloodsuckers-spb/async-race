@@ -1,10 +1,15 @@
 import Component from '../../base/Component';
 
-import Form from '../../components/Form';
+import CreateCarForm from '../../components/CreateCarForm';
+import UpdateCarForm from '../../components/UpdateCarForm';
 
 import CreateCarTextInput from '../../Layout/CreateCarTextInput';
 import CreateCarBtn from '../../Layout/CreateCarBtn';
 import CreateCarColorInput from '../../Layout/CreateCarColorInput';
+
+import UpdateCarTextInput from '../../Layout/UpdateCarTextInput';
+import UpdateCarColorInput from '../../Layout/UpdateCarColorInput';
+import UpdateCarBtn from '../../Layout/UpdateCarBtn';
 
 import RaceTracksList from '../../components/RaceTracksList';
 import Heading from '../../components/Heading';
@@ -16,13 +21,13 @@ import Views from '../../enums/Views';
 import Tags from '../../enums/Tags';
 
 const initGarageLayout = (view: Component<Tags.div>) => {
-  const createForm = new Form({ textInput: CreateCarTextInput, colorInput: CreateCarColorInput, btn: CreateCarBtn });
-  view.append(createForm);
-  // const updateForm = new Form(view);
+  const createForm = new CreateCarForm({ textInput: CreateCarTextInput, colorInput: CreateCarColorInput, btn: CreateCarBtn });
+  const updateForm = new UpdateCarForm({ textInput: UpdateCarTextInput, colorInput: UpdateCarColorInput, btn: UpdateCarBtn });
+  view.append(createForm, updateForm);
   const heading = new Heading(view, Views.garage, HeadingKeys.garage);
   const title = new Title(view, TitleKeys.garage);
   const raceTrackList = new RaceTracksList(view);
-  return { createForm, /* updateForm */ raceTrackList, heading, title };
+  return { createForm, updateForm, raceTrackList, heading, title };
 };
 
 export default initGarageLayout;

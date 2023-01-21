@@ -34,7 +34,6 @@ class RaceTracksList extends Component<Tags.ul> {
     });
     this.on(CustomEvents.updateCars, this.onUpdate);
     this.on(CustomEvents.createNewCar, this.onCarAdded);
-    console.log(EventEmitter.listeners);
   }
 
   onUpdate = <T>(args: T) => {
@@ -49,14 +48,15 @@ class RaceTracksList extends Component<Tags.ul> {
     }
     const { headers, data } = args;
     const cars: Array<Car> = data;
-    const carsCount = `${headers[totalCount]}`;
-    // State.carsCount = +carsCount;
-    this.incrementCarsCount(+carsCount);
+    // const carsCount = `${headers[totalCount]}`;
+    // this.incrementCarsCount(+carsCount);
     this.emit(CustomEvents.updateAmount, {});
 
     cars.forEach((car) => {
-      State.cars.set(car.name, car);
-      const racer = new TracksListItem(this, car);
+      this.addCarToStore(car);
+      // State.cars.set(car.name, car);
+      // this.render(car);
+      // const racer = new TracksListItem(this, car);
     });
   };
 

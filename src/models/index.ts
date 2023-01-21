@@ -16,6 +16,7 @@ export type NodeData = {
   id: string;
   type: 'text' | 'color';
   disabled: 'true' | 'false';
+  readOnly: 'true';
 };
 
 type SvgNodeData = {
@@ -40,3 +41,9 @@ export type ComponentProps<T extends keyof HTMLElementTagNameMap> = HTMLComponen
 export type SvgComponentProps<T extends keyof SVGElementTagNameMap> = HTMLComponentProps<T, SvgNodeData>;
 
 export type HashType = `#${string}`;
+
+export interface FormProps {
+  textInput: Component<Tags.input>;
+  colorInput: Component<Tags.input>;
+  btn: Component<Tags.button>;
+}
