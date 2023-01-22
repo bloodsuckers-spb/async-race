@@ -11,6 +11,13 @@ enum Tags {
   form = 'form',
   input = 'input',
   button = 'button',
+  table = 'table',
+  thead = 'thead',
+  th = 'th',
+  tbody = 'tbody',
+  tr = 'tr',
+  td = 'td',
+
 }
 
 export default Tags;

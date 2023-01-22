@@ -41,6 +41,12 @@ class AppComponent extends Component<Tags.div> {
       eventName: CustomEvents.updateCars,
       options: {},
     });
+    this.load({
+      method: RequestMethods.get,
+      queryString: `${API.winnersLink}?_page=1&_limit=10`,
+      eventName: CustomEvents.updateWinners,
+      options: {},
+    });
   };
 
   public initRouter = (errorView: AppView, routes: Array<AppView>) => {
