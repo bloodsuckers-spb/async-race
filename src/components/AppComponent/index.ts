@@ -34,7 +34,7 @@ class AppComponent extends Component<Tags.div> {
     this.initMainLayout(mainChildren);
   };
 
-  public getData = () => {
+  public getAppData = () => {
     this.load({
       method: RequestMethods.get,
       queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
@@ -71,6 +71,10 @@ class AppComponent extends Component<Tags.div> {
     this.main.append(boundingBox);
     boundingBox.append(contentBox);
     this.routerRoot = contentBox;
+  };
+
+  public componentsDidMount = () => {
+    // тут запрос данных
   };
 }
 

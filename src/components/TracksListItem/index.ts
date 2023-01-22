@@ -1,31 +1,27 @@
 /* eslint-disable class-methods-use-this */
+
+// Components & UI
 import Component from '../../base/Component';
 import RaceItemHeader from '../RaceItemHeader';
 import CarSvg from '../CarSvg';
 
+// Styles
 import styles from './index.css';
 
-import { isCar } from '../../common/IsCar';
+// Predicates
+import { isResponse, isCar } from '../../models/Predicates';
 
-import { HashType } from '../../models';
-import { Car } from '../../models/API';
+// Constants
 import Tags from '../../enums/Tags';
+import { HashType } from '../../models';
 import CustomEvents from '../../enums/CustomEvents';
-
 import { errorMessage } from '../../constants';
 
+// Types
+import { Car } from '../../models/API';
+
+// Destructuring styles
 const { racetrack } = styles;
-
-export type Response = {
-  data: Car;
-};
-
-const isResponse = <T>(arg: T | Response): arg is Response => {
-  if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
-    return false;
-  }
-  return true;
-};
 
 class TracksListItem extends Component<Tags.li> {
   protected header: RaceItemHeader;
@@ -55,6 +51,7 @@ class TracksListItem extends Component<Tags.li> {
     }
 
     const { id, name, color } = arg.data;
+
     if (id !== this.id) return;
 
     if (this.name !== name) {

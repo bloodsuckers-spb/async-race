@@ -6,7 +6,9 @@ import CustomEvents from '../../enums/CustomEvents';
 import { errorMessage } from '../../constants';
 import RequestMethods from '../../enums/RequestMethods';
 import API from '../../enums/API';
-import { isCar } from '../../common/IsCar';
+
+// Predicates
+import { isCar } from '../../models/Predicates';
 
 interface UpdateCarForm extends FormProps {}
 
@@ -24,7 +26,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.append(textInput, colorInput, btn);
 
     this.textInput.node.oninput = () => this.handleOnInput();
-    this.btn.node.onclick = () => {
+    this.btn.node.onclick = (): false => {
       this.handleClick();
       this.clear();
       return false;

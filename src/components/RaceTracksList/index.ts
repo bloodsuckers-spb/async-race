@@ -9,11 +9,12 @@ import TracksListItem from '../TracksListItem';
 import { totalCount } from '../../constants/API';
 import { errorMessage } from '../../constants';
 
-import { Car, NewCar, GetCarsResponse } from '../../models/API';
+import { Car, NewCar } from '../../models/API';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
-import { isCar } from '../../common/IsCar';
+// Predicates
+import { isCar } from '../../models/Predicates';
 
 const isNewCar = <T>(data: T | NewCar): data is NewCar => {
   if (typeof data !== 'object' || data === null) {
@@ -52,6 +53,8 @@ class RaceTracksList extends Component<Tags.ul> {
     }
     const { headers, data } = args;
     const cars: Array<Car> = data;
+    console.log(headers);
+
     // const carsCount = `${headers[totalCount]}`;
     // this.incrementCarsCount(+carsCount);
     this.emit(CustomEvents.updateAmount, {});
