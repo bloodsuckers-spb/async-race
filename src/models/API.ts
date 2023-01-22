@@ -16,6 +16,11 @@ export type AbstractResponse = {
   headers: Headers;
 };
 
+export type CountedDataResponse = {
+  data: unknown;
+  headers: CountedDataHeaders;
+};
+
 // Generic Response
 export type LoadResponse<T, U> = {
   data: T;
@@ -34,11 +39,6 @@ export interface Car {
   color: HashType;
   id: number;
 }
-
-export type NewCar = {
-  id: number;
-  body: string;
-};
 
 export type GetCarsResponse = {
   data: Array<Car>;

@@ -1,32 +1,20 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
+// Components & UI
 import Component from '../../base/Component';
 import State from '../../base/State';
-// import EventEmitter from '../../base/EventEmitter';
-
 import TracksListItem from '../TracksListItem';
 
-import { totalCount } from '../../constants/API';
+// Constants
 import { errorMessage } from '../../constants';
-
-import { Car, NewCar } from '../../models/API';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
+// Types
+import { Car } from '../../models/API';
+
 // Predicates
-import { isCar } from '../../models/Predicates';
-
-const isNewCar = <T>(data: T | NewCar): data is NewCar => {
-  if (typeof data !== 'object' || data === null) {
-    return false;
-  }
-  if (!('id' in data) || !('body' in data)) {
-    return false;
-  }
-  return true;
-};
-
-const isCarsResponse = () => {};
+import { isCar, isCars, isResponse, isCountedDataResponse } from '../../models/Predicates';
 
 class RaceTracksList extends Component<Tags.ul> {
   constructor(parent: Component<keyof HTMLElementTagNameMap>) {
@@ -41,54 +29,38 @@ class RaceTracksList extends Component<Tags.ul> {
     this.on(CustomEvents.updateSelectedCar, this.onCarUpdated);
   }
 
-  onUpdate = <T>(args: T) => {
-    if (typeof args !== 'object' || args === null || !('headers' in args)) {
-      throw new Error(errorMessage);
-    }
-    if (!('data' in args) || !Array.isArray(args.data)) {
-      throw new Error(errorMessage);
-    }
-    if (typeof args.headers !== 'object' || args.headers === null || !(totalCount in args.headers)) {
+  private onUpdate = <T>(args: T) => {
+    if (!isCountedDataResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
     const { headers, data } = args;
-    const cars: Array<Car> = data;
-    console.log(headers);
-
-    // const carsCount = `${headers[totalCount]}`;
-    // this.incrementCarsCount(+carsCount);
+    const carsCount = headers['x-total-count'];
+    this.incrementCarsCount(+carsCount);
     this.emit(CustomEvents.updateAmount, {});
 
-    cars.forEach((car) => this.addCarToStore(car));
+    data.forEach((car) => this.addCarToStore(car));
   };
 
-  onCarUpdated = <T>(arg: T) => {
-    if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
-      throw new Error(errorMessage);
-    }
-    if (!isCar(arg.data)) {
+  private onCarUpdated = <T>(arg: T) => {
+    if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
     this.updateCar(arg.data);
   };
 
-  onCarAdded = <T>(arg: T) => {
-    if (typeof arg !== 'object' || arg === null || !('data' in arg)) {
-      throw new Error(errorMessage);
-    }
-    if (!isCar(arg.data)) {
+  private onCarAdded = <T>(arg: T) => {
+    if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
     this.createCar(arg.data);
   };
 
   private createCar = (data: Car) => {
-    // const car: Car = Object.assign(JSON.parse(body), { id });
+    this.incrementCarsCount();
     this.addCarToStore(data);
   };
 
   private updateCar = (data: Car) => {
-    // const car: Car = Object.assign(JSON.parse(body), { id });
     State.cars.set(`${data.id}`, data);
   };
 
@@ -97,7 +69,6 @@ class RaceTracksList extends Component<Tags.ul> {
       return;
     }
     State.cars.set(`${car.id}`, car);
-    this.incrementCarsCount();
     this.render(car);
   };
 

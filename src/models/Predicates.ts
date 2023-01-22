@@ -1,5 +1,6 @@
-import { AbstractResponse, Car } from './API';
+import { AbstractResponse, CountedDataResponse, Car } from './API';
 import { errorMessage } from '../constants';
+import { totalCount } from '../constants/API';
 
 export const isResponse = <T>(arg: T | AbstractResponse): arg is AbstractResponse => {
   if (typeof arg !== 'object' || arg === null) {
@@ -13,10 +14,34 @@ export const isResponse = <T>(arg: T | AbstractResponse): arg is AbstractRespons
   return true;
 };
 
+export const isCountedDataResponse = <T>(arg: T | CountedDataResponse): arg is CountedDataResponse => {
+  if (typeof arg !== 'object' || arg === null) {
+    return false;
+  }
+
+  if (!('headers' in arg)) {
+    return false;
+  }
+
+  if (typeof arg.headers !== 'object' || !(totalCount in arg.headers)) {
+    return false;
+  }
+
+  return true;
+};
+
 export const isCar = <T>(data: T | Car): data is Car => {
   const keys = ['id', 'color', 'name'];
   if (typeof data !== 'object' || data === null) {
     throw new Error(errorMessage);
   }
   return keys.every((key) => key in data);
+};
+
+export const isCars = <T>(data: T | Array<Car>): data is Array<Car> => {
+  if (!Array.isArray(data)) {
+    return false;
+  }
+
+  return data.every((item) => isCar(item));
 };

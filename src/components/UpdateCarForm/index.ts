@@ -1,5 +1,9 @@
 /* eslint-disable class-methods-use-this */
+
+// Components & UI
 import Component from '../../base/Component';
+
+// Constants
 import Tags from '../../enums/Tags';
 import { FormProps } from '../../models';
 import CustomEvents from '../../enums/CustomEvents';
