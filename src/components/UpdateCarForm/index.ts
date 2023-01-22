@@ -4,7 +4,6 @@ import Tags from '../../enums/Tags';
 import { FormProps } from '../../models';
 import CustomEvents from '../../enums/CustomEvents';
 import { errorMessage } from '../../constants';
-// import { Car } from '../../models/API';
 import RequestMethods from '../../enums/RequestMethods';
 import API from '../../enums/API';
 import { isCar } from '../../common/IsCar';
@@ -25,7 +24,11 @@ class UpdateCarForm extends Component<Tags.form> {
     this.append(textInput, colorInput, btn);
 
     this.textInput.node.oninput = () => this.handleOnInput();
-    this.btn.node.onclick = () => this.handleClick();
+    this.btn.node.onclick = () => {
+      this.handleClick();
+      this.clear();
+      return false;
+    };
 
     this.on(CustomEvents.selectCar, this.onSelect);
   }
@@ -59,24 +62,21 @@ class UpdateCarForm extends Component<Tags.form> {
   };
 
   handleClick = () => {
-    const nameValue = this.textInput.node.value;
-    const colorValue = this.colorInput.node.value;
-
     this.load({
       method: RequestMethods.put,
       queryString: `${API.baseLink}/garage/${this.selectedId}`,
       eventName: CustomEvents.updateSelectedCar,
       options: {
-        name: nameValue,
-        color: colorValue,
+        name: this.textInput.node.value,
+        color: this.colorInput.node.value,
       },
     });
+  };
 
+  private clear = () => {
     this.textInput.node.value = '';
     this.textInput.node.readOnly = true;
     this.btn.node.disabled = true;
-
-    return false;
   };
 }
 
