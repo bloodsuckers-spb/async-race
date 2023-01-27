@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-// Components
 import AppComponent from './components/AppComponent';
 import Router from './base/Router';
 import AppFragment from './ui/AppFragment';
@@ -16,4 +15,3 @@ const router = new Router(RouterRoot, [firstNavLink, secondNavLink], errorRoute,
 const app = new AppComponent(AppFragment, router);
 
 // initWinnersLayout(WinnersView);
-// app.getAppData();

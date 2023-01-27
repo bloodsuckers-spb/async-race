@@ -2,7 +2,7 @@ import ErrorView from '../ui/ErrorView';
 import GarageView from '../ui/Garage';
 import WinnersView from '../ui/Winners';
 
-import createRoutes from '../common/CreateRoutes';
+import createRoutes from '../ui/CreateRoutes';
 
 import Routes from '../enums/Routes';
 

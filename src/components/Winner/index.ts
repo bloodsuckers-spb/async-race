@@ -2,14 +2,14 @@ import Component from '../../base/Component';
 
 import Tags from '../../enums/Tags';
 
-class TableRow extends Component<Tags.tr> {
+class Winner extends Component<Tags.div> {
   constructor(parent: Component<keyof HTMLElementTagNameMap>) {
     super({
-      tagName: Tags.tr,
-      classList: ['table-row'],
+      tagName: Tags.div,
+      classList: ['winner'],
       parent: parent.node,
     });
   }
 }
 
-export default TableRow;
+export default Winner;

@@ -1,20 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable class-methods-use-this */
 import Component from '../../base/Component';
 import Tags from '../../enums/Tags';
 import CustomEvents from '../../enums/CustomEvents';
-import TableRow from '../TableRow';
+import TableRow from '../Winner';
 
-class TableBody extends Component<Tags.tbody> {
+class ResultsContent extends Component<Tags.div> {
   row: TableRow | null = null;
-  constructor(parent: Component<Tags.table>) {
+  constructor() {
     super({
-      tagName: Tags.tbody,
-      classList: ['tbody'],
+      tagName: Tags.div,
+      classList: ['results-content'],
       nodeProps: {
-        textContent: 'tableBody',
+        textContent: 'results',
       },
-      parent: parent.node,
     });
     this.on(CustomEvents.updateWinners, this.onUpdate);
   }
@@ -24,9 +22,12 @@ class TableBody extends Component<Tags.tbody> {
     console.log(arg);
   };
 
-  addTableRow = (winners: Array<any>) => {
+  addWinner = (winners: Array<any>) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     winners.forEach((winner) => new TableRow(this));
   };
 }
 
-export default TableBody;
+const resultsContent = new ResultsContent();
+
+export default resultsContent;
