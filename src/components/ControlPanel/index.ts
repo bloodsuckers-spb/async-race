@@ -1,5 +1,5 @@
 import Component from '../../base/Component';
-import Btn from '../Button';
+import Btn from '../../ui/Button';
 import Btns from '../../enums/Btns';
 import { Car } from '../../models/API';
 import Tags from '../../enums/Tags';

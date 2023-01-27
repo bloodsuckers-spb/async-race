@@ -2,7 +2,7 @@
 import Component from '../../base/Component';
 import Tags from '../../enums/Tags';
 import CustomEvents from '../../enums/CustomEvents';
-import TableRow from '../Winner';
+import TableRow from '../ResultsItem';
 
 class ResultsContent extends Component<Tags.div> {
   row: TableRow | null = null;

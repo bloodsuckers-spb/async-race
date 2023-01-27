@@ -1,5 +1,5 @@
 import Component from '../../base/Component';
-import CarHeading from '../CarHeading';
+import CarHeading from '../../ui/CarHeading';
 import ControlPanel from '../ControlPanel';
 
 import Tags from '../../enums/Tags';

@@ -3,7 +3,7 @@
 // Components & UI
 import Component from '../../base/Component';
 import RaceItemHeader from '../RaceItemHeader';
-import CarSvg from '../CarSvg';
+import CarSvg from '../../ui/CarSvg';
 
 // Styles
 import styles from './index.css';

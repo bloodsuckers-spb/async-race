@@ -1,9 +1,10 @@
 import Component from '../../base/Component';
+import Tags from '../../enums/Tags';
 
-class CarHeading extends Component<'h2'> {
+class CarHeading extends Component<Tags.h2> {
   constructor(readonly parent: Component<keyof HTMLElementTagNameMap>, title: string) {
     super({
-      tagName: 'h2',
+      tagName: Tags.h2,
       classList: ['car-title'],
       nodeProps: {
         textContent: title,
