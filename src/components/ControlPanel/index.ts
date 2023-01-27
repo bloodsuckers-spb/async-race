@@ -1,5 +1,6 @@
 import Component from '../../base/Component';
 import Btn from '../../ui/Button';
+
 import Btns from '../../enums/Btns';
 import { Car } from '../../models/API';
 import Tags from '../../enums/Tags';
@@ -9,6 +10,7 @@ class ControlPanel extends Component<Tags.div> {
   readonly select: Btn;
   readonly start: Btn;
   readonly reset: Btn;
+  readonly remove: Btn;
   constructor(readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
       tagName: Tags.div,
@@ -18,6 +20,7 @@ class ControlPanel extends Component<Tags.div> {
     this.select = new Btn(this, Btns.select);
     this.start = new Btn(this, Btns.start);
     this.reset = new Btn(this, Btns.reset);
+    this.remove = new Btn(this, Btns.remove);
     this.select.node.onclick = () => this.emit(CustomEvents.selectCar, { name, color, id });
   }
 }

@@ -17,10 +17,10 @@ class AppComponent extends Component<Tags.div> {
     AppComponent.count += 1;
     this.node.append(fragment);
     document.body.append(this.node);
-    this.componentDidMount();
+    this.getAppData();
   }
 
-  private componentDidMount = () => {
+  private getAppData = () => {
     this.load({
       method: RequestMethods.get,
       queryString: `${API.baseLink}/garage?_page=1&_limit=7`,

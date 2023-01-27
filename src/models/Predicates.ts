@@ -1,4 +1,4 @@
-import { AbstractResponse, CountedDataResponse, Car } from './API';
+import { AbstractResponse, CountedDataResponse, Car, Winner } from './API';
 import { errorMessage } from '../constants';
 import { totalCount } from '../constants/API';
 
@@ -44,4 +44,20 @@ export const isCars = <T>(data: T | Array<Car>): data is Array<Car> => {
   }
 
   return data.every((item) => isCar(item));
+};
+
+export const isWinner = <T>(data: T | Winner): data is Winner => {
+  const keys = ['wins', 'id', 'time'];
+  if (typeof data !== 'object' || data === null) {
+    throw new Error(errorMessage);
+  }
+  return keys.every((key) => key in data);
+};
+
+export const isWinners = <T>(data: T | Array<Winner>): data is Array<Winner> => {
+  if (!Array.isArray(data)) {
+    return false;
+  }
+
+  return data.every((item) => isWinner(item));
 };

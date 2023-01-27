@@ -40,6 +40,12 @@ export interface Car {
   id: number;
 }
 
+export interface Winner {
+  wins: number;
+  id: number;
+  time: number
+}
+
 export type GetCarsResponse = {
   data: Array<Car>;
 };
