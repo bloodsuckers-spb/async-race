@@ -3,13 +3,13 @@ import State from '../../base/State';
 
 import TitleKeys from '../../enums/TitleKeys';
 import CustomEvents from '../../enums/CustomEvents';
+import Tags from '../../enums/Tags';
 
-class Title extends Component<'h2'> {
-  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, private readonly key: TitleKeys) {
+class Title extends Component<Tags.h2> {
+  constructor(private readonly key: TitleKeys) {
     super({
-      tagName: 'h2',
+      tagName: Tags.h2,
       classList: ['subtitle'],
-      parent: parent.node,
     });
     this.on(CustomEvents.updateCurrentPage, this.update);
     this.update();

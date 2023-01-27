@@ -17,11 +17,10 @@ import { Car } from '../../models/API';
 import { isCar, isCars, isResponse, isCountedDataResponse } from '../../models/Predicates';
 
 class RaceTracksList extends Component<Tags.ul> {
-  constructor(parent: Component<keyof HTMLElementTagNameMap>) {
+  constructor() {
     super({
       tagName: Tags.ul,
       classList: ['race-tracks-list'],
-      parent: parent.node,
     });
 
     this.on(CustomEvents.updateCars, this.onUpdate);
@@ -80,4 +79,6 @@ class RaceTracksList extends Component<Tags.ul> {
   private render = (car: Car) => new TracksListItem(this, car);
 }
 
-export default RaceTracksList;
+const raceTrackList = new RaceTracksList();
+
+export default raceTrackList;

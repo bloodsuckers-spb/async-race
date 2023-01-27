@@ -1,6 +1,6 @@
-import ErrorView from '../Layout/ErrorView';
-import GarageView from '../Layout/GarageView';
-import WinnersView from '../Layout/WinnersView';
+import ErrorView from '../ui/ErrorView';
+import GarageView from '../ui/Garage';
+import WinnersView from '../ui/Winners';
 
 import createRoutes from '../common/CreateRoutes';
 

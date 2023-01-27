@@ -1,5 +1,9 @@
 import Component from '../../base/Component';
 
+import CreateCarTextInput from '../../ui/CreateCarTextInput';
+import CreateCarColorInput from '../../ui/CreateCarColorInput';
+import CreateCarBtn from '../../ui/CreateCarBtn';
+
 import API from '../../enums/API';
 import Tags from '../../enums/Tags';
 import RequestMethods from '../../enums/RequestMethods';
@@ -55,4 +59,10 @@ class CreateCarForm extends Component<Tags.form> {
   };
 }
 
-export default CreateCarForm;
+const createForm = new CreateCarForm({
+  textInput: CreateCarTextInput,
+  colorInput: CreateCarColorInput,
+  btn: CreateCarBtn,
+});
+
+export default createForm;

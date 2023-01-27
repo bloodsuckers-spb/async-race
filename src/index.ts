@@ -1,24 +1,26 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // UI
-import initGarageLayout from './common/InitGarage';
-import initWinnersLayout from './common/InitWinnersLayout';
-import GarageView from './Layout/GarageView';
-import WinnersView from './Layout/WinnersView';
+// import initGarageLayout from './common/InitGarage';
+// import initWinnersLayout from './common/InitWinnersLayout';
+// import GarageView from './Layout/GarageView';
+// import WinnersView from './Layout/WinnersView';
 
 // Components
 import AppComponent from './components/AppComponent';
+import Router from './base/Router';
+import AppFragment from './ui/AppFragment';
+import RouterRoot from './ui/RouterRoot';
+import firstNavLink from './ui/FirstNavLink';
+import secondNavLink from './ui/SecondNavLink';
 
 // Constants
-import headerProps from './common/HeaderProps';
 import { errorRoute, garageRoute, winnersRoute } from './routes';
-import { skeleton, mainChildren } from './constants';
 
 // styles
 import './index.css';
 
-const app = new AppComponent();
-app.start({ skeleton, headerProps, mainChildren });
-app.initRouter(errorRoute, [garageRoute, winnersRoute]);
+const router = new Router(RouterRoot, [firstNavLink, secondNavLink], errorRoute, [garageRoute, winnersRoute]);
+const app = new AppComponent(AppFragment, router);
 
-initGarageLayout(GarageView);
-initWinnersLayout(WinnersView);
-app.getAppData();
+// initWinnersLayout(WinnersView);
+// app.getAppData();

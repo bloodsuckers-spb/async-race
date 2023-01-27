@@ -2,6 +2,9 @@
 
 // Components & UI
 import Component from '../../base/Component';
+import UpdateCarTextInput from '../../ui/UpdateCarTextInput';
+import UpdateCarColorInput from '../../ui/UpdateCarColorInput';
+import UpdateCarBtn from '../../ui/UpdateCarBtn';
 
 // Constants
 import Tags from '../../enums/Tags';
@@ -86,4 +89,10 @@ class UpdateCarForm extends Component<Tags.form> {
   };
 }
 
-export default UpdateCarForm;
+const updateCardForm = new UpdateCarForm({
+  textInput: UpdateCarTextInput,
+  colorInput: UpdateCarColorInput,
+  btn: UpdateCarBtn,
+});
+
+export default updateCardForm;
