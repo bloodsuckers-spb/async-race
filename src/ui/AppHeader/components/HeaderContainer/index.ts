@@ -1,9 +1,9 @@
-import Component from '../../base/Component';
+import Component from '../../../../base/Component';
 import HeaderContent from '../HeaderContent';
 
 import styles from './index.css';
 
-import Tags from '../../enums/Tags';
+import Tags from '../../../../enums/Tags';
 
 const { container } = styles;
 

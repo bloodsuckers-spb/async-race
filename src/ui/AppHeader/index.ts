@@ -1,5 +1,5 @@
 import Component from '../../base/Component';
-import HeaderContainer from '../HeaderContainer';
+import HeaderContainer from './components/HeaderContainer';
 
 import Tags from '../../enums/Tags';
 

@@ -1,6 +1,6 @@
-import NavLink from '../NavLink';
+import NavLink from '../../../NavLink';
 
-import Routes from '../../enums/Routes';
+import Routes from '../../../../enums/Routes';
 
 const firstNavLink = new NavLink({ href: Routes.garage, textContent: 'Garage' });
 

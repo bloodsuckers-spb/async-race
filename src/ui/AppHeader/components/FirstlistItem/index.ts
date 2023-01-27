@@ -1,7 +1,7 @@
-import Component from '../../base/Component';
+import Component from '../../../../base/Component';
 import firstNavLink from '../FirstNavLink';
 
-import Tags from '../../enums/Tags';
+import Tags from '../../../../enums/Tags';
 
 const fistlistItem = new Component<Tags.li>({
   tagName: Tags.li,
