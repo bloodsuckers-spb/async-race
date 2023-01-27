@@ -2,9 +2,9 @@
 
 // Components & UI
 import Component from '../../base/Component';
-import UpdateCarTextInput from '../../ui/UpdateCarTextInput';
-import UpdateCarColorInput from '../../ui/UpdateCarColorInput';
-import UpdateCarBtn from '../../ui/UpdateCarBtn';
+import UpdateCarTextInput from './components/TextInput';
+import UpdateCarColorInput from './components/ColorInput';
+import UpdateCarBtn from './components/Btn';
 
 // Constants
 import Tags from '../../enums/Tags';

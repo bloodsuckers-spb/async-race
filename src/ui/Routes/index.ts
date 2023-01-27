@@ -1,10 +1,10 @@
-import ErrorView from '../ui/ErrorView';
-import GarageView from '../ui/Garage';
-import WinnersView from '../ui/Winners';
+import ErrorView from '../ErrorView';
+import GarageView from '../Garage';
+import WinnersView from '../Winners';
 
-import createRoutes from '../ui/CreateRoutes';
+import createRoutes from '../CreateRoutes';
 
-import Routes from '../enums/Routes';
+import Routes from '../../enums/Routes';
 
 export const errorRoute = createRoutes(Routes.page404, ErrorView);
 export const garageRoute = createRoutes(Routes.garage, GarageView);

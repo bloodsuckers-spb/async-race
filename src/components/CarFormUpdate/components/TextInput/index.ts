@@ -1,5 +1,5 @@
-import Component from '../../base/Component';
-import Tags from '../../enums/Tags';
+import Component from '../../../../base/Component';
+import Tags from '../../../../enums/Tags';
 
 const UpdateCarTextInput = new Component<Tags.input>({
   tagName: Tags.input,

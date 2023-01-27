@@ -1,8 +1,8 @@
 import Component from '../../base/Component';
 
-import CreateCarTextInput from '../../ui/CreateCarTextInput';
-import CreateCarColorInput from '../../ui/CreateCarColorInput';
-import CreateCarBtn from '../../ui/CreateCarBtn';
+import CreateCarTextInput from './components/TextInput';
+import CreateCarColorInput from './components/ColorInput';
+import CreateCarBtn from './components/Btn';
 
 import API from '../../enums/API';
 import Tags from '../../enums/Tags';

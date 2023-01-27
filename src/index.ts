@@ -7,7 +7,7 @@ import RouterRoot from './ui/AppMain/components/RouterRoot';
 import firstNavLink from './ui/AppHeader/components/FirstNavLink';
 import secondNavLink from './ui/AppHeader/components/SecondNavLink';
 
-import { errorRoute, garageRoute, winnersRoute } from './routes';
+import { errorRoute, garageRoute, winnersRoute } from './ui/Routes';
 
 import './index.css';
 
