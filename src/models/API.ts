@@ -43,7 +43,7 @@ export interface Car {
 export interface Winner {
   wins: number;
   id: number;
-  time: number
+  time: number;
 }
 
 export type GetCarsResponse = {
@@ -62,4 +62,12 @@ export type Load = {
   queryString: QueryString;
   eventName: CustomEvents;
   options: Record<string, string>;
+};
+
+export type LoadDecorator = {
+  method: RequestMethods;
+  queryString: QueryString;
+  eventName: CustomEvents;
+  options: Record<string, string>;
+  cb: (...args: Array<unknown>) => void;
 };

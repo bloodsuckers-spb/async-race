@@ -4,10 +4,10 @@ import CreateCarTextInput from './components/TextInput';
 import CreateCarColorInput from './components/ColorInput';
 import CreateCarBtn from './components/Btn';
 
-import API from '../../enums/API';
+// import API from '../../enums/API';
 import Tags from '../../enums/Tags';
-import RequestMethods from '../../enums/RequestMethods';
-import CustomEvents from '../../enums/CustomEvents';
+// import RequestMethods from '../../enums/RequestMethods';
+// import CustomEvents from '../../enums/CustomEvents';
 import { FormProps } from '../../models';
 
 interface CreateCarForm extends FormProps {}
@@ -35,15 +35,15 @@ class CreateCarForm extends Component<Tags.form> {
       return false;
     }
 
-    this.load({
-      method: RequestMethods.post,
-      queryString: `${API.baseLink}/garage`,
-      eventName: CustomEvents.createNewCar,
-      options: {
-        name: this.textInput.node.value,
-        color: this.colorInput.node.value,
-      },
-    });
+    // this.load({
+    //   method: RequestMethods.post,
+    //   queryString: `${API.baseLink}/garage`,
+    //   eventName: CustomEvents.createNewCar,
+    //   options: {
+    //     name: this.textInput.node.value,
+    //     color: this.colorInput.node.value,
+    //   },
+    // });
 
     this.textInput.node.value = '';
 

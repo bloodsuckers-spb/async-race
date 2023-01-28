@@ -1,11 +1,17 @@
 import Component from '../../base/Component';
 import Router from '../../base/Router';
+import Loader from '../Loader';
 
 import Tags from '../../enums/Tags';
 import RequestMethods from '../../enums/RequestMethods';
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
 
+interface AppComponent {
+  load: (...args: Array<unknown>) => void;
+}
+
+@Loader()
 class AppComponent extends Component<Tags.div> {
   private static count = 0;
   constructor(readonly fragment: DocumentFragment, private readonly router: Router) {
@@ -17,23 +23,29 @@ class AppComponent extends Component<Tags.div> {
     AppComponent.count += 1;
     this.node.append(fragment);
     document.body.append(this.node);
-    this.getAppData();
-  }
-
-  private getAppData = () => {
     this.load({
       method: RequestMethods.get,
       queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
       eventName: CustomEvents.updateCars,
       options: {},
+      cb: this.emit,
     });
-    this.load({
-      method: RequestMethods.get,
-      queryString: `${API.winnersLink}?_page=1&_limit=10`,
-      eventName: CustomEvents.updateWinners,
-      options: {},
-    });
-  };
+  }
+
+  // private getAppData = () => {
+  //   this.load({
+  // method: RequestMethods.get,
+  // queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
+  // eventName: CustomEvents.updateCars,
+  // options: {},
+  //   });
+  //   this.load({
+  //     method: RequestMethods.get,
+  //     queryString: `${API.winnersLink}?_page=1&_limit=10`,
+  //     eventName: CustomEvents.updateWinners,
+  //     options: {},
+  //   });
+  // };
 }
 
 export default AppComponent;

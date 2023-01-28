@@ -11,8 +11,8 @@ import Tags from '../../enums/Tags';
 import { FormProps } from '../../models';
 import CustomEvents from '../../enums/CustomEvents';
 import { errorMessage } from '../../constants';
-import RequestMethods from '../../enums/RequestMethods';
-import API from '../../enums/API';
+// import RequestMethods from '../../enums/RequestMethods';
+// import API from '../../enums/API';
 
 // Predicates
 import { isCar } from '../../models/Predicates';
@@ -71,15 +71,15 @@ class UpdateCarForm extends Component<Tags.form> {
   };
 
   handleClick = () => {
-    this.load({
-      method: RequestMethods.put,
-      queryString: `${API.baseLink}/garage/${this.selectedId}`,
-      eventName: CustomEvents.updateSelectedCar,
-      options: {
-        name: this.textInput.node.value,
-        color: this.colorInput.node.value,
-      },
-    });
+    // this.load({
+    //   method: RequestMethods.put,
+    //   queryString: `${API.baseLink}/garage/${this.selectedId}`,
+    //   eventName: CustomEvents.updateSelectedCar,
+    //   options: {
+    //     name: this.textInput.node.value,
+    //     color: this.colorInput.node.value,
+    //   },
+    // });
   };
 
   private clear = () => {
