@@ -30,22 +30,14 @@ class AppComponent extends Component<Tags.div> {
       options: {},
       cb: this.emit,
     });
+    this.load({
+      method: RequestMethods.get,
+      queryString: `${API.winnersLink}?_page=1&_limit=10`,
+      eventName: CustomEvents.updateWinners,
+      options: {},
+      cb: this.emit,
+    });
   }
-
-  // private getAppData = () => {
-  //   this.load({
-  // method: RequestMethods.get,
-  // queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
-  // eventName: CustomEvents.updateCars,
-  // options: {},
-  //   });
-  //   this.load({
-  //     method: RequestMethods.get,
-  //     queryString: `${API.winnersLink}?_page=1&_limit=10`,
-  //     eventName: CustomEvents.updateWinners,
-  //     options: {},
-  //   });
-  // };
 }
 
 export default AppComponent;

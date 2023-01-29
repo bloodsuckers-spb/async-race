@@ -1,4 +1,6 @@
 .winner {
   height: 50px;
   border: 1px solid #000;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }

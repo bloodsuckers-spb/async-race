@@ -1,7 +1,7 @@
 import Component from '../../../../base/Component';
 import Tags from '../../../../enums/Tags';
 import bestTimeCell from '../BestTimeCell';
-import winsCell from '../../WinsCell';
+import winsCell from '../WinsCell';
 
 import { resultsHeaderProps } from '../../../../constants';
 

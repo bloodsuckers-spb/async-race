@@ -2,10 +2,12 @@
 import Component from '../../base/Component';
 import Tags from '../../enums/Tags';
 import CustomEvents from '../../enums/CustomEvents';
-import Winner from '../ResultsItem';
+import ResultsItem from '../ResultsItem';
+import State from '../../base/State';
 
 import styles from './index.css';
 import { isCountedDataResponse, isWinners } from '../../models/Predicates';
+import { Winner } from '../../models/API';
 import { errorMessage } from '../../constants';
 
 const { results } = styles;
@@ -25,14 +27,18 @@ class ResultsContent extends Component<Tags.div> {
       throw new Error(errorMessage);
     }
     const { headers, data } = args;
-    console.log('onUpdate');
-    console.log(headers, data);
+    // Temp
+    this.updateWinnersCount(+headers['x-total-count']);
     this.addWinner(data);
   };
 
-  addWinner = (winners: Array<any>) => {
+  updateWinnersCount = (num: number) => {
+    State.winnersCount = num;
+  };
+
+  addWinner = (winners: Array<Winner>) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    winners.forEach((winner) => new Winner(this));
+    winners.forEach((winnerData) => new ResultsItem(this, winnerData));
   };
 }
 

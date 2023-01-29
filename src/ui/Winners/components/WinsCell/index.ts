@@ -1,6 +1,6 @@
-import Component from '../../../base/Component';
-import Tags from '../../../enums/Tags';
-import winsDetails from '../components/WinsDetails';
+import Component from '../../../../base/Component';
+import Tags from '../../../../enums/Tags';
+import winsDetails from '../WinsDetails';
 
 const winsCell = new Component<Tags.div>({
   tagName: Tags.div,
