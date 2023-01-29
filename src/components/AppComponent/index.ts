@@ -1,6 +1,6 @@
 import Component from '../../base/Component';
 import Router from '../../base/Router';
-import Loader from '../Loader';
+import Loader from '../../base/Loader';
 
 import Tags from '../../enums/Tags';
 import RequestMethods from '../../enums/RequestMethods';

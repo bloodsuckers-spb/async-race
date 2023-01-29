@@ -4,7 +4,7 @@ import Component from '../../base/Component';
 import UpdateCarTextInput from './components/TextInput';
 import UpdateCarColorInput from './components/ColorInput';
 import UpdateCarBtn from './components/Btn';
-import Loader from '../Loader';
+import Loader from '../../base/Loader';
 
 // Constants
 import Tags from '../../enums/Tags';

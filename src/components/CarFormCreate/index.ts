@@ -9,7 +9,7 @@ import Tags from '../../enums/Tags';
 import RequestMethods from '../../enums/RequestMethods';
 import CustomEvents from '../../enums/CustomEvents';
 import { FormProps } from '../../models';
-import Loader from '../Loader';
+import Loader from '../../base/Loader';
 
 interface CreateCarForm extends FormProps {
   load: (...args: Array<unknown>) => void;
