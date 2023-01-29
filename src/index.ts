@@ -13,4 +13,3 @@ import './index.css';
 
 const router = new Router(RouterRoot, [firstNavLink, secondNavLink], errorRoute, [garageRoute, winnersRoute]);
 const app = new AppComponent(AppFragment, router);
-// app.hello();

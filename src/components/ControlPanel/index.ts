@@ -22,6 +22,7 @@ class ControlPanel extends Component<Tags.div> {
     this.reset = new Btn(this, Btns.reset);
     this.remove = new Btn(this, Btns.remove);
     this.select.node.onclick = () => this.emit(CustomEvents.selectCar, { name, color, id });
+    this.reset.node.disabled = true;
   }
 }
 

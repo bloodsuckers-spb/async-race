@@ -11,13 +11,8 @@ enum Tags {
   form = 'form',
   input = 'input',
   button = 'button',
-  table = 'table',
-  thead = 'thead',
-  th = 'th',
-  tbody = 'tbody',
-  tr = 'tr',
-  td = 'td',
-
+  details = 'details',
+  summary = 'summary',
 }
 
 export default Tags;

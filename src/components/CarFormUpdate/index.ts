@@ -1,24 +1,27 @@
 /* eslint-disable class-methods-use-this */
 
-// Components & UI
 import Component from '../../base/Component';
 import UpdateCarTextInput from './components/TextInput';
 import UpdateCarColorInput from './components/ColorInput';
 import UpdateCarBtn from './components/Btn';
+import Loader from '../Loader';
 
 // Constants
 import Tags from '../../enums/Tags';
 import { FormProps } from '../../models';
 import CustomEvents from '../../enums/CustomEvents';
 import { errorMessage } from '../../constants';
-// import RequestMethods from '../../enums/RequestMethods';
-// import API from '../../enums/API';
+import RequestMethods from '../../enums/RequestMethods';
+import API from '../../enums/API';
 
 // Predicates
 import { isCar } from '../../models/Predicates';
 
-interface UpdateCarForm extends FormProps {}
+interface UpdateCarForm extends FormProps {
+  load: (...args: Array<unknown>) => void;
+}
 
+@Loader()
 class UpdateCarForm extends Component<Tags.form> {
   private selectedId = 0;
   constructor({ textInput, colorInput, btn }: FormProps) {
@@ -71,15 +74,16 @@ class UpdateCarForm extends Component<Tags.form> {
   };
 
   handleClick = () => {
-    // this.load({
-    //   method: RequestMethods.put,
-    //   queryString: `${API.baseLink}/garage/${this.selectedId}`,
-    //   eventName: CustomEvents.updateSelectedCar,
-    //   options: {
-    //     name: this.textInput.node.value,
-    //     color: this.colorInput.node.value,
-    //   },
-    // });
+    this.load({
+      method: RequestMethods.put,
+      queryString: `${API.baseLink}/garage/${this.selectedId}`,
+      eventName: CustomEvents.updateSelectedCar,
+      options: {
+        name: this.textInput.node.value,
+        color: this.colorInput.node.value,
+      },
+      cb: this.emit,
+    });
   };
 
   private clear = () => {

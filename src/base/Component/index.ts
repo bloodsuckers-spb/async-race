@@ -1,10 +1,6 @@
-// import axios, { AxiosResponse } from 'axios';
-
 import EventEmitter from '../EventEmitter';
 
 import { ComponentProps } from '../../models';
-// import { Load } from '../../models/API';
-// import CustomEvents from '../../enums/CustomEvents';
 
 class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
   public readonly node: HTMLElementTagNameMap[T];
@@ -19,12 +15,6 @@ class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
   append = <U extends keyof HTMLElementTagNameMap>(...children: Array<Component<U>>) => {
     this.node.append(...children.map((component) => component.node));
   };
-
-  // load = <U>({ method, queryString, eventName, options = {} }: Load): void => {
-  //   axios[method](queryString, options)
-  //     .then((response: AxiosResponse<U>) => this.emit(CustomEvents[eventName], response))
-  //     .catch((error: Error) => console.log(error.message));
-  // };
 }
 
 export default Component;
