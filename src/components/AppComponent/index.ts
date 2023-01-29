@@ -17,7 +17,7 @@ class AppComponent extends Component<Tags.div> {
   constructor(readonly fragment: DocumentFragment, private readonly router: Router) {
     super({
       tagName: Tags.div,
-      classList: ['app-root'],
+      classList: ['root'],
     });
     if (AppComponent.count > 0) return;
     AppComponent.count += 1;
