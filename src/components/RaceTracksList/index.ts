@@ -1,31 +1,30 @@
-/* eslint-disable class-methods-use-this */
-
-// Components & UI
 import Component from '../../base/Component';
 import State from '../../base/State';
 import TracksListItem from '../TracksListItem';
 
-// Constants
+import styles from './index.css';
+
 import { errorMessage } from '../../constants';
+import { totalCount } from '../../constants/API';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
-// Types
 import { Car } from '../../models/API';
 
-// Predicates
 import { isCar, isCars, isResponse, isCountedDataResponse } from '../../models/Predicates';
+
+const { list } = styles;
 
 class RaceTracksList extends Component<Tags.ul> {
   constructor() {
     super({
       tagName: Tags.ul,
-      classList: ['race-tracks-list'],
+      classList: [list],
     });
 
     this.on(CustomEvents.updateCars, this.onUpdate);
     this.on(CustomEvents.createNewCar, this.onCarAdded);
-    this.on(CustomEvents.updateSelectedCar, this.onCarUpdated);
+    this.on(CustomEvents.updateCar, RaceTracksList.onCarUpdated);
   }
 
   private onUpdate = <T>(args: T) => {
@@ -33,18 +32,18 @@ class RaceTracksList extends Component<Tags.ul> {
       throw new Error(errorMessage);
     }
     const { headers, data } = args;
-    const carsCount = headers['x-total-count'];
+    const carsCount = headers[totalCount];
     this.incrementCarsCount(+carsCount);
     this.emit(CustomEvents.updateAmount, {});
 
     data.forEach((car) => this.addCarToStore(car));
   };
 
-  private onCarUpdated = <T>(arg: T) => {
+  static onCarUpdated = <T>(arg: T) => {
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
-    this.updateCar(arg.data);
+    RaceTracksList.updateCar(arg.data);
   };
 
   private onCarAdded = <T>(arg: T) => {
@@ -59,7 +58,7 @@ class RaceTracksList extends Component<Tags.ul> {
     this.addCarToStore(data);
   };
 
-  private updateCar = (data: Car) => {
+  static updateCar = (data: Car) => {
     State.cars.set(`${data.id}`, data);
   };
 

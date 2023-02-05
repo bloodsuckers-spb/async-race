@@ -6,7 +6,6 @@ import UpdateCarColorInput from './components/ColorInput';
 import UpdateCarBtn from './components/Btn';
 import Loader from '../../base/Loader';
 
-// Constants
 import Tags from '../../enums/Tags';
 import { FormProps } from '../../models';
 import CustomEvents from '../../enums/CustomEvents';
@@ -77,7 +76,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.load({
       method: RequestMethods.put,
       queryString: `${API.baseLink}/garage/${this.selectedId}`,
-      eventName: CustomEvents.updateSelectedCar,
+      eventName: CustomEvents.updateCar,
       options: {
         name: this.textInput.node.value,
         color: this.colorInput.node.value,

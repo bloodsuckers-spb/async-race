@@ -33,7 +33,7 @@ class AppComponent extends Component<Tags.div> {
     this.load({
       method: RequestMethods.get,
       queryString: `${API.winnersLink}?_page=1&_limit=10`,
-      eventName: CustomEvents.updateWinners,
+      eventName: CustomEvents.getWinners,
       options: {},
       cb: this.emit,
     });

@@ -19,10 +19,10 @@ class ResultsContent extends Component<Tags.div> {
       tagName: Tags.div,
       classList: [results],
     });
-    this.on(CustomEvents.updateWinners, this.onUpdate);
+    this.on(CustomEvents.getWinners, this.onGetWinners);
   }
 
-  onUpdate = <T>(args: T) => {
+  onGetWinners = <T>(args: T) => {
     if (!isCountedDataResponse(args) || !isWinners(args.data)) {
       throw new Error(errorMessage);
     }

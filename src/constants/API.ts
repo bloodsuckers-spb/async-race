@@ -3,4 +3,4 @@ export const engine = `${baseLink}/engine/`;
 export const garage = `${baseLink}/garage/`;
 export const winners = `${baseLink}/winners/`;
 
-export const totalCount = 'x-total-count';
+export const totalCount = 'x-total-count' as const;
