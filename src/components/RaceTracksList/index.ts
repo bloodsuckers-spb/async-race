@@ -13,13 +13,11 @@ import { Car } from '../../models/API';
 
 import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/Predicates';
 
-const { list } = styles;
-
 class RaceTracksList extends Component<Tags.ul> {
   constructor() {
     super({
       tagName: Tags.ul,
-      classList: [list],
+      classList: [styles.list],
     });
 
     this.on(CustomEvents.updateCars, this.onUpdate);
