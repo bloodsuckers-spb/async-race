@@ -13,11 +13,12 @@
   "extends": ["airbnb-base", "airbnb-typescript/base"],
   "plugins": ["@typescript-eslint", "simple-import-sort"],
   "rules": {
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/member-ordering": ["error", { "default": ["constructor", "static-method", "method"] }],
+    "@typescript-eslint/explicit-function-return-type": "error",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "import/no-cycle": "off",
-    "@typescript-eslint/lines-between-class-members": "off",
-    "@typescript-eslint/member-ordering": ["error", { "default": ["constructor", "static-method", "method"] }],
     "object-curly-newline": ["error", { "ObjectPattern": { "multiline": true } }],
     "@typescript-eslint/explicit-member-accessibility": [
       "error",

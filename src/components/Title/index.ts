@@ -15,7 +15,7 @@ class Title extends Component<Tags.h2> {
     this.update();
   }
 
-  private update = () => {
+  private update = (): void => {
     this.node.textContent = `Page #${State[this.key]}`;
   };
 }

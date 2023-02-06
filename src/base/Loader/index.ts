@@ -6,7 +6,7 @@ import CustomEvents from '../../enums/CustomEvents';
 import { LoadDecorator } from '../../models/API';
 
 function Loader() {
-  return <T extends { new (...args: any[]): {} }>(Constructor: T) =>
+  return <T extends { new (...args: any[]): {} }>(Constructor: T): T =>
     class extends Constructor {
       protected load<U>({ method, queryString, eventName, options = {}, cb }: LoadDecorator): void {
         axios[method](queryString, options)

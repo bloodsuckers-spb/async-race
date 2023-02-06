@@ -38,12 +38,12 @@ class Router {
     window.addEventListener('DOMContentLoaded', this.handleLoading);
   }
 
-  private handleNavigate = (href: string) => {
+  private handleNavigate = (href: string): void => {
     window.history.pushState({}, '', href);
     this.navigate();
   };
 
-  private handleLoading = () => {
+  private handleLoading = (): void => {
     const { pathname } = window.location;
     if (pathname !== '/') {
       this.navigate();
@@ -54,7 +54,7 @@ class Router {
     return false;
   };
 
-  private navigate = () => {
+  private navigate = (): void => {
     const view = this.handleLocation();
     this.renderView(view);
   };

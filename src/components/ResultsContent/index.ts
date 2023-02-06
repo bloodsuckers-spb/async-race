@@ -26,7 +26,7 @@ class ResultsContent extends Component<Tags.div> {
     this.on(CustomEvents.getWinners, this.onGetWinners);
   }
 
-  private onGetWinners = <T>(args: T) => {
+  private onGetWinners = <T>(args: T): void => {
     if (!isCountedDataResponse(args) || !isWinners(args.data)) {
       throw new Error(errorMessage);
     }
@@ -36,11 +36,11 @@ class ResultsContent extends Component<Tags.div> {
     this.addWinner(data);
   };
 
-  private updateWinnersCount = (num: number) => {
+  private updateWinnersCount = (num: number): void => {
     State.winnersCount = num;
   };
 
-  private addWinner = (winners: Array<Winner>) => {
+  private addWinner = (winners: Array<Winner>): void => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     winners.forEach((winnerData) => new ResultsItem(this, winnerData));
   };

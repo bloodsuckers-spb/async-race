@@ -7,17 +7,17 @@ import { EventMap, Listener } from '../../models';
 
 abstract class EventEmitter extends State {
   protected static listeners: EventMap = {};
-  protected on(eventName: keyof EventMap, listener: Listener) {
+  protected on(eventName: keyof EventMap, listener: Listener): void {
     if (!EventEmitter.listeners.hasOwnProperty(eventName)) {
       EventEmitter.listeners[eventName] = [];
     }
     EventEmitter.listeners[eventName].push(listener);
   }
-  protected off(eventName: keyof EventMap, listener: Listener) {
+  protected off(eventName: keyof EventMap, listener: Listener): void {
     EventEmitter.listeners[eventName] = EventEmitter.listeners[eventName].filter((cb) => cb !== listener);
   }
 
-  protected emit<T>(eventName: keyof EventMap, params: T) {
+  protected emit<T>(eventName: keyof EventMap, params: T): void {
     EventEmitter.listeners[eventName].forEach((listener) => listener(params));
   }
 }

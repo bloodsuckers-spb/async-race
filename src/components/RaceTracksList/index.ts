@@ -26,18 +26,18 @@ class RaceTracksList extends Component<Tags.ul> {
     this.on(CustomEvents.updateCar, RaceTracksList.onCarUpdated);
   }
 
-  private static onCarUpdated = <T>(arg: T) => {
+  private static onCarUpdated = <T>(arg: T): void => {
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
     RaceTracksList.updateCar(arg.data);
   };
 
-  private static updateCar = (data: Car) => {
+  private static updateCar = (data: Car): void => {
     State.cars.set(`${data.id}`, data);
   };
 
-  private onUpdate = <T>(args: T) => {
+  private onUpdate = <T>(args: T): void => {
     if (!isCountedDataResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
@@ -49,19 +49,19 @@ class RaceTracksList extends Component<Tags.ul> {
     data.forEach((car) => this.addCarToStore(car));
   };
 
-  private onCarAdded = <T>(arg: T) => {
+  private onCarAdded = <T>(arg: T): void => {
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
     this.createCar(arg.data);
   };
 
-  private createCar = (data: Car) => {
+  private createCar = (data: Car): void => {
     this.incrementCarsCount();
     this.addCarToStore(data);
   };
 
-  private addCarToStore = (car: Car) => {
+  private addCarToStore = (car: Car): void => {
     if (State.cars.get(`${car.id}`)) {
       return;
     }
@@ -69,12 +69,12 @@ class RaceTracksList extends Component<Tags.ul> {
     this.render(car);
   };
 
-  private incrementCarsCount = (amount = 1) => {
+  private incrementCarsCount = (amount = 1): void => {
     State.carsCount += amount;
     this.emit(CustomEvents.updateAmount, {});
   };
 
-  private render = (car: Car) => new TracksListItem(this, car);
+  private render = (car: Car): TracksListItem => new TracksListItem(this, car);
 }
 
 const raceTrackList = new RaceTracksList();

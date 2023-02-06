@@ -1,9 +1,9 @@
 import Component from '../../base/Component';
 import Loader from '../../base/Loader';
 
-import CreateCarBtn from './components/Btn';
-import CreateCarColorInput from './components/ColorInput';
-import CreateCarTextInput from './components/TextInput';
+import Btn from './components/Btn';
+import ColorInput from './components/ColorInput';
+import TextInput from './components/TextInput';
 
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
@@ -29,11 +29,11 @@ class CreateCarForm extends Component<Tags.form> {
     this.btn = btn;
     this.append(textInput, colorInput, btn);
 
-    this.textInput.node.oninput = () => this.handleOnInput();
-    this.btn.node.onclick = () => this.handleClick();
+    this.textInput.node.oninput = (): void => this.handleOnInput();
+    this.btn.node.onclick = (): false => this.handleClick();
   }
 
-  private handleClick = () => {
+  private handleClick = (): false => {
     this.btn.node.disabled = true;
 
     if (!this.textInput.node.value) {
@@ -56,7 +56,7 @@ class CreateCarForm extends Component<Tags.form> {
     return false;
   };
 
-  private handleOnInput = () => {
+  private handleOnInput = (): void => {
     const { value } = this.textInput.node;
     const { node } = this.btn;
     this.textInput.node.value = value.trim();
@@ -66,9 +66,9 @@ class CreateCarForm extends Component<Tags.form> {
 }
 
 const createForm = new CreateCarForm({
-  textInput: CreateCarTextInput,
-  colorInput: CreateCarColorInput,
-  btn: CreateCarBtn,
+  textInput: TextInput,
+  colorInput: ColorInput,
+  btn: Btn,
 });
 
 export default createForm;

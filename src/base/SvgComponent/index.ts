@@ -12,7 +12,7 @@ class SvgComponent<T extends keyof SVGElementTagNameMap> {
     parent?.append(this.node);
   }
 
-  protected addChildren = <U extends keyof SVGElementTagNameMap>(...children: Array<SvgComponent<U>>) => {
+  protected addChildren = <U extends keyof SVGElementTagNameMap>(...children: Array<SvgComponent<U>>): void => {
     this.node.append(...children.map((component) => component.node));
   };
 }

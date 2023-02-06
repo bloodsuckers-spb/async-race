@@ -4,4 +4,4 @@ import AppProps from './constants/AppProps';
 
 import './global.css';
 
-(() => new AppComponent(AppProps))();
+((): AppComponent => new AppComponent(AppProps))();
