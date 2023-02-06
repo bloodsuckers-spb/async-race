@@ -15,10 +15,10 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "import/no-cycle": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "max-len": "off",
     "implicit-arrow-linebreak": "off",
-    "import/no-cycle": "off",
     "object-curly-newline": ["error", { "ObjectPattern": { "multiline": true } }],
     "@typescript-eslint/no-unnecessary-condition": "warn",
     "no-console": "off"

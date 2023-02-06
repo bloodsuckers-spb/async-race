@@ -1,4 +1,5 @@
 import Component from '../../base/Component';
+
 import Tags from '../../enums/Tags';
 
 class Pagination extends Component<Tags.div> {

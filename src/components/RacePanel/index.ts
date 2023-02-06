@@ -1,7 +1,9 @@
 import Component from '../../base/Component';
-import Tags from '../../enums/Tags';
+
 import Btn from '../../ui/Button';
+
 import Btns from '../../enums/Btns';
+import Tags from '../../enums/Tags';
 
 class RacePanel extends Component<Tags.div> {
   raceBtn: Btn;

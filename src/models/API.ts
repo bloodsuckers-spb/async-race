@@ -1,4 +1,5 @@
 import { HashType } from '.';
+
 import CustomEvents from '../enums/CustomEvents';
 import RequestMethods from '../enums/RequestMethods';
 

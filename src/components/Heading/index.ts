@@ -2,10 +2,10 @@
 import Component from '../../base/Component';
 import State from '../../base/State';
 
-import HeadingKeys from '../../enums/HeadingKeys';
-import Views from '../../enums/Views';
 import CustomEvents from '../../enums/CustomEvents';
+import HeadingKeys from '../../enums/HeadingKeys';
 import Tags from '../../enums/Tags';
+import Views from '../../enums/Views';
 
 class Heading extends Component<Tags.h1> {
   constructor(

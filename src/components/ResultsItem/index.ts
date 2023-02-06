@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Component from '../../base/Component';
 import Loader from '../../base/Loader';
-import Cell from '../../ui/Winners/components/Cell';
+
 import CarCell from '../../ui/Winners/components/CarCell';
+import Cell from '../../ui/Winners/components/Cell';
 
-import styles from './index.css';
-
-import Tags from '../../enums/Tags';
-import { Winner } from '../../models/API';
-import RequestMethods from '../../enums/RequestMethods';
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
+import RequestMethods from '../../enums/RequestMethods';
+import Tags from '../../enums/Tags';
+
+import { Winner } from '../../models/API';
+
+import styles from './index.css';
 
 const { winner } = styles;
 

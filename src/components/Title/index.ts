@@ -1,9 +1,9 @@
 import Component from '../../base/Component';
 import State from '../../base/State';
 
-import TitleKeys from '../../enums/TitleKeys';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
+import TitleKeys from '../../enums/TitleKeys';
 
 class Title extends Component<Tags.h2> {
   constructor(private readonly key: TitleKeys) {

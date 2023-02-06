@@ -1,27 +1,19 @@
-/* eslint-disable class-methods-use-this */
-
-// Components & UI
 import Component from '../../base/Component';
-import RaceItemHeader from '../RaceItemHeader';
+
 import CarSvg from '../../ui/CarSvg';
 
-// Styles
-import styles from './index.css';
+import RaceItemHeader from '../RaceItemHeader';
 
-// Predicates
-import { isCar, isResponse } from '../../models/Predicates';
-
-// Constants
-import Tags from '../../enums/Tags';
-import { HashType } from '../../models';
-import CustomEvents from '../../enums/CustomEvents';
 import { errorMessage } from '../../constants';
 
-// Types
-import { Car } from '../../models/API';
+import CustomEvents from '../../enums/CustomEvents';
+import Tags from '../../enums/Tags';
 
-// Destructuring styles
-const { racetrack } = styles;
+import { HashType } from '../../models';
+import { Car } from '../../models/API';
+import { isCar, isResponse } from '../../models/Predicates';
+
+import styles from './index.css';
 
 class TracksListItem extends Component<Tags.li> {
   protected header: RaceItemHeader;
@@ -32,7 +24,7 @@ class TracksListItem extends Component<Tags.li> {
   constructor(parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
       tagName: Tags.li,
-      classList: [racetrack],
+      classList: [styles.racetrack],
       parent: parent.node,
     });
 
@@ -66,9 +58,9 @@ class TracksListItem extends Component<Tags.li> {
     }
   };
 
-  startAnimation() {}
-  stopAnimation() {}
-  moveToOriginPosition() {}
+  // startAnimation() {}
+  // stopAnimation() {}
+  // moveToOriginPosition() {}
 }
 
 export default TracksListItem;

@@ -1,14 +1,18 @@
 /* eslint-disable class-methods-use-this */
 import Component from '../../base/Component';
-import Tags from '../../enums/Tags';
-import CustomEvents from '../../enums/CustomEvents';
-import ResultsItem from '../ResultsItem';
 import State from '../../base/State';
 
-import styles from './index.css';
-import { isCountedDataResponse, isWinners } from '../../models/Predicates';
-import { Winner } from '../../models/API';
+import ResultsItem from '../ResultsItem';
+
 import { errorMessage } from '../../constants';
+
+import CustomEvents from '../../enums/CustomEvents';
+import Tags from '../../enums/Tags';
+
+import { Winner } from '../../models/API';
+import { isCountedDataResponse, isWinners } from '../../models/Predicates';
+
+import styles from './index.css';
 
 const { results } = styles;
 

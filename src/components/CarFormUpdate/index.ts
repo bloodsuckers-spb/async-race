@@ -1,19 +1,20 @@
 /* eslint-disable class-methods-use-this */
 
 import Component from '../../base/Component';
-import UpdateCarTextInput from './components/TextInput';
-import UpdateCarColorInput from './components/ColorInput';
-import UpdateCarBtn from './components/Btn';
 import Loader from '../../base/Loader';
 
-import Tags from '../../enums/Tags';
-import { FormProps } from '../../models';
-import CustomEvents from '../../enums/CustomEvents';
-import { errorMessage } from '../../constants';
-import RequestMethods from '../../enums/RequestMethods';
-import API from '../../enums/API';
+import UpdateCarBtn from './components/Btn';
+import UpdateCarColorInput from './components/ColorInput';
+import UpdateCarTextInput from './components/TextInput';
 
-// Predicates
+import { errorMessage } from '../../constants';
+
+import API from '../../enums/API';
+import CustomEvents from '../../enums/CustomEvents';
+import RequestMethods from '../../enums/RequestMethods';
+import Tags from '../../enums/Tags';
+
+import { FormProps } from '../../models';
 import { isCar } from '../../models/Predicates';
 
 interface UpdateCarForm extends FormProps {

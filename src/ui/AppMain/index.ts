@@ -1,4 +1,5 @@
 import Component from '../../base/Component';
+
 import MainContainer from './components/MainContainer';
 
 import Tags from '../../enums/Tags';

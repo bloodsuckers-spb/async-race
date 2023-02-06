@@ -1,8 +1,11 @@
 import Component from '../../base/Component';
+
 import CarHeading from '../../ui/CarHeading';
+
 import ControlPanel from '../ControlPanel';
 
 import Tags from '../../enums/Tags';
+
 import { Car } from '../../models/API';
 
 class RaceItemHeader extends Component<Tags.header> {

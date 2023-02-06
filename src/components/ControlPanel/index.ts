@@ -1,10 +1,12 @@
 import Component from '../../base/Component';
+
 import Btn from '../../ui/Button';
 
 import Btns from '../../enums/Btns';
-import { Car } from '../../models/API';
-import Tags from '../../enums/Tags';
 import CustomEvents from '../../enums/CustomEvents';
+import Tags from '../../enums/Tags';
+
+import { Car } from '../../models/API';
 
 class ControlPanel extends Component<Tags.div> {
   readonly select: Btn;
