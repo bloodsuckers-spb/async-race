@@ -1,5 +1,5 @@
-import { SVGNamespaceURI } from '../../constants';
 import { SvgComponentProps } from '../../models';
+import { SVGNamespaceURI } from '../../constants';
 
 class SvgComponent<T extends keyof SVGElementTagNameMap> {
   public node: SVGElementTagNameMap[T];

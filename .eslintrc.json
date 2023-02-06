@@ -13,7 +13,7 @@
   "extends": ["airbnb-base", "airbnb-typescript/base"],
   "plugins": ["@typescript-eslint"],
   "rules": {
-    // "sort-imports": ["error", { "memberSyntaxSortOrder": ["single", "all", "multiple", "none"], "ignoreCase": true }],
+    "import/no-duplicates": "error",
     "@typescript-eslint/lines-between-class-members": "off",
     "max-len": "off",
     "implicit-arrow-linebreak": "off",
