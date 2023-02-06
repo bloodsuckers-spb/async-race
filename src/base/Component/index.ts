@@ -12,7 +12,7 @@ class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
     parent?.append(this.node);
   }
 
-  append = <U extends keyof HTMLElementTagNameMap>(...children: Array<Component<U>>) => {
+  public append = <U extends keyof HTMLElementTagNameMap>(...children: Array<Component<U>>) => {
     this.node.append(...children.map((component) => component.node));
   };
 }

@@ -6,18 +6,18 @@ import State from '../State';
 import { EventMap, Listener } from '../../models';
 
 abstract class EventEmitter extends State {
-  static listeners: EventMap = {};
-  on(eventName: keyof EventMap, listener: Listener) {
+  protected static listeners: EventMap = {};
+  protected on(eventName: keyof EventMap, listener: Listener) {
     if (!EventEmitter.listeners.hasOwnProperty(eventName)) {
       EventEmitter.listeners[eventName] = [];
     }
     EventEmitter.listeners[eventName].push(listener);
   }
-  off(eventName: keyof EventMap, listener: Listener) {
+  protected off(eventName: keyof EventMap, listener: Listener) {
     EventEmitter.listeners[eventName] = EventEmitter.listeners[eventName].filter((cb) => cb !== listener);
   }
 
-  emit<T>(eventName: keyof EventMap, params: T) {
+  protected emit<T>(eventName: keyof EventMap, params: T) {
     EventEmitter.listeners[eventName].forEach((listener) => listener(params));
   }
 }
