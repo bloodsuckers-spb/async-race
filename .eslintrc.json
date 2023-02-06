@@ -13,13 +13,12 @@
   "extends": ["airbnb-base", "airbnb-typescript/base"],
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "import/no-duplicates": "error",
     "@typescript-eslint/lines-between-class-members": "off",
     "max-len": "off",
     "implicit-arrow-linebreak": "off",
     "import/no-cycle": "off",
-    "@typescript-eslint/no-unnecessary-condition": "warn",
     "object-curly-newline": ["error", { "ObjectPattern": { "multiline": true } }],
+    "@typescript-eslint/no-unnecessary-condition": "warn",
     "no-console": "off"
   },
   "ignorePatterns": ["dist/*.js"]

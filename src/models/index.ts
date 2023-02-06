@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import Component from '../base/Component';
 
 import Routes from '../enums/Routes';
