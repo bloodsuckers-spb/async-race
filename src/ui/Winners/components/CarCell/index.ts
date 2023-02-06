@@ -1,8 +1,10 @@
 /* eslint-disable class-methods-use-this */
 import Component from '../../../../base/Component';
+
 import CarSvg from '../../../CarSvg';
-import Tags from '../../../../enums/Tags';
+
 import CustomEvents from '../../../../enums/CustomEvents';
+import Tags from '../../../../enums/Tags';
 
 import styles from './index.css';
 

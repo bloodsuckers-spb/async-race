@@ -1,4 +1,5 @@
 import Component from '../../../../base/Component';
+
 import firstNavLink from '../FirstNavLink';
 
 import Tags from '../../../../enums/Tags';

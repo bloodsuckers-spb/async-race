@@ -1,4 +1,5 @@
 import Component from '../../base/Component';
+
 import Btns from '../../enums/Btns';
 import Tags from '../../enums/Tags';
 

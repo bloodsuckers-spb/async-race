@@ -1,10 +1,10 @@
 import Component from '../../base/Component';
 
-import styles from './index.css';
-
 import Props from './types';
 
 import Tags from '../../enums/Tags';
+
+import styles from './index.css';
 
 const { link } = styles;
 

@@ -1,6 +1,7 @@
 import Pagination from '../../../../components/Pagination';
-import Prev from '../PrevBtn';
+
 import Next from '../NextBtn';
+import Prev from '../PrevBtn';
 
 const garagePagination = new Pagination(Prev, Next);
 

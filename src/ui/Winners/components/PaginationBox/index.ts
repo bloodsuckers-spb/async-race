@@ -1,6 +1,7 @@
 import Pagination from '../../../../components/Pagination';
-import winnersPrevBtn from '../PrevBtn';
+
 import winnersNextBtn from '../NextBtn';
+import winnersPrevBtn from '../PrevBtn';
 
 const winnersPaginationBox = new Pagination(winnersPrevBtn, winnersNextBtn);
 

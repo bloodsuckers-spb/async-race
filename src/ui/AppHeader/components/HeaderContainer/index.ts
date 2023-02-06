@@ -1,9 +1,10 @@
 import Component from '../../../../base/Component';
+
 import HeaderContent from '../HeaderContent';
 
-import styles from './index.css';
-
 import Tags from '../../../../enums/Tags';
+
+import styles from './index.css';
 
 const { container } = styles;
 

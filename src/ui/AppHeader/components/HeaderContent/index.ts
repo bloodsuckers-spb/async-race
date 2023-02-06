@@ -1,4 +1,5 @@
 import Component from '../../../../base/Component';
+
 import Nav from '../HeaderNav';
 
 import Tags from '../../../../enums/Tags';

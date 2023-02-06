@@ -1,9 +1,10 @@
 import Component from '../../../../base/Component';
+
 import RoutingRoot from '../RouterRoot';
 
-import styles from './index.css';
-
 import Tags from '../../../../enums/Tags';
+
+import styles from './index.css';
 
 const { container } = styles;
 

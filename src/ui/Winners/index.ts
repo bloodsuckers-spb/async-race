@@ -1,8 +1,9 @@
 import Component from '../../base/Component';
+
 import winnersHeading from './components/Heading';
-import winnersTitle from './components/Title';
-import results from './components/Results';
 import winnersPaginationBox from './components/PaginationBox';
+import results from './components/Results';
+import winnersTitle from './components/Title';
 
 import Tags from '../../enums/Tags';
 

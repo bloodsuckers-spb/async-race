@@ -1,5 +1,7 @@
 import Component from '../../../../base/Component';
+
 import Tags from '../../../../enums/Tags';
+
 import styles from './index.css';
 
 const { cell } = styles;

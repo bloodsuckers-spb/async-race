@@ -2,9 +2,9 @@ import SvgComponent from '../../base/SvgComponent';
 
 import carSVG from '../../assets/car.svg';
 
-import SVGTags from '../../enums/SVGTags';
-
 import { xLink } from '../../constants';
+
+import SVGTags from '../../enums/SVGTags';
 
 class SvgUse extends SvgComponent<SVGTags.use> {
   constructor(readonly parent: SvgComponent<keyof SVGElementTagNameMap>) {

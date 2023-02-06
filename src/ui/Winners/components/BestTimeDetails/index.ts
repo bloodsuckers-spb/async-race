@@ -1,6 +1,6 @@
 import Details from '../../../Details';
-import bestTimeSummary from '../BestTimeSummary';
 import bestTimeList from '../BeatTimeList';
+import bestTimeSummary from '../BestTimeSummary';
 
 const BestTimeDetails = new Details(bestTimeSummary, bestTimeList);
 

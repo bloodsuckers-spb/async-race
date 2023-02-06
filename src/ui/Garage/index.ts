@@ -1,11 +1,12 @@
 import Component from '../../base/Component';
+
 import createForm from '../../components/CarFormCreate';
 import updateCardForm from '../../components/CarFormUpdate';
-import garageHeading from './components/Heading';
-import garageTitle from './components/Title';
-import raceTrackList from '../../components/RaceTracksList';
-import garageNav from './components/PaginationBox';
 import racePanel from '../../components/RacePanel';
+import raceTrackList from '../../components/RaceTracksList';
+import garageHeading from './components/Heading';
+import garageNav from './components/PaginationBox';
+import garageTitle from './components/Title';
 
 import Tags from '../../enums/Tags';
 

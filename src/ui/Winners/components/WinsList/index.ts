@@ -1,4 +1,5 @@
 import Component from '../../../../base/Component';
+
 import Tags from '../../../../enums/Tags';
 
 const winsList = new Component<Tags.ul>({

@@ -1,8 +1,7 @@
+import createRoutes from '../CreateRoutes';
 import ErrorView from '../ErrorView';
 import GarageView from '../Garage';
 import WinnersView from '../Winners';
-
-import createRoutes from '../CreateRoutes';
 
 import Routes from '../../enums/Routes';
 

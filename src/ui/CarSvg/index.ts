@@ -1,8 +1,11 @@
 /* eslint-disable max-len */
-import SvgComponent from '../../base/SvgComponent';
 import Component from '../../base/Component';
-import SVGTags from '../../enums/SVGTags';
+import SvgComponent from '../../base/SvgComponent';
+
 import SvgUse from '../SvgUse';
+
+import SVGTags from '../../enums/SVGTags';
+
 import { HashType } from '../../models';
 
 class CarSvg extends SvgComponent<SVGTags.svg> {
