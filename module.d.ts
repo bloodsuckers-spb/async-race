@@ -1,6 +1,6 @@
 declare module '*.css' {
-  const res: Record<string, string>;
-  export default res;
+  const styles: Record<string, string>;
+  export default styles;
 }
 
 declare module '*.svg' {
