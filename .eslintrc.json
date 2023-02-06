@@ -35,7 +35,8 @@
     "max-len": "off",
     "implicit-arrow-linebreak": "off",
     "@typescript-eslint/no-unnecessary-condition": "warn",
-    "no-console": "off"
+    "no-console": "off",
+    "@typescript-eslint/comma-dangle": 0
   },
   "ignorePatterns": ["dist/*.js"],
   "overrides": [

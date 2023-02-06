@@ -22,11 +22,11 @@ interface ResultsItem {
 
 @Loader()
 class ResultsItem extends Component<Tags.div> {
-  numberCell: Cell;
-  carCell: CarCell;
-  nameCell: Cell;
-  winsCell: Cell;
-  bestTimeCell: Cell;
+  private numberCell: Cell;
+  private carCell: CarCell;
+  private nameCell: Cell;
+  private winsCell: Cell;
+  private bestTimeCell: Cell;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Winner) {
     super({
       tagName: Tags.div,

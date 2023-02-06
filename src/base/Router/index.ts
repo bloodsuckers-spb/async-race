@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/comma-dangle */
-/* eslint-disable class-methods-use-this */
 /* eslint-disable no-param-reassign */
 import Component from '../Component';
 
@@ -8,16 +5,20 @@ import Tags from '../../enums/Tags';
 
 import { AppView } from '../../models';
 
+interface RouterProps {
+  root: Component<Tags.div>;
+  navLinks: Array<Component<Tags.a>>;
+  errorView: AppView;
+  views: Array<Record<string, Component<Tags.div>>>;
+}
+
+interface Router extends RouterProps {}
+
 class Router {
-  static count = 0;
+  private static count = 0;
   private initialView: AppView = {};
   private currentView: AppView = {};
-  constructor(
-    readonly root: Component<Tags.div>,
-    readonly navLinks: Array<Component<Tags.a>>,
-    readonly errorView: AppView,
-    readonly views: Array<Record<string, Component<Tags.div>>>
-  ) {
+  constructor({ root, navLinks, errorView, views }: RouterProps) {
     if (Router.count > 0) return;
     Router.count += 1;
     navLinks.forEach(({ node }: Component<Tags.a>) => {
@@ -27,6 +28,9 @@ class Router {
       };
     });
     const [initial] = views;
+    this.root = root;
+    this.errorView = errorView;
+    this.views = views;
     this.initialView = initial;
     this.currentView = this.initialView;
     this.navigate();
@@ -55,7 +59,7 @@ class Router {
     this.renderView(view);
   };
 
-  private handleLocation = (): Component<'div'> => {
+  private handleLocation = (): Component<Tags.div> => {
     const { pathname } = window.location;
     const component = this.views.find((view) => pathname in view);
     this.currentView = component ?? this.errorView;
@@ -63,7 +67,7 @@ class Router {
     return route;
   };
 
-  private renderView = (view: Component<'div'>): void => {
+  private renderView = (view: Component<Tags.div>): void => {
     this.root.node.firstChild?.remove();
     this.root.node.append(view.node);
   };

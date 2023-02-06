@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import Router from './base/Router';
 
 import AppComponent from './components/AppComponent';
@@ -12,5 +10,13 @@ import { errorRoute, garageRoute, winnersRoute } from './ui/Routes';
 
 import './global.css';
 
-const router = new Router(RouterRoot, [firstNavLink, secondNavLink], errorRoute, [garageRoute, winnersRoute]);
-const app = new AppComponent(AppFragment, router);
+(() =>
+  new AppComponent(
+    AppFragment,
+    new Router({
+      root: RouterRoot,
+      navLinks: [firstNavLink, secondNavLink],
+      errorView: errorRoute,
+      views: [garageRoute, winnersRoute],
+    })
+  ))();

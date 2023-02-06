@@ -22,7 +22,7 @@ class CarCell extends Component<Tags.div> {
     this.on(CustomEvents.updateWinner, this.onUpdate);
   }
 
-  onUpdate = <T>(args: T) => {
+  private onUpdate = <T>(args: T) => {
     console.log('onUpdate');
     console.log(args);
   };
