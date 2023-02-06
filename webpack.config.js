@@ -77,6 +77,16 @@ module.exports = {
         ],
       },
       {
+        test: /global\.css$/i,
+        exclude: /node_modules/,
+        use: [
+          mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+      {
         test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
         type: mode === 'production' ? 'asset' : 'asset/resource',
       },

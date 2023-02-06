@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import './index.css';
+import './global.css';
 
 import Router from './base/Router';
 import AppComponent from './components/AppComponent';
