@@ -9,11 +9,11 @@ import Tags from '../../enums/Tags';
 import { Car } from '../../models/API';
 
 class ControlPanel extends Component<Tags.div> {
-  readonly select: Btn;
-  readonly start: Btn;
-  readonly reset: Btn;
-  readonly remove: Btn;
-  constructor(readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
+  protected readonly select: Btn;
+  protected readonly start: Btn;
+  protected readonly reset: Btn;
+  protected readonly remove: Btn;
+  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
       tagName: Tags.div,
       classList: ['control-panel'],

@@ -37,7 +37,7 @@ class TracksListItem extends Component<Tags.li> {
     this.on(CustomEvents.updateCar, this.onUpdate);
   }
 
-  onUpdate = <T>(arg: T) => {
+  private onUpdate = <T>(arg: T) => {
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }

@@ -17,9 +17,23 @@
     "simple-import-sort/exports": "error",
     "import/no-cycle": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/member-ordering": ["error", { "default": ["constructor", "static-method", "method"] }],
+    "object-curly-newline": ["error", { "ObjectPattern": { "multiline": true } }],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "explicit",
+        "overrides": {
+          "accessors": "explicit",
+          "constructors": "off",
+          "methods": "explicit",
+          "properties": "explicit",
+          "parameterProperties": "explicit"
+        }
+      }
+    ],
     "max-len": "off",
     "implicit-arrow-linebreak": "off",
-    "object-curly-newline": ["error", { "ObjectPattern": { "multiline": true } }],
     "@typescript-eslint/no-unnecessary-condition": "warn",
     "no-console": "off"
   },

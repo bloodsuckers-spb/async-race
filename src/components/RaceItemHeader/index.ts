@@ -11,7 +11,7 @@ import { Car } from '../../models/API';
 class RaceItemHeader extends Component<Tags.header> {
   public heading: CarHeading;
   public controlPanel: ControlPanel;
-  constructor(readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
+  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
       tagName: Tags.header,
       classList: ['race-track-header'],

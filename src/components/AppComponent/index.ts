@@ -14,7 +14,7 @@ interface AppComponent {
 @Loader()
 class AppComponent extends Component<Tags.div> {
   private static count = 0;
-  constructor(readonly fragment: DocumentFragment, private readonly router: Router) {
+  constructor(protected readonly fragment: DocumentFragment, private readonly router: Router) {
     super({
       tagName: Tags.div,
       classList: ['root'],

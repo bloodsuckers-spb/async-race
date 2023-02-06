@@ -20,7 +20,7 @@ class Heading extends Component<Tags.h1> {
     this.emit(CustomEvents.updateAmount, []);
   }
 
-  update = () => {
+  private update = () => {
     this.node.textContent = `${this.viewName}(${State[this.key]})`;
   };
 }

@@ -45,7 +45,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.on(CustomEvents.selectCar, this.onSelect);
   }
 
-  onSelect = <T>(data: T) => {
+  private onSelect = <T>(data: T) => {
     if (typeof data !== 'object' || data === null || !isCar(data)) {
       throw new Error(errorMessage);
     }
@@ -58,7 +58,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.selectedId = id;
   };
 
-  handleOnInput = () => {
+  private handleOnInput = () => {
     const { value } = this.textInput.node;
     const trimmed = value.trim();
 
@@ -73,7 +73,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.textInput.node.value = trimmed;
   };
 
-  handleClick = () => {
+  private handleClick = () => {
     this.load({
       method: RequestMethods.put,
       queryString: `${API.baseLink}/garage/${this.selectedId}`,
