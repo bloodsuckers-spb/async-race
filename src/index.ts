@@ -10,13 +10,17 @@ import { errorRoute, garageRoute, winnersRoute } from './ui/Routes';
 
 import './global.css';
 
-(() =>
-  new AppComponent(
-    AppFragment,
-    new Router({
-      root: RouterRoot,
-      navLinks: [firstNavLink, secondNavLink],
-      errorView: errorRoute,
-      views: [garageRoute, winnersRoute],
-    })
-  ))();
+const AppRouter = new Router({
+  root: RouterRoot,
+  navLinks: [firstNavLink, secondNavLink],
+  errorView: errorRoute,
+  views: [garageRoute, winnersRoute],
+});
+
+const AppProps = {
+  root: document.body,
+  fragment: AppFragment,
+  router: AppRouter,
+};
+
+(() => new AppComponent(AppProps))();
