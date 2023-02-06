@@ -9,7 +9,7 @@ import CarSvg from '../../ui/CarSvg';
 import styles from './index.css';
 
 // Predicates
-import { isResponse, isCar } from '../../models/Predicates';
+import { isCar, isResponse } from '../../models/Predicates';
 
 // Constants
 import Tags from '../../enums/Tags';

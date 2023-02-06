@@ -11,7 +11,7 @@ import Tags from '../../enums/Tags';
 
 import { Car } from '../../models/API';
 
-import { isCar, isCars, isResponse, isCountedDataResponse } from '../../models/Predicates';
+import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/Predicates';
 
 const { list } = styles;
 

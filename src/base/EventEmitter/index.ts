@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 import State from '../State';
 
-import { Listener, EventMap } from '../../models';
+import { EventMap, Listener } from '../../models';
 
 abstract class EventEmitter extends State {
   static listeners: EventMap = {};

@@ -1,4 +1,4 @@
-import { AbstractResponse, CountedDataResponse, Car, Winner } from './API';
+import { AbstractResponse, Car, CountedDataResponse, Winner } from './API';
 import { errorMessage } from '../constants';
 import { totalCount } from '../constants/API';
 
