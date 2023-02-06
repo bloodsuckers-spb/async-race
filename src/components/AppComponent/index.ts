@@ -1,11 +1,11 @@
 import Component from '../../base/Component';
-import Router from '../../base/Router';
 import Loader from '../../base/Loader';
+import Router from '../../base/Router';
 
-import Tags from '../../enums/Tags';
-import RequestMethods from '../../enums/RequestMethods';
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
+import RequestMethods from '../../enums/RequestMethods';
+import Tags from '../../enums/Tags';
 
 interface AppComponent {
   load: (...args: Array<unknown>) => void;

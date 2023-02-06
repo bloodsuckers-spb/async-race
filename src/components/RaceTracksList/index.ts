@@ -1,17 +1,18 @@
 import Component from '../../base/Component';
 import State from '../../base/State';
-import TracksListItem from '../TracksListItem';
 
-import styles from './index.css';
+import TracksListItem from '../TracksListItem';
 
 import { errorMessage } from '../../constants';
 import { totalCount } from '../../constants/API';
+
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Car } from '../../models/API';
-
 import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/Predicates';
+
+import styles from './index.css';
 
 class RaceTracksList extends Component<Tags.ul> {
   constructor() {

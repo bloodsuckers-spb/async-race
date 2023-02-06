@@ -2,6 +2,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 import CustomEvents from '../../enums/CustomEvents';
+
 import { LoadDecorator } from '../../models/API';
 
 function Loader() {

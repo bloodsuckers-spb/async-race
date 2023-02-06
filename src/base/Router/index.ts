@@ -4,8 +4,9 @@
 /* eslint-disable no-param-reassign */
 import Component from '../Component';
 
-import { AppView } from '../../models';
 import Tags from '../../enums/Tags';
+
+import { AppView } from '../../models';
 
 class Router {
   static count = 0;
@@ -32,13 +33,12 @@ class Router {
     window.onpopstate = this.handlePopstate;
     window.addEventListener('DOMContentLoaded', this.handleLoading);
   }
-  // Todo
+
   private handleNavigate = (href: string) => {
     window.history.pushState({}, '', href);
     this.navigate();
   };
 
-  // Todo
   private handleLoading = () => {
     const { pathname } = window.location;
     if (pathname !== '/') {
@@ -49,12 +49,11 @@ class Router {
     this.navigate();
     return false;
   };
-  // Todo
+
   private navigate = () => {
     const view = this.handleLocation();
     this.renderView(view);
   };
-  // Todo
 
   private handleLocation = (): Component<'div'> => {
     const { pathname } = window.location;

@@ -23,9 +23,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
-      '@components': path.resolve(SOURCES, 'components'),
-      '@base': path.resolve(SOURCES, 'base'),
-      '@models': path.resolve(SOURCES, 'models'),
+      '@': './',
     },
   },
   plugins: [
