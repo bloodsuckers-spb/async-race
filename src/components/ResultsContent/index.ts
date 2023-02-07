@@ -1,27 +1,30 @@
 /* eslint-disable class-methods-use-this */
 import Component from '../../base/Component';
-import State from '../../base/State';
+import Store from '../../base/Store';
 
 import ResultsItem from '../ResultsItem';
 
 import { errorMessage } from '../../constants';
+import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Winner } from '../../models/API';
 import { isCountedDataResponse, isWinners } from '../../models/Predicates';
+import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
-const { results } = styles;
+interface ResultsContent extends AbstractStore {}
 
+@Store()
 class ResultsContent extends Component<Tags.div> {
-  private readonly winner: Winner | null = null;
+  protected readonly winner: Winner | null = null;
   constructor() {
     super({
       tagName: Tags.div,
-      classList: [results],
+      classList: [styles.results],
     });
     this.on(CustomEvents.getWinners, this.onGetWinners);
   }
@@ -32,20 +35,17 @@ class ResultsContent extends Component<Tags.div> {
     }
     const { headers, data } = args;
     // Temp
-    this.updateWinnersCount(+headers['x-total-count']);
+    this.updateWinnersCount(+headers[totalCount]);
     this.addWinner(data);
   };
 
   private updateWinnersCount = (num: number): void => {
-    State.winnersCount = num;
+    this.store.winnersCount = num;
   };
 
   private addWinner = (winners: Array<Winner>): void => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     winners.forEach((winnerData) => new ResultsItem(this, winnerData));
   };
 }
 
-const resultsContent = new ResultsContent();
-
-export default resultsContent;
+export default new ResultsContent();

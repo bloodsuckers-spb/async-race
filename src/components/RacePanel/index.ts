@@ -6,9 +6,9 @@ import Btns from '../../enums/Btns';
 import Tags from '../../enums/Tags';
 
 class RacePanel extends Component<Tags.div> {
-  private raceBtn: Btn;
-  private resetBtn: Btn;
-  private generateBtn: Btn;
+  protected raceBtn: Btn;
+  protected resetBtn: Btn;
+  protected generateBtn: Btn;
   constructor() {
     super({
       tagName: Tags.div,

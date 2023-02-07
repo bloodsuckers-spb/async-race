@@ -1,11 +1,10 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable max-len */
 /* eslint-disable class-methods-use-this */
-import State from '../State';
 
 import { EventMap, Listener } from '../../models';
 
-abstract class EventEmitter extends State {
+abstract class EventEmitter {
   protected static listeners: EventMap = {};
   protected on(eventName: keyof EventMap, listener: Listener): void {
     if (!EventEmitter.listeners.hasOwnProperty(eventName)) {

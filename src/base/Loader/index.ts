@@ -5,7 +5,8 @@ import CustomEvents from '../../enums/CustomEvents';
 
 import { LoadDecorator } from '../../models/API';
 
-function Loader() {
+// eslint-disable-next-line arrow-body-style
+const Loader = () => {
   return <T extends { new (...args: any[]): {} }>(Constructor: T): T =>
     class extends Constructor {
       protected load<U>({ method, queryString, eventName, options = {}, cb }: LoadDecorator): void {
@@ -14,6 +15,6 @@ function Loader() {
           .catch((error: Error) => console.log(error.message));
       }
     };
-}
+};
 
 export default Loader;

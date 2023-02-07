@@ -35,7 +35,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.btn = btn;
     this.append(textInput, colorInput, btn);
 
-    this.textInput.node.oninput = () => this.handleOnInput();
+    this.textInput.node.oninput = (): void => this.handleOnInput();
     this.btn.node.onclick = (): false => {
       this.handleClick();
       this.clear();
@@ -45,7 +45,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.on(CustomEvents.selectCar, this.onSelect);
   }
 
-  private onSelect = <T>(data: T) => {
+  private onSelect = <T>(data: T): void => {
     if (typeof data !== 'object' || data === null || !isCar(data)) {
       throw new Error(errorMessage);
     }
@@ -58,7 +58,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.selectedId = id;
   };
 
-  private handleOnInput = () => {
+  private handleOnInput = (): void => {
     const { value } = this.textInput.node;
     const trimmed = value.trim();
 
@@ -73,7 +73,7 @@ class UpdateCarForm extends Component<Tags.form> {
     this.textInput.node.value = trimmed;
   };
 
-  private handleClick = () => {
+  private handleClick = (): void => {
     this.load({
       method: RequestMethods.put,
       queryString: `${API.baseLink}/garage/${this.selectedId}`,
@@ -86,7 +86,7 @@ class UpdateCarForm extends Component<Tags.form> {
     });
   };
 
-  private clear = () => {
+  private clear = (): void => {
     this.textInput.node.value = '';
     this.textInput.node.readOnly = true;
     this.btn.node.disabled = true;

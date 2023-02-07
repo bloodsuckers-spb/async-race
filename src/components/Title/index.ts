@@ -1,10 +1,15 @@
 import Component from '../../base/Component';
-import State from '../../base/State';
+import Store from '../../base/Store';
 
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 import TitleKeys from '../../enums/TitleKeys';
 
+import { AbstractStore } from '../../models/StoreType';
+
+interface Title extends AbstractStore {}
+
+@Store()
 class Title extends Component<Tags.h2> {
   constructor(private readonly key: TitleKeys) {
     super({
@@ -16,7 +21,7 @@ class Title extends Component<Tags.h2> {
   }
 
   private update = (): void => {
-    this.node.textContent = `Page #${State[this.key]}`;
+    this.node.textContent = `Page #${this.store[this.key]}`;
   };
 }
 

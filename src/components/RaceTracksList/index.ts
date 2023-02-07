@@ -1,5 +1,5 @@
 import Component from '../../base/Component';
-import State from '../../base/State';
+import Store from '../../base/Store';
 
 import TracksListItem from '../TracksListItem';
 
@@ -11,9 +11,13 @@ import Tags from '../../enums/Tags';
 
 import { Car } from '../../models/API';
 import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/Predicates';
+import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
+interface RaceTracksList extends AbstractStore {}
+
+@Store()
 class RaceTracksList extends Component<Tags.ul> {
   constructor() {
     super({
@@ -23,18 +27,18 @@ class RaceTracksList extends Component<Tags.ul> {
 
     this.on(CustomEvents.updateCars, this.onUpdate);
     this.on(CustomEvents.createNewCar, this.onCarAdded);
-    this.on(CustomEvents.updateCar, RaceTracksList.onCarUpdated);
+    this.on(CustomEvents.updateCar, this.onCarUpdated);
   }
 
-  private static onCarUpdated = <T>(arg: T): void => {
+  private onCarUpdated = <T>(arg: T): void => {
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
-    RaceTracksList.updateCar(arg.data);
+    this.updateCar(arg.data);
   };
 
-  private static updateCar = (data: Car): void => {
-    State.cars.set(`${data.id}`, data);
+  private updateCar = (data: Car): void => {
+    this.store.cars.set(`${data.id}`, data);
   };
 
   private onUpdate = <T>(args: T): void => {
@@ -62,21 +66,19 @@ class RaceTracksList extends Component<Tags.ul> {
   };
 
   private addCarToStore = (car: Car): void => {
-    if (State.cars.get(`${car.id}`)) {
+    if (this.store.cars.get(`${car.id}`)) {
       return;
     }
-    State.cars.set(`${car.id}`, car);
+    this.store.cars.set(`${car.id}`, car);
     this.render(car);
   };
 
   private incrementCarsCount = (amount = 1): void => {
-    State.carsCount += amount;
+    this.store.carsCount += amount;
     this.emit(CustomEvents.updateAmount, {});
   };
 
   private render = (car: Car): TracksListItem => new TracksListItem(this, car);
 }
 
-const raceTrackList = new RaceTracksList();
-
-export default raceTrackList;
+export default new RaceTracksList();
