@@ -34,6 +34,7 @@ interface ResultsItem {
 class ResultsItem extends Component<Tags.div> {
   private color: HashType = '#000';
   private name = '';
+  private id = 0;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Winner, index: number) {
     super({
       tagName: Tags.div,
@@ -42,6 +43,8 @@ class ResultsItem extends Component<Tags.div> {
     });
 
     const { id, wins, time } = winnerData;
+
+    this.id = id;
 
     this.numberCell = new TableCell(`${index}`);
     this.nameCell = new TableCell(`${id}`);
@@ -70,9 +73,13 @@ class ResultsItem extends Component<Tags.div> {
       throw new Error(errorMessage);
     }
 
-    const { color, name } = args.data;
+    const { color, name, id } = args.data;
     const { node } = this.carCell.carSvg;
     const { nameCell } = this;
+
+    if (this.id !== id) {
+      return;
+    }
 
     if (color !== this.color) {
       this.color = color;

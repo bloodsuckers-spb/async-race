@@ -49,7 +49,7 @@ class ControlPanel extends Component<Tags.div> {
 
     this.reset.node.disabled = true;
 
-    this.on(CustomEvents.updateCar, this.onUpdate);
+    this.on(CustomEvents.selectCar, this.onUpdate);
   }
 
   private onUpdate = <T>(args: T): void => {
