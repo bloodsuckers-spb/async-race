@@ -4,7 +4,7 @@ import Component from '../../base/Component';
 import Loader from '../../base/Loader';
 
 import CarCell from '../../ui/Winners/components/CarCell';
-import Cell from '../../ui/Winners/components/Cell';
+import TableCell from '../../ui/Winners/components/TableCell';
 
 import { errorMessage } from '../../constants';
 
@@ -23,37 +23,38 @@ const { winner } = styles;
 
 interface ResultsItem {
   load: (...args: Array<unknown>) => void;
-  numberCell: Cell;
-  nameCell: Cell;
-  winsCell: Cell;
-  bestTimeCell: Cell;
+  numberCell: TableCell;
+  nameCell: TableCell;
+  winsCell: TableCell;
+  bestTimeCell: TableCell;
   carCell: CarCell;
-  color: HashType;
-  name: string;
 }
 
 @Loader()
 class ResultsItem extends Component<Tags.div> {
-  constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Winner) {
+  private color: HashType = '#000';
+  private name = '';
+  constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Winner, index: number) {
     super({
       tagName: Tags.div,
       classList: [winner],
       parent: parent.node,
     });
 
-    this.color = '#000';
-    this.name = 'Hi';
-
     const { id, wins, time } = winnerData;
 
-    this.numberCell = new Cell();
-    this.carCell = new CarCell();
-    this.nameCell = new Cell(`${id}`);
-    this.winsCell = new Cell(`${wins}`);
-    this.bestTimeCell = new Cell(`${time}`);
+    this.numberCell = new TableCell(`${index}`);
+    this.nameCell = new TableCell(`${id}`);
+    this.winsCell = new TableCell(`${wins}`);
+    this.bestTimeCell = new TableCell(`${time}`);
+    this.carCell = new CarCell(this.color);
+
     const { numberCell, carCell, nameCell, winsCell, bestTimeCell } = this;
     const children = [numberCell, carCell, nameCell, winsCell, bestTimeCell];
     this.append(...children);
+
+    this.on(CustomEvents.updateCar, this.onUpdate);
+    this.on(CustomEvents.getCar, this.onUpdate);
 
     this.load({
       method: RequestMethods.get,
@@ -62,8 +63,6 @@ class ResultsItem extends Component<Tags.div> {
       options: {},
       cb: this.emit,
     });
-
-    this.on(CustomEvents.updateCar, this.onUpdate);
   }
 
   private onUpdate = <T>(args: T): void => {
@@ -76,10 +75,12 @@ class ResultsItem extends Component<Tags.div> {
     const { nameCell } = this;
 
     if (color !== this.color) {
+      this.color = color;
       node.style.fill = color;
     }
 
     if (name !== this.name) {
+      this.name = name;
       nameCell.node.textContent = name;
     }
   };

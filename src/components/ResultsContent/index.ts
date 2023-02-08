@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import Component from '../../base/Component';
 import Store from '../../base/Store';
 
@@ -16,7 +15,9 @@ import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
-interface ResultsContent extends AbstractStore {}
+interface ResultsContent extends AbstractStore {
+  load: (...args: Array<unknown>) => void;
+}
 
 @Store()
 class ResultsContent extends Component<Tags.div> {
@@ -45,7 +46,7 @@ class ResultsContent extends Component<Tags.div> {
   };
 
   private addWinner = (winners: Array<Winner>): void => {
-    winners.forEach((winnerData) => new ResultsItem(this, winnerData));
+    winners.forEach((winnerData, index: number) => new ResultsItem(this, winnerData, index + 1));
   };
 }
 

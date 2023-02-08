@@ -1,9 +1,10 @@
-/* eslint-disable class-methods-use-this */
 import Component from '../../../../base/Component';
 
 import CarSvg from '../../../CarSvg';
 
 import Tags from '../../../../enums/Tags';
+
+import { HashType } from '../../../../models';
 
 import styles from './index.css';
 
@@ -11,12 +12,12 @@ const { small } = styles;
 
 class CarCell extends Component<Tags.div> {
   public carSvg: CarSvg;
-  constructor() {
+  constructor(color: HashType) {
     super({
       tagName: Tags.div,
       classList: ['cell'],
     });
-    this.carSvg = new CarSvg(this, '#fff');
+    this.carSvg = new CarSvg(this, color);
     this.carSvg.node.classList.add(small);
   }
 }

@@ -6,8 +6,8 @@ import styles from './index.css';
 
 const { cell } = styles;
 
-class Cell extends Component<Tags.div> {
-  constructor(text = 'hi') {
+class TableCell extends Component<Tags.div> {
+  constructor(text: string) {
     super({
       tagName: Tags.div,
       classList: [cell],
@@ -18,4 +18,4 @@ class Cell extends Component<Tags.div> {
   }
 }
 
-export default Cell;
+export default TableCell;
