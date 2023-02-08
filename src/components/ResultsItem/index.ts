@@ -6,6 +6,8 @@ import Loader from '../../base/Loader';
 import CarCell from '../../ui/Winners/components/CarCell';
 import Cell from '../../ui/Winners/components/Cell';
 
+import { errorMessage } from '../../constants';
+
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
 import RequestMethods from '../../enums/RequestMethods';
@@ -66,7 +68,7 @@ class ResultsItem extends Component<Tags.div> {
 
   private onUpdate = <T>(args: T): void => {
     if (!isResponse(args) || !isCar(args.data)) {
-      throw new Error();
+      throw new Error(errorMessage);
     }
 
     const { color, name } = args.data;
@@ -76,6 +78,7 @@ class ResultsItem extends Component<Tags.div> {
     if (color !== this.color) {
       node.style.fill = color;
     }
+
     if (name !== this.name) {
       nameCell.node.textContent = name;
     }
