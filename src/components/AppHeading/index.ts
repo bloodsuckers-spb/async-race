@@ -15,10 +15,10 @@ class Heading extends Component<Tags.h1> {
   constructor(private readonly viewName: Views, private readonly key: HeadingKeys) {
     super({
       tagName: Tags.h1,
-      classList: ['title'],
+      classList: ['heading'],
     });
-    this.on(CustomEvents.updateAmount, this.update);
-    this.emit(CustomEvents.updateAmount, []);
+    this.on(CustomEvents.updateHeading, this.update);
+    this.update();
   }
 
   private update = (): void => {

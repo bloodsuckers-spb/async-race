@@ -3,9 +3,9 @@
 import Component from '../../base/Component';
 import Loader from '../../base/Loader';
 
-import UpdateCarBtn from './components/Btn';
-import UpdateCarColorInput from './components/ColorInput';
-import UpdateCarTextInput from './components/TextInput';
+import Btn from './components/Btn';
+import ColorInput from './components/ColorInput';
+import TextInput from './components/TextInput';
 
 import { errorMessage } from '../../constants';
 
@@ -93,10 +93,8 @@ class UpdateCarForm extends Component<Tags.form> {
   };
 }
 
-const updateCardForm = new UpdateCarForm({
-  textInput: UpdateCarTextInput,
-  colorInput: UpdateCarColorInput,
-  btn: UpdateCarBtn,
+export default new UpdateCarForm({
+  textInput: TextInput,
+  colorInput: ColorInput,
+  btn: Btn,
 });
-
-export default updateCardForm;

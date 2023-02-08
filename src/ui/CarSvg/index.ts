@@ -9,7 +9,7 @@ import SVGTags from '../../enums/SVGTags';
 import { HashType } from '../../models';
 
 class CarSvg extends SvgComponent<SVGTags.svg> {
-  private readonly use: SvgUse;
+  protected readonly use: SvgUse;
   constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, protected color: HashType) {
     super({
       tagName: SVGTags.svg,

@@ -1,4 +1,4 @@
-import Heading from '../../../../components/Heading';
+import Heading from '../../../../components/AppHeading';
 
 import HeadingKeys from '../../../../enums/HeadingKeys';
 import Views from '../../../../enums/Views';

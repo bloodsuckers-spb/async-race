@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Component from '../../base/Component';
 import Loader from '../../base/Loader';
@@ -10,7 +11,9 @@ import CustomEvents from '../../enums/CustomEvents';
 import RequestMethods from '../../enums/RequestMethods';
 import Tags from '../../enums/Tags';
 
+import { HashType } from '../../models';
 import { Winner } from '../../models/API';
+import { isCar, isResponse } from '../../models/Predicates';
 
 import styles from './index.css';
 
@@ -18,15 +21,17 @@ const { winner } = styles;
 
 interface ResultsItem {
   load: (...args: Array<unknown>) => void;
+  numberCell: Cell;
+  nameCell: Cell;
+  winsCell: Cell;
+  bestTimeCell: Cell;
+  carCell: CarCell;
+  color: HashType;
+  name: string;
 }
 
 @Loader()
 class ResultsItem extends Component<Tags.div> {
-  private numberCell: Cell;
-  private carCell: CarCell;
-  private nameCell: Cell;
-  private winsCell: Cell;
-  private bestTimeCell: Cell;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Winner) {
     super({
       tagName: Tags.div,
@@ -34,15 +39,10 @@ class ResultsItem extends Component<Tags.div> {
       parent: parent.node,
     });
 
-    const { id, wins, time } = winnerData;
+    this.color = '#000';
+    this.name = 'Hi';
 
-    this.load({
-      method: RequestMethods.get,
-      queryString: `${API.garageLink}/${id}`,
-      eventName: CustomEvents.getCar,
-      options: {},
-      cb: this.emit,
-    });
+    const { id, wins, time } = winnerData;
 
     this.numberCell = new Cell();
     this.carCell = new CarCell();
@@ -52,7 +52,34 @@ class ResultsItem extends Component<Tags.div> {
     const { numberCell, carCell, nameCell, winsCell, bestTimeCell } = this;
     const children = [numberCell, carCell, nameCell, winsCell, bestTimeCell];
     this.append(...children);
+
+    this.load({
+      method: RequestMethods.get,
+      queryString: `${API.garageLink}/${id}`,
+      eventName: CustomEvents.getCar,
+      options: {},
+      cb: this.emit,
+    });
+
+    this.on(CustomEvents.updateCar, this.onUpdate);
   }
+
+  private onUpdate = <T>(args: T): void => {
+    if (!isResponse(args) || !isCar(args.data)) {
+      throw new Error();
+    }
+
+    const { color, name } = args.data;
+    const { node } = this.carCell.carSvg;
+    const { nameCell } = this;
+
+    if (color !== this.color) {
+      node.style.fill = color;
+    }
+    if (name !== this.name) {
+      nameCell.node.textContent = name;
+    }
+  };
 }
 
 export default ResultsItem;

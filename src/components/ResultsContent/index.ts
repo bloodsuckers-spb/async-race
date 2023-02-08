@@ -41,6 +41,7 @@ class ResultsContent extends Component<Tags.div> {
 
   private updateWinnersCount = (num: number): void => {
     this.store.winnersCount = num;
+    this.emit(CustomEvents.updateHeading, []);
   };
 
   private addWinner = (winners: Array<Winner>): void => {

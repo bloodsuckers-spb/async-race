@@ -48,7 +48,7 @@ class RaceTracksList extends Component<Tags.ul> {
     const { headers, data } = args;
     const carsCount = headers[totalCount];
     this.incrementCarsCount(+carsCount);
-    this.emit(CustomEvents.updateAmount, {});
+    this.emit(CustomEvents.updateHeading, {});
 
     data.forEach((car) => this.addCarToStore(car));
   };
@@ -76,7 +76,7 @@ class RaceTracksList extends Component<Tags.ul> {
 
   private incrementCarsCount = (amount = 1): void => {
     this.store.carsCount += amount;
-    this.emit(CustomEvents.updateAmount, {});
+    this.emit(CustomEvents.updateHeading, {});
   };
 
   private render = (car: Car): TracksListItem => new TracksListItem(this, car);

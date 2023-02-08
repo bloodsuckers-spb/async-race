@@ -7,10 +7,10 @@ import TitleKeys from '../../enums/TitleKeys';
 
 import { AbstractStore } from '../../models/StoreType';
 
-interface Title extends AbstractStore {}
+interface Subtitle extends AbstractStore {}
 
 @Store()
-class Title extends Component<Tags.h2> {
+class Subtitle extends Component<Tags.h2> {
   constructor(private readonly key: TitleKeys) {
     super({
       tagName: Tags.h2,
@@ -25,4 +25,4 @@ class Title extends Component<Tags.h2> {
   };
 }
 
-export default Title;
+export default Subtitle;
