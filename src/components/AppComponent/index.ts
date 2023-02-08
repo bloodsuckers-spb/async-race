@@ -9,9 +9,10 @@ import CustomEvents from '../../enums/CustomEvents';
 import RequestMethods from '../../enums/RequestMethods';
 import Tags from '../../enums/Tags';
 
-interface AppComponent {
+import { AbstractLoader } from '../../models';
+
+interface AppComponent extends AbstractLoader {
   router: Router;
-  load: (...args: Array<unknown>) => void;
 }
 
 @Loader()
