@@ -37,9 +37,10 @@
     "implicit-arrow-linebreak": "off",
     "@typescript-eslint/no-unnecessary-condition": "warn",
     "no-console": "off",
-    "@typescript-eslint/comma-dangle": 0
+    "@typescript-eslint/comma-dangle": 0,
+    "import/prefer-default-export": "off"
   },
-  "ignorePatterns": ["dist/*.js"],
+  "ignorePatterns": ["build/*.js", "config/**/*.ts", "webpack.config.ts"],
   "overrides": [
     {
       "files": "*.ts",

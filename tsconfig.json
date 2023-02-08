@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "esModuleInterop": true,
+    "target": "es6",
+    "module": "ESNext",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
+    //
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -15,7 +18,12 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "@": ["./"],
+      "@": ["./"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
     }
   }
 }

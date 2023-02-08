@@ -10,3 +10,7 @@ body {
 ul li {
   list-style: none;
 }
+
+.root {
+  background-color: #8402ff;
+}

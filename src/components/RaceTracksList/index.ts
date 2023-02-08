@@ -66,10 +66,11 @@ class RaceTracksList extends Component<Tags.ul> {
   };
 
   private addCarToStore = (car: Car): void => {
-    if (this.store.cars.get(`${car.id}`)) {
+    const { cars } = this.store;
+    if (cars.get(`${car.id}`)) {
       return;
     }
-    this.store.cars.set(`${car.id}`, car);
+    cars.set(`${car.id}`, car);
     this.render(car);
   };
 
