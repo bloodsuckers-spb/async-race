@@ -46,3 +46,7 @@ export interface FormProps {
   colorInput: Component<Tags.input>;
   btn: Component<Tags.button>;
 }
+
+export interface AbstractLoader {
+  load: (...args: Array<unknown>) => void;
+}

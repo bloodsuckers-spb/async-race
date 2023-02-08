@@ -22,24 +22,29 @@ class AppComponent extends Component<Tags.div> {
       tagName: Tags.div,
       classList: ['root'],
     });
+
     if (AppComponent.count > 0) return;
     AppComponent.count += 1;
+
     this.router = router;
     this.node.append(fragment);
     root.append(this.node);
-    this.load({
+
+    const getDataOptions = {
       method: RequestMethods.get,
+      cb: this.emit,
+    };
+
+    this.load({
+      ...getDataOptions,
       queryString: `${API.baseLink}/garage?_page=1&_limit=7`,
       eventName: CustomEvents.updateCars,
-      options: {},
-      cb: this.emit,
     });
+
     this.load({
-      method: RequestMethods.get,
+      ...getDataOptions,
       queryString: `${API.winnersLink}?_page=1&_limit=10`,
       eventName: CustomEvents.getWinners,
-      options: {},
-      cb: this.emit,
     });
   }
 }

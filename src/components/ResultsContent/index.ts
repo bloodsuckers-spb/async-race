@@ -1,3 +1,7 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import axios from 'axios';
+
 import Component from '../../base/Component';
 import Store from '../../base/Store';
 
@@ -6,6 +10,7 @@ import ResultsItem from '../ResultsItem';
 import { errorMessage } from '../../constants';
 import { totalCount } from '../../constants/API';
 
+import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
@@ -45,8 +50,17 @@ class ResultsContent extends Component<Tags.div> {
     this.emit(CustomEvents.updateHeading, []);
   };
 
-  private addWinner = (winners: Array<Winner>): void => {
-    winners.forEach((winnerData, index: number) => new ResultsItem(this, winnerData, index + 1));
+  private addWinner = async (winners: Array<Winner>): Promise<void> => {
+    for (let index = 0; index < winners.length; index += 1) {
+      try {
+        const winnerData = winners[index];
+        const { id } = winnerData;
+        const { data } = await axios.get(`${API.garageLink}/${id}`);
+        const winner = new ResultsItem(this, { ...winnerData, ...data, index });
+      } catch {
+        console.error();
+      }
+    }
   };
 }
 
