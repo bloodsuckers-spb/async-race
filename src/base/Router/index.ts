@@ -1,29 +1,24 @@
 /* eslint-disable no-param-reassign */
 import Component from '../Component';
 
+import { HandleLocation, Navigate, RenderView, RouterProps } from './types';
+
 import Tags from '../../enums/Tags';
 
 import { AppView } from '../../models';
-
-interface RouterProps {
-  root: Component<Tags.div>;
-  navLinks: Array<Component<Tags.a>>;
-  errorView: AppView;
-  views: Array<Record<string, Component<Tags.div>>>;
-}
 
 interface Router extends RouterProps {}
 
 class Router {
   private static count = 0;
   private initialView: AppView = {};
-  private currentView: AppView = {};
+  protected currentView: AppView = {};
   constructor({ root, navLinks, errorView, views }: RouterProps) {
     if (Router.count > 0) return;
     Router.count += 1;
     navLinks.forEach(({ node }: Component<Tags.a>) => {
       node.onclick = (): false => {
-        this.handleNavigate(node.href);
+        Router.handleNavigate(node.href, () => Router.navigate(this.handleLocation, this.renderView));
         return false;
       };
     });
@@ -33,30 +28,31 @@ class Router {
     this.views = views;
     this.initialView = initial;
     this.currentView = this.initialView;
-    this.navigate();
-    window.onpopstate = this.handlePopstate;
-    window.addEventListener('DOMContentLoaded', this.handleLoading);
+    Router.navigate(this.handleLocation, this.renderView);
+    window.onpopstate = (): false => Router.handlePopstate(() => Router.navigate(this.handleLocation, this.renderView));
+    window.addEventListener('DOMContentLoaded', () =>
+      Router.handleLoading(() => Router.navigate(this.handleLocation, this.renderView)));
   }
 
-  private handleNavigate = (href: string): void => {
+  private static handleNavigate = (href: string, navigate: Navigate): void => {
     window.history.pushState({}, '', href);
-    this.navigate();
+    navigate();
   };
 
-  private handleLoading = (): void => {
+  private static handleLoading = (navigate: Navigate): void => {
     const { pathname } = window.location;
     if (pathname !== '/') {
-      this.navigate();
+      navigate();
     }
   };
-  private handlePopstate = (): false => {
-    this.navigate();
+
+  private static handlePopstate = (navigate: Navigate): false => {
+    navigate();
     return false;
   };
 
-  private navigate = (): void => {
-    const view = this.handleLocation();
-    this.renderView(view);
+  private static navigate = (handleLocation: HandleLocation, renderView: RenderView): void => {
+    renderView(handleLocation());
   };
 
   private handleLocation = (): Component<Tags.div> => {
