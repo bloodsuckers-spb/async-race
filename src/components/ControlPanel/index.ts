@@ -1,17 +1,24 @@
+/* eslint-disable import/order */
+import axios from 'axios';
+
 import Component from '../../base/Component';
+import Loader from '../../base/Loader';
 
 import Btn from '../../ui/Button';
 
 import { errorMessage } from '../../constants';
 
+import API from '../../enums/API';
 import Btns from '../../enums/Btns';
 import CustomEvents from '../../enums/CustomEvents';
+import RequestMethods from '../../enums/RequestMethods';
 import Tags from '../../enums/Tags';
 
+import { AbstractLoader } from '../../models';
 import { Car } from '../../models/API';
 import { isCar } from '../../models/Predicates';
 
-interface ControlPanel {
+interface ControlPanel extends AbstractLoader {
   select: Btn;
   start: Btn;
   reset: Btn;
@@ -22,6 +29,7 @@ interface ControlPanel {
   id: number;
 }
 
+@Loader()
 class ControlPanel extends Component<Tags.div> {
   constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
@@ -46,6 +54,8 @@ class ControlPanel extends Component<Tags.div> {
         id: this.id,
       });
 
+    this.remove.node.onclick = this.onDeleteCar;
+
     this.reset.node.disabled = true;
 
     this.on(CustomEvents.selectCar, this.onSelectCar);
@@ -68,6 +78,12 @@ class ControlPanel extends Component<Tags.div> {
     if (name !== this.name) {
       this.name = name;
     }
+  };
+
+  private onDeleteCar = (): void => {
+    axios[RequestMethods.delete](`${API.garageLink}/${this.id}`)
+      .then(() => this.emit(CustomEvents.removeCar, this.id))
+      .catch(() => console.error);
   };
 }
 

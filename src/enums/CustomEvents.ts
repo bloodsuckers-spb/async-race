@@ -3,6 +3,7 @@ enum CustomEvents {
   updateCurrentPage = 'updateCurrentPage',
   updateCars = 'updateCars',
   updateCar = 'updateCar',
+  removeCar = 'removeCar',
   typeCarName = 'typeCarName',
   createNewCar = 'createNewCar',
   selectCar = 'selectCar',

@@ -51,6 +51,7 @@ class ResultsItem extends Component<Tags.div> {
     this.append(...children);
 
     this.on(CustomEvents.updateCar, this.onUpdate);
+    this.on(CustomEvents.removeCar, this.onRemove);
   }
 
   private onUpdate = <T>(args: T): void => {
@@ -74,6 +75,15 @@ class ResultsItem extends Component<Tags.div> {
     if (name !== this.name) {
       this.name = name;
       nameCell.node.textContent = name;
+    }
+  };
+
+  private onRemove = <T>(id: T): void => {
+    if (typeof id !== 'number') {
+      throw new Error(errorMessage);
+    }
+    if (id === this.id) {
+      this.destroy();
     }
   };
 }

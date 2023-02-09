@@ -35,6 +35,7 @@ class TracksListItem extends Component<Tags.li> {
     this.id = id;
 
     this.on(CustomEvents.updateCar, this.onUpdate);
+    this.on(CustomEvents.removeCar, this.onRemove);
   }
 
   private onUpdate = <T>(arg: T): void => {
@@ -65,6 +66,15 @@ class TracksListItem extends Component<Tags.li> {
 
     if (controlPanel.color !== color) {
       controlPanel.color = color;
+    }
+  };
+
+  private onRemove = <T>(id: T): false | void => {
+    if (typeof id !== 'number') {
+      throw new Error(errorMessage);
+    }
+    if (id === this.id) {
+      this.destroy();
     }
   };
 

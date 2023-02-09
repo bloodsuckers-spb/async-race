@@ -15,6 +15,10 @@ class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
   public append = <U extends keyof HTMLElementTagNameMap>(...children: Array<Component<U>>): void => {
     this.node.append(...children.map((component) => component.node));
   };
+
+  protected destroy = (): void => {
+    this.node.remove();
+  };
 }
 
 export default Component;
