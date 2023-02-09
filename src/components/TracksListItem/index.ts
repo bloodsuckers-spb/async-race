@@ -42,6 +42,7 @@ class TracksListItem extends Component<Tags.li> {
       throw new Error(errorMessage);
     }
 
+    const { controlPanel } = this.header;
     const { id, name, color } = arg.data;
 
     if (id !== this.id) return;
@@ -53,8 +54,17 @@ class TracksListItem extends Component<Tags.li> {
     }
 
     if (this.color !== color) {
+      const { carSvg } = this;
       this.color = color;
-      this.carSvg.node.style.fill = `${color}`;
+      carSvg.node.style.fill = `${color}`;
+    }
+
+    if (controlPanel.name !== name) {
+      controlPanel.name = name;
+    }
+
+    if (controlPanel.color !== color) {
+      controlPanel.color = color;
     }
   };
 

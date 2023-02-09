@@ -7,13 +7,14 @@ import TableCell from '../../ui/Winners/components/TableCell';
 
 import { Props } from './types';
 
-// import { errorMessage } from '../../constants';
-// import CustomEvents from '../../enums/CustomEvents';
+import { errorMessage } from '../../constants';
+
+import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { AbstractLoader } from '../../models';
+import { isCar, isResponse } from '../../models/Predicates';
 
-// import { isCar, isResponse } from '../../models/Predicates';
 import styles from './index.css';
 
 const { winner } = styles;
@@ -34,13 +35,13 @@ class ResultsItem extends Component<Tags.div> {
       parent: parent.node,
     });
 
-    const { id, wins, time, color, index } = winnerData;
+    const { id, wins, time, name, color, index } = winnerData;
 
     this.id = id;
     this.color = color;
 
     this.numberCell = new TableCell(`${index + 1}`);
-    this.nameCell = new TableCell(`${id}`);
+    this.nameCell = new TableCell(`${name}`);
     this.winsCell = new TableCell(`${wins}`);
     this.bestTimeCell = new TableCell(`${time}`);
     this.carCell = new CarCell(this.color);
@@ -49,33 +50,32 @@ class ResultsItem extends Component<Tags.div> {
     const children = [numberCell, carCell, nameCell, winsCell, bestTimeCell];
     this.append(...children);
 
-    // this.on(CustomEvents.updateCar, this.onUpdate);
-    // this.on(CustomEvents.getCar, this.onUpdate);
+    this.on(CustomEvents.updateCar, this.onUpdate);
   }
 
-  // private onUpdate = <T>(args: T): void => {
-  //   if (!isResponse(args) || !isCar(args.data)) {
-  //     throw new Error(errorMessage);
-  //   }
+  private onUpdate = <T>(args: T): void => {
+    if (!isResponse(args) || !isCar(args.data)) {
+      throw new Error(errorMessage);
+    }
 
-  //   const { color, name, id } = args.data;
-  //   const { node } = this.carCell.carSvg;
-  //   const { nameCell } = this;
+    const { color, name, id } = args.data;
+    const { node } = this.carCell.carSvg;
+    const { nameCell } = this;
 
-  //   if (this.id !== id) {
-  //     return;
-  //   }
+    if (this.id !== id) {
+      return;
+    }
 
-  //   if (color !== this.color) {
-  //     this.color = color;
-  //     node.style.fill = color;
-  //   }
+    if (color !== this.color) {
+      this.color = color;
+      node.style.fill = color;
+    }
 
-  //   if (name !== this.name) {
-  //     this.name = name;
-  //     nameCell.node.textContent = name;
-  //   }
-  // };
+    if (name !== this.name) {
+      this.name = name;
+      nameCell.node.textContent = name;
+    }
+  };
 }
 
 export default ResultsItem;

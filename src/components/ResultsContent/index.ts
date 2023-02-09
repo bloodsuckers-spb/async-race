@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 
 import Component from '../../base/Component';
@@ -20,9 +19,7 @@ import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
-interface ResultsContent extends AbstractStore {
-  load: (...args: Array<unknown>) => void;
-}
+interface ResultsContent extends AbstractStore {}
 
 @Store()
 class ResultsContent extends Component<Tags.div> {
@@ -56,7 +53,7 @@ class ResultsContent extends Component<Tags.div> {
         const winnerData = winners[index];
         const { id } = winnerData;
         const { data } = await axios.get(`${API.garageLink}/${id}`);
-        const winner = new ResultsItem(this, { ...winnerData, ...data, index });
+        ((): ResultsItem => new ResultsItem(this, { ...winnerData, ...data, index }))();
       } catch {
         console.error();
       }

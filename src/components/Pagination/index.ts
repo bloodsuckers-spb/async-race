@@ -10,6 +10,7 @@ class Pagination extends Component<Tags.div> {
     });
     this.append(prev, next);
     this.prev.node.disabled = true;
+    this.next.node.disabled = true;
   }
 }
 

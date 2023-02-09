@@ -1,6 +1,7 @@
+/* eslint-disable import/order */
 import Component from '../../base/Component';
 import Loader from '../../base/Loader';
-import Router from '../../base/Router';
+import Router from 'base/Router';
 
 import { Props } from './types';
 
@@ -27,14 +28,14 @@ class AppComponent extends Component<Tags.div> {
     if (AppComponent.count > 0) return;
     AppComponent.count += 1;
 
-    this.router = router;
-    this.node.append(fragment);
-    root.append(this.node);
-
     const getDataOptions = {
       method: RequestMethods.get,
       cb: this.emit,
     };
+
+    this.router = router;
+    this.node.append(fragment);
+    root.append(this.node);
 
     this.load({
       ...getDataOptions,

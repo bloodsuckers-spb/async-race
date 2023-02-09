@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
@@ -10,7 +9,7 @@ import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Car } from '../../models/API';
-import { isCar, isResponse } from '../../models/Predicates';
+import { isCar } from '../../models/Predicates';
 
 interface ControlPanel {
   select: Btn;
@@ -49,14 +48,18 @@ class ControlPanel extends Component<Tags.div> {
 
     this.reset.node.disabled = true;
 
-    this.on(CustomEvents.selectCar, this.onUpdate);
+    this.on(CustomEvents.selectCar, this.onSelectCar);
   }
 
-  private onUpdate = <T>(args: T): void => {
-    if (!isResponse(args) || !isCar(args.data)) {
+  private onSelectCar = <T>(data: T): void => {
+    if (!isCar(data)) {
       throw new Error(errorMessage);
     }
-    const { color, name } = args.data;
+    const { color, name, id } = data;
+
+    if (this.id !== id) {
+      return;
+    }
 
     if (color !== this.color) {
       this.color = color;
