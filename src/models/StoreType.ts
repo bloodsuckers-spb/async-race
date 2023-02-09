@@ -3,10 +3,14 @@ import { Car } from 'models/API';
 type StoreType = {
   cars: Map<Car['name'], Car>;
   winners: Map<any, any>;
-  carsCount: number;
-  winnersCount: number;
+  carsAmount: number;
+  winnersAmount: number;
   garageCurrentPage: number;
   winnersCurrentPage: number;
+  set carsCount(count: number);
+  get carsCount(): number;
+  set winnersCount(count: number);
+  get winnersCount(): number;
 };
 
 export interface AbstractStore {

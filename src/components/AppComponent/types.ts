@@ -5,3 +5,5 @@ export type Props = {
   fragment: DocumentFragment;
   router: Router;
 };
+
+export type Update = () => void;

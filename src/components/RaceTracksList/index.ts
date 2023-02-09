@@ -4,7 +4,6 @@ import Store from '../../base/Store';
 import TracksListItem from '../TracksListItem';
 
 import { errorMessage } from '../../constants';
-import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
@@ -14,6 +13,7 @@ import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/P
 import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
+// import { totalCount } from '../../constants/API';
 
 interface RaceTracksList extends AbstractStore {}
 
@@ -45,10 +45,11 @@ class RaceTracksList extends Component<Tags.ul> {
     if (!isCountedDataResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
-    const { headers, data } = args;
-    const carsCount = headers[totalCount];
-    this.incrementCarsCount(+carsCount);
-    this.emit(CustomEvents.updateHeading, {});
+    // const { headers, data } = args;
+    const { data } = args;
+    // const carsCount = headers[totalCount];
+    // this.incrementCarsCount(+carsCount);
+    // this.emit(CustomEvents.updateHeading, {});
 
     data.forEach((car) => this.addCarToStore(car));
   };
@@ -61,7 +62,7 @@ class RaceTracksList extends Component<Tags.ul> {
   };
 
   private createCar = (data: Car): void => {
-    this.incrementCarsCount();
+    // this.incrementCarsCount();
     this.addCarToStore(data);
   };
 
@@ -74,10 +75,10 @@ class RaceTracksList extends Component<Tags.ul> {
     this.render(car);
   };
 
-  private incrementCarsCount = (amount = 1): void => {
-    this.store.carsCount += amount;
-    this.emit(CustomEvents.updateHeading, {});
-  };
+  // private incrementCarsCount = (amount = 1): void => {
+  //   this.store.carsCount += amount;
+  //   this.emit(CustomEvents.updateHeading, {});
+  // };
 
   private render = (car: Car): TracksListItem => new TracksListItem(this, car);
 }

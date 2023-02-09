@@ -10,7 +10,7 @@ enum CustomEvents {
   getWinners = 'getWinners',
   getCar = 'getCar',
   updateWinner = 'updateWinner',
-  deleteWinner = 'deleteWinner'
+  deleteWinner = 'deleteWinner',
 }
 
 export default CustomEvents;
