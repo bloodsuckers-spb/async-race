@@ -27,13 +27,15 @@ class AppStore extends EventEmitter {
       AppStore.updateHeading(this.emit);
     });
 
+    this.on(CustomEvents.createNewCar, () => this.incrementCars(() => AppStore.updateHeading(this.emit)));
     this.on(CustomEvents.removeCar, () => this.decrementCars(() => AppStore.updateHeading(this.emit)));
-    this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppStore.updateHeading(this.emit)));
 
     this.on(CustomEvents.getWinners, <T>(args: T): void => {
       this.onUpdateWinners(args);
       AppStore.updateHeading(this.emit);
     });
+
+    this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppStore.updateHeading(this.emit)));
   }
 
   private static updateHeading = (emit: Emit): void => {
@@ -62,7 +64,7 @@ class AppStore extends EventEmitter {
   };
 
   private incrementCars = (update: Update): void => {
-    this.store.carsCount -= 1;
+    this.store.carsCount += 1;
     update();
   };
 

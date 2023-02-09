@@ -1,7 +1,7 @@
 import Component from '../../base/Component';
 import Store from '../../base/Store';
 
-import TracksListItem from '../TracksListItem';
+import TracksListItem from '../RaceListItem';
 
 import { errorMessage } from '../../constants';
 

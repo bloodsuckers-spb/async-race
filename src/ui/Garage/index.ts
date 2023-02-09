@@ -2,8 +2,8 @@ import Component from '../../base/Component';
 
 import createForm from '../../components/CarFormCreate';
 import updateCardForm from '../../components/CarFormUpdate';
+import raceTrackList from '../../components/RaceList';
 import racePanel from '../../components/RacePanel';
-import raceTrackList from '../../components/RaceTracksList';
 import garageHeading from './components/Heading';
 import garageNav from './components/PaginationBox';
 import garageTitle from './components/Title';

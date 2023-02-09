@@ -4,7 +4,7 @@ import axios from 'axios';
 import Component from '../../base/Component';
 import Store from '../../base/Store';
 
-import ResultsItem from '../ResultsItem';
+import ResultsItem from '../ResultsListItem';
 
 import { errorMessage } from '../../constants';
 

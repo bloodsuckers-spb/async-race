@@ -1,6 +1,6 @@
 import Component from '../../../../base/Component';
 
-import resultContent from '../../../../components/ResultsContent';
+import resultContent from '../../../../components/ResultsList';
 
 import ResultsHeader from '../ResultsHeader';
 
