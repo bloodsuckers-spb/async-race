@@ -1,6 +1,7 @@
 /* eslint-disable import/order */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Component from '../../base/Component';
+import Loader from '../../base/Loader';
 
 import CarCell from '../../ui/Winners/components/CarCell';
 import TableCell from '../../ui/Winners/components/TableCell';
@@ -9,8 +10,10 @@ import { Props } from './types';
 
 import { errorMessage } from '../../constants';
 
+import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
+import RequestMethods from 'enums/RequestMethods';
 
 import { AbstractLoader } from '../../models';
 import { isCar, isResponse } from '../../models/Predicates';
@@ -27,6 +30,7 @@ interface ResultsItem extends AbstractLoader, Props {
   carCell: CarCell;
 }
 
+@Loader()
 class ResultsItem extends Component<Tags.div> {
   constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Props) {
     super({
@@ -52,6 +56,7 @@ class ResultsItem extends Component<Tags.div> {
 
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
+    this.on(CustomEvents.deleteWinner, this.destroy);
   }
 
   private onUpdate = <T>(args: T): void => {
@@ -78,13 +83,21 @@ class ResultsItem extends Component<Tags.div> {
     }
   };
 
-  private onRemove = <T>(id: T): void => {
+  private onRemove = <T>(id: T): void | false => {
     if (typeof id !== 'number') {
       throw new Error(errorMessage);
     }
-    if (id === this.id) {
-      this.destroy();
+
+    if (id !== this.id) {
+      return;
     }
+
+    this.load({
+      method: RequestMethods.delete,
+      queryString: `${API.winnersLink}/${this.id}`,
+      eventName: CustomEvents.deleteWinner,
+      cb: this.emit,
+    });
   };
 }
 
