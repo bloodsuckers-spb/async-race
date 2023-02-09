@@ -7,7 +7,6 @@ import Store from '../../base/Store';
 import ResultsItem from '../ResultsItem';
 
 import { errorMessage } from '../../constants';
-import { totalCount } from '../../constants/API';
 
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';
@@ -29,25 +28,19 @@ class ResultsContent extends Component<Tags.div> {
       tagName: Tags.div,
       classList: [styles.results],
     });
-    this.on(CustomEvents.getWinners, this.onGetWinners);
+    this.on(CustomEvents.getWinners, <T>(args: T) => {
+      this.addWinners(ResultsContent.onGetWinners(args));
+    });
   }
 
-  private onGetWinners = <T>(args: T): void => {
+  private static onGetWinners = <T>(args: T): Array<Winner> => {
     if (!isCountedDataResponse(args) || !isWinners(args.data)) {
       throw new Error(errorMessage);
     }
-    const { headers, data } = args;
-    // Temp
-    this.updateWinnersCount(+headers[totalCount]);
-    this.addWinner(data);
+    return args.data;
   };
 
-  private updateWinnersCount = (num: number): void => {
-    this.store.winnersCount = num;
-    this.emit(CustomEvents.updateHeading, []);
-  };
-
-  private addWinner = async (winners: Array<Winner>): Promise<void> => {
+  private addWinners = async (winners: Array<Winner>): Promise<void> => {
     for (let index = 0; index < winners.length; index += 1) {
       try {
         const winnerData = winners[index];

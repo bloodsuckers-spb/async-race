@@ -8,7 +8,7 @@ import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 
-import { isCars, isResponse } from '../../models/Predicates';
+import { isCars, isResponse, isWinners } from '../../models/Predicates';
 import { AbstractStore } from '../../models/StoreType';
 
 interface AppStore extends AbstractStore {}
@@ -26,12 +26,26 @@ class AppStore extends EventEmitter {
       this.onUpdateCars(args);
       AppStore.updateHeading(this.emit);
     });
+
     this.on(CustomEvents.removeCar, () => this.decrementCars(() => AppStore.updateHeading(this.emit)));
     this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppStore.updateHeading(this.emit)));
+
+    this.on(CustomEvents.getWinners, <T>(args: T): void => {
+      this.onUpdateWinners(args);
+      AppStore.updateHeading(this.emit);
+    });
   }
 
   private static updateHeading = (emit: Emit): void => {
     emit(CustomEvents.updateHeading, []);
+  };
+
+  private onUpdateWinners = <T>(args: T): void => {
+    if (!isResponse(args) || !isWinners(args.data)) {
+      throw new Error(errorMessage);
+    }
+    const { headers } = args;
+    this.store.winnersCount = +headers[totalCount];
   };
 
   private onUpdateCars = <T>(args: T): void => {
