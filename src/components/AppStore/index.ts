@@ -1,9 +1,7 @@
 import EventEmitter from '../../base/EventEmitter';
 import Store from '../../base/Store';
 
-import { Update } from '../AppComponent/types';
-
-import { Emit } from './types';
+import { Emit, Update } from './types';
 
 import { errorMessage } from '../../constants';
 import { totalCount } from '../../constants/API';
