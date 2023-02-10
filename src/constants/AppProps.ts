@@ -1,4 +1,4 @@
-import AppStore from '../components/AppStore';
+import AppState from '../components/AppState';
 
 import AppFragment from '../ui/AppFragment';
 
@@ -8,7 +8,7 @@ const AppProps = {
   root: document.body,
   fragment: AppFragment,
   router: AppRouter,
-  appStore: new AppStore(),
+  appState: new AppState(),
 };
 
 export default AppProps;

@@ -3,7 +3,7 @@
 import Component from '../../base/Component';
 
 import Router from 'components/AppRouter';
-import AppStore from 'components/AppStore';
+import AppState from 'components/AppState';
 
 import Loader from '../../decorators/Loader';
 import Store from '../../decorators/Store';
@@ -20,14 +20,14 @@ import { AbstractStore } from '../../models/StoreType';
 
 interface AppComponent extends AbstractLoader, AbstractStore {
   router: Router;
-  appStore: AppStore;
+  appState: AppState;
 }
 
 @Loader()
 @Store()
 class AppComponent extends Component<Tags.div> {
   private static count = 0;
-  constructor({ root, fragment, router, appStore }: Props) {
+  constructor({ root, fragment, router, appState }: Props) {
     super({
       tagName: Tags.div,
       classList: ['root'],
@@ -44,13 +44,13 @@ class AppComponent extends Component<Tags.div> {
     const { garageCurrentPage, winnersCurrentPage } = this.store;
 
     this.router = router;
-    this.appStore = appStore;
+    this.appState = appState;
     this.node.append(fragment);
     root.append(this.node);
 
     this.load({
       ...getDataOptions,
-      queryString: `${API.baseLink}/garage?_page=${garageCurrentPage}&_limit=7`,
+      queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=7`,
       eventName: CustomEvents.updateCars,
     });
 

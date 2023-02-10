@@ -12,31 +12,31 @@ import CustomEvents from '../../enums/CustomEvents';
 import { isCars, isResponse, isWinners } from '../../models/Predicates';
 import { AbstractStore } from '../../models/StoreType';
 
-interface AppStore extends AbstractStore {}
+interface AppState extends AbstractStore {}
 
 @Store()
-class AppStore extends EventEmitter {
+class AppState extends EventEmitter {
   private static count = 0;
   constructor() {
     super();
 
-    if (AppStore.count > 0) return;
-    AppStore.count += 1;
+    if (AppState.count > 0) return;
+    AppState.count += 1;
 
     this.on(CustomEvents.updateCars, <T>(args: T): void => {
       this.onUpdateCars(args);
-      AppStore.updateHeading(this.emit);
+      AppState.updateHeading(this.emit);
     });
 
-    this.on(CustomEvents.createNewCar, () => this.incrementCars(() => AppStore.updateHeading(this.emit)));
-    this.on(CustomEvents.removeCar, () => this.decrementCars(() => AppStore.updateHeading(this.emit)));
+    this.on(CustomEvents.createNewCar, () => this.incrementCars(() => AppState.updateHeading(this.emit)));
+    this.on(CustomEvents.removeCar, () => this.decrementCars(() => AppState.updateHeading(this.emit)));
 
     this.on(CustomEvents.getWinners, <T>(args: T): void => {
       this.onUpdateWinners(args);
-      AppStore.updateHeading(this.emit);
+      AppState.updateHeading(this.emit);
     });
 
-    this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppStore.updateHeading(this.emit)));
+    this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppState.updateHeading(this.emit)));
   }
 
   private static updateHeading = (emit: Emit): void => {
@@ -79,4 +79,4 @@ class AppStore extends EventEmitter {
   };
 }
 
-export default AppStore;
+export default AppState;
