@@ -7,6 +7,7 @@ const prev = new Component<Tags.button>({
   classList: ['btn'],
   nodeProps: {
     textContent: 'Prev',
+    disabled: 'true',
   },
 });
 

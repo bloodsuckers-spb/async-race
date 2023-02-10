@@ -7,6 +7,7 @@ const Next = new Component<Tags.button>({
   classList: ['btns'],
   nodeProps: {
     textContent: 'Next',
+    disabled: 'true',
   },
 });
 
