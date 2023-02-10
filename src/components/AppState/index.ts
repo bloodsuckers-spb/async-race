@@ -35,7 +35,10 @@ class AppState extends EventEmitter {
 
     this.on(CustomEvents.updateCar, this.onUpdateCar);
 
-    this.on(CustomEvents.removeCar, () => this.decrementCars(() => AppState.updateHeading(this.emit)));
+    this.on(CustomEvents.removeCar, <T>(arg: T): void => {
+      this.removeCarFromStore(arg);
+      this.decrementCars(() => AppState.updateHeading(this.emit));
+    });
 
     this.on(CustomEvents.getWinners, <T>(args: T): void => {
       this.onUpdateWinners(args);
@@ -51,7 +54,12 @@ class AppState extends EventEmitter {
 
   private setCar = (data: Car): void => {
     this.store.drawedCars.set(`${data.id}`, data);
-    console.log(this.store.drawedCars);
+  };
+
+  private removeCarFromStore = <T>(id: T): void => {
+    if (typeof id === 'number') {
+      this.store.drawedCars.delete(`${id}`);
+    }
   };
 
   private onUpdateWinners = <T>(args: T): void => {
