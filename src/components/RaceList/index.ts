@@ -26,47 +26,24 @@ class RaceList extends Component<Tags.ul> {
 
     this.on(CustomEvents.updateCars, this.onUpdate);
     this.on(CustomEvents.createNewCar, this.onCarAdded);
-    this.on(CustomEvents.updateCar, this.onCarUpdated);
   }
-
-  private onCarUpdated = <T>(arg: T): void => {
-    if (!isResponse(arg) || !isCar(arg.data)) {
-      throw new Error(errorMessage);
-    }
-    this.updateCar(arg.data);
-  };
-
-  private updateCar = (data: Car): void => {
-    this.store.cars.set(`${data.id}`, data);
-  };
 
   private onUpdate = <T>(args: T): void => {
     if (!isCountedDataResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
-    const { data } = args;
-
-    data.forEach((car) => this.addCarToStore(car));
+    args.data.forEach((car) => this.render(car));
   };
 
   private onCarAdded = <T>(arg: T): void => {
+    const { drawedCars } = this.store;
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
-    this.createCar(arg.data);
-  };
-
-  private createCar = (data: Car): void => {
-    this.addCarToStore(data);
-  };
-
-  private addCarToStore = (car: Car): void => {
-    const { cars } = this.store;
-    if (cars.get(`${car.id}`)) {
+    if (drawedCars.has(`${arg.data.id}`)) {
       return;
     }
-    cars.set(`${car.id}`, car);
-    this.render(car);
+    this.render(arg.data);
   };
 
   private render = (car: Car): RaceListItem => new RaceListItem(this, car);

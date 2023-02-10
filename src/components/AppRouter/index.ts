@@ -59,8 +59,7 @@ class Router {
     const { pathname } = window.location;
     const component = this.views.find((view) => pathname in view);
     this.currentView = component ?? this.errorView;
-    const route = component ? component[pathname] : this.errorView['/404']!;
-    return route;
+    return component ? component[pathname] : this.errorView['/404']!;
   };
 
   private renderView = (view: Component<Tags.div>): void => {

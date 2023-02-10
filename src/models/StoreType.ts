@@ -1,7 +1,7 @@
 import { Car } from 'models/API';
 
 type StoreType = {
-  cars: Map<Car['name'], Car>;
+  drawedCars: Map<Car['name'], Car>;
   winners: Map<any, any>;
   carsAmount: number;
   winnersAmount: number;
