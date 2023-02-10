@@ -20,7 +20,6 @@ class AppState extends EventEmitter {
   private static count = 0;
   constructor() {
     super();
-
     if (AppState.count > 0) return;
     AppState.count += 1;
 
@@ -52,6 +51,7 @@ class AppState extends EventEmitter {
 
   private setCar = (data: Car): void => {
     this.store.drawedCars.set(`${data.id}`, data);
+    console.log(this.store.drawedCars);
   };
 
   private onUpdateWinners = <T>(args: T): void => {
