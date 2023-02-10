@@ -1,5 +1,4 @@
-import Router from '../../base/Router';
-
+import Router from '../AppRouter';
 import AppStore from '../AppStore';
 
 export type Props = {

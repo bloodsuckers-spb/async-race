@@ -1,5 +1,4 @@
-import Router from '../base/Router';
-
+import Router from '../components/AppRouter';
 import firstNavLink from '../ui/AppHeader/components/FirstNavLink';
 import secondNavLink from '../ui/AppHeader/components/SecondNavLink';
 import RouterRoot from '../ui/AppMain/components/RouterRoot';

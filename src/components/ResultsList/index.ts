@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 import Component from '../../base/Component';
-import Store from '../../base/Store';
 
+import Store from '../../decorators/Store';
 import ResultsItem from '../ResultsListItem';
 
 import { errorMessage } from '../../constants';

@@ -2,9 +2,10 @@
 import axios from 'axios';
 
 import Component from '../../base/Component';
-import Loader from '../../base/Loader';
 
 import Btn from '../../ui/Button';
+
+import Loader from '../../decorators/Loader';
 
 import { errorMessage } from '../../constants';
 

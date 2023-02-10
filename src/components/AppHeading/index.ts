@@ -1,5 +1,6 @@
 import Component from '../../base/Component';
-import Store from '../../base/Store';
+
+import Store from '../../decorators/Store';
 
 import CustomEvents from '../../enums/CustomEvents';
 import HeadingKeys from '../../enums/HeadingKeys';

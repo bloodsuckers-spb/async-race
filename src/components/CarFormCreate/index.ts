@@ -1,9 +1,10 @@
 import Component from '../../base/Component';
-import Loader from '../../base/Loader';
 
 import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
+
+import Loader from '../../decorators/Loader';
 
 import API from '../../enums/API';
 import CustomEvents from '../../enums/CustomEvents';

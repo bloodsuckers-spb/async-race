@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import Component from '../Component';
+import Component from '../../base/Component';
 
 import { HandleLocation, Navigate, RenderView, RouterProps } from './types';
 

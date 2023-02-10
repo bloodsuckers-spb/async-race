@@ -1,11 +1,12 @@
 /* eslint-disable class-methods-use-this */
 
 import Component from '../../base/Component';
-import Loader from '../../base/Loader';
 
 import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
+
+import Loader from '../../decorators/Loader';
 
 import { errorMessage } from '../../constants';
 

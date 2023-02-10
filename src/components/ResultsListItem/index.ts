@@ -1,10 +1,11 @@
 /* eslint-disable import/order */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Component from '../../base/Component';
-import Loader from '../../base/Loader';
 
 import CarCell from '../../ui/Winners/components/CarCell';
 import TableCell from '../../ui/Winners/components/TableCell';
+
+import Loader from '../../decorators/Loader';
 
 import { Props } from './types';
 

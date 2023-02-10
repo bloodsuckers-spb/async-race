@@ -1,5 +1,6 @@
 import EventEmitter from '../../base/EventEmitter';
-import Store from '../../base/Store';
+
+import Store from '../../decorators/Store';
 
 import { Emit, Update } from './types';
 
@@ -54,8 +55,7 @@ class AppStore extends EventEmitter {
     if (!isResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
-    const { headers } = args;
-    this.store.carsCount = +headers[totalCount];
+    this.store.carsCount = +args.headers[totalCount];
   };
 
   private decrementCars = (update: Update): void => {

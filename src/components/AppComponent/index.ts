@@ -1,11 +1,12 @@
 /* eslint-disable import/no-duplicates */
 /* eslint-disable import/order */
 import Component from '../../base/Component';
-import Loader from '../../base/Loader';
-import Store from '../../base/Store';
-import Router from 'base/Router';
 
+import Router from 'components/AppRouter';
 import AppStore from 'components/AppStore';
+
+import Loader from '../../decorators/Loader';
+import Store from '../../decorators/Store';
 
 import { Props } from './types';
 
