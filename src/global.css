@@ -4,9 +4,18 @@
 
 body {
   max-height: 100vh;
-  background-color: #fffefe;
+  background-color: #272d3b;
+  color: #a7a3a3;
 }
 
 ul li {
   list-style: none;
+}
+
+svg.icon {
+  width: 150px;
+}
+
+.root {
+  position: relative;
 }

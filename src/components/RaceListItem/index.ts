@@ -1,6 +1,7 @@
 import Component from '../../base/Component';
 
 import CarSvg from '../../ui/CarSvg';
+import Track from '../../ui/Track';
 
 import RaceItemHeader from '../RaceItemHeader';
 
@@ -17,6 +18,7 @@ import styles from './index.css';
 
 class TracksListItem extends Component<Tags.li> {
   protected header: RaceItemHeader;
+  protected track: Track;
   protected carSvg: CarSvg;
   protected name: string;
   protected color: HashType;
@@ -29,7 +31,8 @@ class TracksListItem extends Component<Tags.li> {
     });
 
     this.header = new RaceItemHeader(this, { name, color, id });
-    this.carSvg = new CarSvg(this, color);
+    this.track = new Track(this);
+    this.carSvg = new CarSvg(this.track, color);
     this.name = name;
     this.color = color;
     this.id = id;
