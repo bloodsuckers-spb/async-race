@@ -1,9 +1,6 @@
 import Component from '../../base/Component';
 
-import winnersHeading from './components/Heading';
-// import winnersPaginationBox from './components/PaginationBox';
 import results from './components/Results';
-import winnersTitle from './components/Title';
 
 import Tags from '../../enums/Tags';
 
@@ -12,8 +9,6 @@ const WinnersView = new Component<Tags.div>({
   classList: ['winners'],
 });
 
-const children = [winnersHeading, winnersTitle, results];
-
-WinnersView.append(...children);
+WinnersView.append(results);
 
 export default WinnersView;

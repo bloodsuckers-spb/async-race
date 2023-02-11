@@ -4,9 +4,11 @@ import HeaderList from '../HeaderList';
 
 import Tags from '../../../../enums/Tags';
 
+import styles from './index.css';
+
 const HeaderNav = new Component<Tags.nav>({
   tagName: Tags.nav,
-  classList: ['nav'],
+  classList: [styles.nav],
 });
 
 HeaderNav.append(HeaderList);

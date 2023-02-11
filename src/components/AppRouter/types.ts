@@ -2,7 +2,7 @@ import Component from 'base/Component';
 
 import Tags from 'enums/Tags';
 
-import { AppView } from 'models';
+import { AppView, Emit } from 'models';
 
 export interface RouterProps {
   root: Component<Tags.div>;
@@ -13,6 +13,6 @@ export interface RouterProps {
 
 export type Navigate = () => void;
 
-export type HandleLocation = () => Component<Tags.div>;
+export type HandleLocation = (emit: Emit) => Component<Tags.div>;
 
 export type RenderView = (view: Component<Tags.div>) => void;

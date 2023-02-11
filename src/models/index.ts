@@ -50,3 +50,5 @@ export interface FormProps {
 export interface AbstractLoader {
   load: (...args: Array<unknown>) => void;
 }
+
+export type Emit = <T>(eventName: string | number, params: T) => void;

@@ -9,22 +9,52 @@ import Views from '../../enums/Views';
 
 import { AbstractStore } from '../../models/StoreType';
 
-interface Heading extends AbstractStore {}
+interface AppHeading extends AbstractStore {
+  viewName: Views | null;
+  storeKey: HeadingKeys | null;
+}
 
 @Store()
-class Heading extends Component<Tags.h1> {
-  constructor(private readonly viewName: Views, private readonly key: HeadingKeys) {
+class AppHeading extends Component<Tags.h1> {
+  constructor() {
     super({
       tagName: Tags.h1,
       classList: ['heading'],
+    });
+    this.viewName = Views.garage;
+    this.storeKey = HeadingKeys.garage;
+    this.on(CustomEvents.changeView, <T>(arg: T): void => {
+      this.onViewChange(arg);
+      this.update();
     });
     this.on(CustomEvents.updateHeading, this.update);
     this.update();
   }
 
   private update = (): void => {
-    this.node.textContent = `${this.viewName}(${this.store[this.key]})`;
+    if (!this.viewName || !this.storeKey) {
+      this.node.textContent = '';
+    } else {
+      this.node.textContent = `${this.viewName} (${this.store[this.storeKey]})`;
+    }
+  };
+
+  private onViewChange = <T>(arg: T): void => {
+    if (arg === '/') {
+      this.viewName = Views.garage;
+      this.storeKey = HeadingKeys.garage;
+    }
+
+    if (arg === '/winners') {
+      this.viewName = Views.winners;
+      this.storeKey = HeadingKeys.winners;
+    }
+
+    if (arg !== '/' && arg !== '/winners') {
+      this.viewName = null;
+      this.storeKey = null;
+    }
   };
 }
 
-export default Heading;
+export default new AppHeading();

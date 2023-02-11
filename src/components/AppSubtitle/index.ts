@@ -8,22 +8,25 @@ import TitleKeys from '../../enums/TitleKeys';
 
 import { AbstractStore } from '../../models/StoreType';
 
-interface Subtitle extends AbstractStore {}
+interface Subtitle extends AbstractStore {
+  key: TitleKeys;
+}
 
 @Store()
 class Subtitle extends Component<Tags.h2> {
-  constructor(private readonly key: TitleKeys) {
+  constructor() {
     super({
       tagName: Tags.h2,
       classList: ['subtitle'],
     });
+    this.key = TitleKeys.garage;
     this.on(CustomEvents.updateCurrentPage, this.update);
     this.update();
   }
 
   private update = (): void => {
-    this.node.textContent = `Page #${this.store[this.key]}`;
+    this.node.textContent = `#${this.store[this.key]}`;
   };
 }
 
-export default Subtitle;
+export default new Subtitle();

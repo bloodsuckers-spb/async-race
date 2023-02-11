@@ -1,22 +1,33 @@
+/* eslint-disable import/order */
 import Component from '../../base/Component';
 
+import Next from './components/NextBtn';
+import Prev from './components/PrevBtn';
+
 import Store from '../../decorators/Store';
+import Subtitle from '../AppSubtitle';
 
 import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { AbstractStore } from '../../models/StoreType';
 
-interface Pagination extends AbstractStore {}
+import styles from './index.css';
+
+interface AppPagination extends AbstractStore {}
 
 @Store()
-class Pagination extends Component<Tags.div> {
-  constructor(protected prev: Component<Tags.button>, protected next: Component<Tags.button>) {
+class AppPagination extends Component<Tags.div> {
+  constructor(
+    protected prev: Component<Tags.button>,
+    protected next: Component<Tags.button>,
+    protected title: Component<Tags.h2>
+  ) {
     super({
       tagName: Tags.div,
-      classList: ['pagination'],
+      classList: [styles.pagination],
     });
-    this.append(prev, next);
+    this.append(prev, title, next);
     this.prev.node.onclick = this.onClickPrev;
     this.next.node.onclick = this.onClickNext;
 
@@ -60,4 +71,4 @@ class Pagination extends Component<Tags.div> {
   };
 }
 
-export default Pagination;
+export default new AppPagination(Prev, Next, Subtitle);

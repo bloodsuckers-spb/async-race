@@ -1,5 +1,7 @@
 import Component from '../../../../base/Component';
 
+import AppHeading from '../../../../components/AppHeading';
+
 import Nav from '../HeaderNav';
 
 import Tags from '../../../../enums/Tags';
@@ -13,6 +15,6 @@ const HeaderContent = new Component<Tags.div>({
   classList: [content],
 });
 
-HeaderContent.append(Nav);
+HeaderContent.append(Nav, AppHeading);
 
 export default HeaderContent;

@@ -4,9 +4,6 @@ import createForm from '../../components/CarFormCreate';
 import updateCardForm from '../../components/CarFormUpdate';
 import raceTrackList from '../../components/RaceList';
 import racePanel from '../../components/RacePanel';
-import garageHeading from './components/Heading';
-import garageNav from './components/PaginationBox';
-import garageTitle from './components/Title';
 
 import Tags from '../../enums/Tags';
 
@@ -19,7 +16,7 @@ const GarageView = new Component<Tags.div>({
   classList: [garage],
 });
 
-const children = [createForm, updateCardForm, garageHeading, garageTitle, racePanel, raceTrackList, garageNav];
+const children = [createForm, updateCardForm, racePanel, raceTrackList];
 
 GarageView.append(...children);
 
