@@ -19,6 +19,8 @@ import { AbstractLoader } from '../../models';
 import { Car } from '../../models/API';
 import { isCar } from '../../models/Predicates';
 
+import styles from './index.css';
+
 interface ControlPanel extends AbstractLoader {
   select: Btn;
   start: Btn;
@@ -35,7 +37,7 @@ class ControlPanel extends Component<Tags.div> {
   constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
       tagName: Tags.div,
-      classList: ['control-panel'],
+      classList: [styles.panel],
       parent: parent.node,
     });
 

@@ -1,6 +1,5 @@
 .garage {
-  padding-top: 15px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
