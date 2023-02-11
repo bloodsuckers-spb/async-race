@@ -4,7 +4,7 @@ enum Btns {
   reset = 'reset',
   remove = 'remove',
   race = 'Race',
-  generateCars = 'Generate Cars',
+  generateCars = 'Generate',
 }
 
 export default Btns;

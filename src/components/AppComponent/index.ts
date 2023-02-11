@@ -50,7 +50,7 @@ class AppComponent extends Component<Tags.div> {
 
     this.load({
       ...getDataOptions,
-      queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=7`,
+      queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=5`,
       eventName: CustomEvents.updateCars,
     });
 
