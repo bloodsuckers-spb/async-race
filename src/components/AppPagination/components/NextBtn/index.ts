@@ -4,7 +4,7 @@ import Tags from '../../../../enums/Tags';
 
 const Next = new Component<Tags.button>({
   tagName: Tags.button,
-  classList: ['btns'],
+  classList: ['btn'],
   nodeProps: {
     textContent: 'Next',
     disabled: 'true',

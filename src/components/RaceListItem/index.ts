@@ -16,7 +16,7 @@ import { isCar, isResponse } from '../../models/Predicates';
 
 import styles from './index.css';
 
-class TracksListItem extends Component<Tags.li> {
+class RaceListItem extends Component<Tags.li> {
   protected header: RaceItemHeader;
   protected track: Track;
   protected carSvg: CarSvg;
@@ -71,7 +71,9 @@ class TracksListItem extends Component<Tags.li> {
     }
   };
 
-  private onRemove = <T>(id: T): false | void => {
+  // eslint-disable-next-line class-methods-use-this
+  public onRemove = <T>(id: T): void => {
+    console.log('onremove');
     if (typeof id !== 'number') {
       throw new Error(errorMessage);
     }
@@ -85,4 +87,4 @@ class TracksListItem extends Component<Tags.li> {
   // moveToOriginPosition() {}
 }
 
-export default TracksListItem;
+export default RaceListItem;

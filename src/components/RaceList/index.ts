@@ -36,11 +36,11 @@ class RaceList extends Component<Tags.ul> {
   };
 
   private onCarAdded = <T>(arg: T): void => {
-    const { drawedCars } = this.store;
+    const { drawedCars, carsCount } = this.store;
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
-    if (drawedCars.has(`${arg.data.id}`)) {
+    if (drawedCars.has(`${arg.data.id}`) || carsCount >= 5) {
       return;
     }
     this.render(arg.data);
