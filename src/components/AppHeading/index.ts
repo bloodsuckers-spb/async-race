@@ -4,6 +4,7 @@ import Store from '../../decorators/Store';
 
 import CustomEvents from '../../enums/CustomEvents';
 import HeadingKeys from '../../enums/HeadingKeys';
+import Routes from '../../enums/Routes';
 import Tags from '../../enums/Tags';
 import Views from '../../enums/Views';
 
@@ -40,17 +41,17 @@ class AppHeading extends Component<Tags.h1> {
   };
 
   private onViewChange = <T>(arg: T): void => {
-    if (arg === '/') {
+    if (arg === Routes.garage) {
       this.viewName = Views.garage;
       this.storeKey = HeadingKeys.garage;
     }
 
-    if (arg === '/winners') {
+    if (arg === Routes.winners) {
       this.viewName = Views.winners;
       this.storeKey = HeadingKeys.winners;
     }
 
-    if (arg !== '/' && arg !== '/winners') {
+    if (arg !== Routes.garage && arg !== Routes.winners) {
       this.viewName = null;
       this.storeKey = null;
     }
