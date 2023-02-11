@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable import/order */
 import Component from '../../base/Component';
 
@@ -31,34 +32,40 @@ class AppPagination extends Component<Tags.div> {
     this.prev.node.onclick = this.onClickPrev;
     this.next.node.onclick = this.onClickNext;
 
-    this.on(CustomEvents.updateGarage, this.onUpdate);
+    // this.on(CustomEvents.updateGarage, this.onUpdate);
+    this.on(CustomEvents.changeView, this.onViewChange);
+    this.on(CustomEvents.updateCurrentPage, this.update);
   }
 
-  private onUpdate = (): void => {
-    const { garageCurrentPage, carsAmount } = this.store;
-    if (garageCurrentPage === 1 && carsAmount > 7) {
-      this.next.node.disabled = false;
-    }
+  private onViewChange = (): void => console.log('onViewChange');
 
-    if (garageCurrentPage === carsAmount / 7) {
-      this.next.node.disabled = true;
-    }
+  private update = (): void => console.log('update');
 
-    if (garageCurrentPage === 1 && carsAmount <= 7) {
-      this.next.node.disabled = true;
-    }
+  // private onUpdate = (): void => {
+  //   const { garageCurrentPage, carsAmount } = this.store;
+  //   if (garageCurrentPage === 1 && carsAmount > 7) {
+  //     this.next.node.disabled = false;
+  //   }
 
-    if (garageCurrentPage === 1) {
-      this.prev.node.disabled = true;
-    }
+  //   if (garageCurrentPage === carsAmount / 7) {
+  //     this.next.node.disabled = true;
+  //   }
 
-    if (garageCurrentPage > 1) {
-      const { node } = this.prev;
-      if (node.disabled) {
-        node.disabled = false;
-      }
-    }
-  };
+  //   if (garageCurrentPage === 1 && carsAmount <= 7) {
+  //     this.next.node.disabled = true;
+  //   }
+
+  //   if (garageCurrentPage === 1) {
+  //     this.prev.node.disabled = true;
+  //   }
+
+  //   if (garageCurrentPage > 1) {
+  //     const { node } = this.prev;
+  //     if (node.disabled) {
+  //       node.disabled = false;
+  //     }
+  //   }
+  // };
 
   // eslint-disable-next-line class-methods-use-this
   private onClickNext = (): void => {

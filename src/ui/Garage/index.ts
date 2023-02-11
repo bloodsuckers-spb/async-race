@@ -1,9 +1,7 @@
 import Component from '../../base/Component';
 
-import createForm from '../../components/CarFormCreate';
-import updateCardForm from '../../components/CarFormUpdate';
 import raceTrackList from '../../components/RaceList';
-import racePanel from '../../components/RacePanel';
+import forms from './components/Forms';
 
 import Tags from '../../enums/Tags';
 
@@ -16,8 +14,7 @@ const GarageView = new Component<Tags.div>({
   classList: [garage],
 });
 
-const children = [createForm, updateCardForm, racePanel, raceTrackList];
-
-GarageView.append(...children);
+GarageView.append(forms);
+GarageView.append(raceTrackList);
 
 export default GarageView;

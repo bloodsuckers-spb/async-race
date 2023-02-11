@@ -66,10 +66,10 @@ class CreateCarForm extends Component<Tags.form> {
   };
 }
 
-const createForm = new CreateCarForm({
+const CarFormCreate = new CreateCarForm({
   textInput: TextInput,
   colorInput: ColorInput,
   btn: Btn,
 });
 
-export default createForm;
+export default CarFormCreate;

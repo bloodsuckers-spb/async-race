@@ -36,7 +36,6 @@ class TracksListItem extends Component<Tags.li> {
     this.name = name;
     this.color = color;
     this.id = id;
-
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
   }

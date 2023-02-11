@@ -1,6 +1,7 @@
 import Component from '../../../../base/Component';
 
 import AppHeading from '../../../../components/AppHeading';
+import AppPagination from '../../../../components/AppPagination';
 
 import Nav from '../HeaderNav';
 
@@ -15,6 +16,6 @@ const HeaderContent = new Component<Tags.div>({
   classList: [content],
 });
 
-HeaderContent.append(Nav, AppHeading);
+HeaderContent.append(Nav, AppHeading, AppPagination);
 
 export default HeaderContent;

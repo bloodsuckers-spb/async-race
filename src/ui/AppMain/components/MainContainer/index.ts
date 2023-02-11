@@ -1,7 +1,5 @@
 import Component from '../../../../base/Component';
 
-import AppPagination from '../../../../components/AppPagination';
-
 import RoutingRoot from '../RouterRoot';
 
 import Tags from '../../../../enums/Tags';
@@ -15,6 +13,6 @@ const MainContainer = new Component<Tags.div>({
   classList: [container],
 });
 
-MainContainer.append(AppPagination, RoutingRoot);
+MainContainer.append(RoutingRoot);
 
 export default MainContainer;

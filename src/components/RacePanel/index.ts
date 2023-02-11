@@ -5,6 +5,8 @@ import Btn from '../../ui/Button';
 import Btns from '../../enums/Btns';
 import Tags from '../../enums/Tags';
 
+import styles from './index.css';
+
 class RacePanel extends Component<Tags.div> {
   protected raceBtn: Btn;
   protected resetBtn: Btn;
@@ -12,7 +14,7 @@ class RacePanel extends Component<Tags.div> {
   constructor() {
     super({
       tagName: Tags.div,
-      classList: ['race-panel'],
+      classList: [styles.panel],
     });
     this.raceBtn = new Btn(this, Btns.race);
     this.resetBtn = new Btn(this, Btns.reset);
