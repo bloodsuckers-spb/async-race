@@ -2,7 +2,6 @@ import Component from '../../base/Component';
 
 import Store from '../../decorators/Store';
 
-// import CustomEvents from '../../enums/CustomEvents';
 import Routes from '../../enums/Routes';
 import Tags from '../../enums/Tags';
 import TitleKeys from '../../enums/TitleKeys';
@@ -22,7 +21,6 @@ class Subtitle extends Component<Tags.h2> {
     });
     this.storeKey = TitleKeys.garage;
     // this.on(CustomEvents.changeView, this.onViewChange);
-    // this.on(CustomEvents.updateCurrentPage, this.update);
     this.update();
   }
 

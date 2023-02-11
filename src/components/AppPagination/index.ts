@@ -32,9 +32,7 @@ class AppPagination extends Component<Tags.div> {
     this.prev.node.onclick = this.onClickPrev;
     this.next.node.onclick = this.onClickNext;
 
-    // this.on(CustomEvents.updateGarage, this.onUpdate);
     this.on(CustomEvents.changeView, this.onViewChange);
-    this.on(CustomEvents.updateCurrentPage, this.update);
   }
 
   private onViewChange = (): void => console.log('onViewChange');

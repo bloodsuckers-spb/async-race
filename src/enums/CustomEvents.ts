@@ -1,7 +1,6 @@
 enum CustomEvents {
   changeView = 'changeView',
   updateHeading = 'updateHeading',
-  updateCurrentPage = 'updateCurrentPage',
   updateCars = 'updateCars',
   updateCar = 'updateCar',
   removeCar = 'removeCar',
