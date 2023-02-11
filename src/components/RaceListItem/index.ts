@@ -78,7 +78,7 @@ class TracksListItem extends Component<Tags.li> {
     }
   };
 
-  // startAnimation() {}
+  // private startAnimation() {}
   // stopAnimation() {}
   // moveToOriginPosition() {}
 }

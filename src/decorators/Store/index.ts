@@ -1,6 +1,5 @@
-/* eslint-disable import/order */
-/* eslint-disable arrow-body-style */
 /* eslint-disable class-methods-use-this */
+/* eslint-disable arrow-body-style */
 import AppStore from '../../store';
 
 import StoreType from '../../models/StoreType';

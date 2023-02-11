@@ -1,7 +1,7 @@
 import Component from '../../base/Component';
 
 import winnersHeading from './components/Heading';
-import winnersPaginationBox from './components/PaginationBox';
+// import winnersPaginationBox from './components/PaginationBox';
 import results from './components/Results';
 import winnersTitle from './components/Title';
 
@@ -12,7 +12,7 @@ const WinnersView = new Component<Tags.div>({
   classList: ['winners'],
 });
 
-const children = [winnersHeading, winnersTitle, results, winnersPaginationBox];
+const children = [winnersHeading, winnersTitle, results];
 
 WinnersView.append(...children);
 

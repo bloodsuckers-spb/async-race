@@ -31,6 +31,7 @@ class AppState extends EventEmitter {
     this.on(CustomEvents.createNewCar, <T>(arg: T): void => {
       this.addCarToStore(arg);
       this.incrementCars(() => AppState.updateHeading(this.emit));
+      AppState.updateGarage(this.emit);
     });
 
     this.on(CustomEvents.updateCar, this.onUpdateCar);
@@ -38,6 +39,7 @@ class AppState extends EventEmitter {
     this.on(CustomEvents.removeCar, <T>(arg: T): void => {
       this.removeCarFromStore(arg);
       this.decrementCars(() => AppState.updateHeading(this.emit));
+      AppState.updateGarage(this.emit);
     });
 
     this.on(CustomEvents.getWinners, <T>(args: T): void => {
@@ -49,7 +51,11 @@ class AppState extends EventEmitter {
   }
 
   private static updateHeading = (emit: Emit): void => {
-    emit(CustomEvents.updateHeading, []);
+    emit(CustomEvents.updateHeading, {});
+  };
+
+  private static updateGarage = (emit: Emit): void => {
+    emit(CustomEvents.updateGarage, {});
   };
 
   private setCar = (data: Car): void => {
