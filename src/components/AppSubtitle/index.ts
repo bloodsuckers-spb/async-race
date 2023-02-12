@@ -1,4 +1,7 @@
+/* eslint-disable import/no-useless-path-segments */
 import Component from '../../base/Component';
+
+import { Update } from '../../components/AppState/types';
 
 import Store from '../../decorators/Store';
 
@@ -25,10 +28,7 @@ class Subtitle extends Component<Tags.h2> {
 
     this.on(CustomEvents.updateCars, this.update);
 
-    this.on(CustomEvents.changeView, <T>(arg: T): void => {
-      this.onViewChange(arg);
-      this.update();
-    });
+    this.on(CustomEvents.changeView, <T>(arg: T): void => this.onViewChange(arg, this.update));
   }
 
   public update = (): void => {
@@ -40,7 +40,7 @@ class Subtitle extends Component<Tags.h2> {
   };
 
   // eslint-disable-next-line class-methods-use-this
-  private onViewChange = <T>(arg: T): void => {
+  private onViewChange = <T>(arg: T, update: Update): void => {
     if (arg === Routes.garage) {
       this.storeKey = TitleKeys.garage;
     }
@@ -52,6 +52,7 @@ class Subtitle extends Component<Tags.h2> {
     if (arg !== Routes.garage && arg !== Routes.winners) {
       this.storeKey = null;
     }
+    update();
   };
 }
 
