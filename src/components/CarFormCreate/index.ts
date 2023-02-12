@@ -44,7 +44,7 @@ class CreateCarForm extends Component<Tags.form> {
     this.load({
       method: RequestMethods.post,
       queryString: `${API.baseLink}/garage`,
-      eventName: CustomEvents.createNewCar,
+      eventName: CustomEvents.addCar,
       options: {
         name: this.textInput.node.value,
         color: this.colorInput.node.value,

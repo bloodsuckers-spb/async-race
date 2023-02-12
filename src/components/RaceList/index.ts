@@ -25,7 +25,7 @@ class RaceList extends Component<Tags.ul> {
     });
 
     this.on(CustomEvents.updateCars, this.onUpdate);
-    this.on(CustomEvents.createNewCar, this.onCarAdded);
+    this.on(CustomEvents.addCar, this.onCarAdded);
   }
 
   private onUpdate = <T>(args: T): void => {

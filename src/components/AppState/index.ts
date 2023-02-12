@@ -26,11 +26,13 @@ class AppState extends EventEmitter {
     this.on(CustomEvents.updateCars, <T>(args: T): void => {
       this.onUpdateCars(args);
       AppState.updateHeading(this.emit);
+      this.emit(CustomEvents.updateCarsAmout, {});
     });
 
-    this.on(CustomEvents.createNewCar, <T>(arg: T): void => {
+    this.on(CustomEvents.addCar, <T>(arg: T): void => {
       this.addCarToStore(arg);
       this.incrementCars(() => AppState.updateHeading(this.emit));
+      this.emit(CustomEvents.updateCarsAmout, {});
     });
 
     this.on(CustomEvents.updateCar, this.onUpdateCar);
@@ -38,6 +40,7 @@ class AppState extends EventEmitter {
     this.on(CustomEvents.removeCar, <T>(arg: T): void => {
       this.removeCarFromStore(arg);
       this.decrementCars(() => AppState.updateHeading(this.emit));
+      this.emit(CustomEvents.updateCarsAmout, {});
     });
 
     this.on(CustomEvents.getWinners, <T>(args: T): void => {

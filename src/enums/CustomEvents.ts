@@ -5,12 +5,13 @@ enum CustomEvents {
   updateCar = 'updateCar',
   removeCar = 'removeCar',
   typeCarName = 'typeCarName',
-  createNewCar = 'createNewCar',
+  addCar = 'addCar',
   selectCar = 'selectCar',
   getWinners = 'getWinners',
   getCar = 'getCar',
   updateWinner = 'updateWinner',
   deleteWinner = 'deleteWinner',
+  updateCarsAmout = 'updateCarsAmout'
 }
 
 export default CustomEvents;

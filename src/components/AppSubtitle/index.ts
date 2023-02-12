@@ -2,6 +2,7 @@ import Component from '../../base/Component';
 
 import Store from '../../decorators/Store';
 
+import CustomEvents from '../../enums/CustomEvents';
 import Routes from '../../enums/Routes';
 import Tags from '../../enums/Tags';
 import TitleKeys from '../../enums/TitleKeys';
@@ -20,11 +21,17 @@ class Subtitle extends Component<Tags.h2> {
       classList: ['subtitle'],
     });
     this.storeKey = TitleKeys.garage;
-    // this.on(CustomEvents.changeView, this.onViewChange);
     this.update();
+
+    this.on(CustomEvents.updateCars, this.update);
+
+    this.on(CustomEvents.changeView, <T>(arg: T): void => {
+      this.onViewChange(arg);
+      this.update();
+    });
   }
 
-  private update = (): void => {
+  public update = (): void => {
     if (!this.storeKey) {
       this.node.textContent = '';
     } else {
