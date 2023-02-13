@@ -1,8 +1,6 @@
 /* eslint-disable import/no-useless-path-segments */
 import Component from '../../base/Component';
 
-import { Update } from '../../components/AppState/types';
-
 import Store from '../../decorators/Store';
 
 import CustomEvents from '../../enums/CustomEvents';
@@ -10,6 +8,7 @@ import Routes from '../../enums/Routes';
 import Tags from '../../enums/Tags';
 import TitleKeys from '../../enums/TitleKeys';
 
+import { Update } from '../../models';
 import { AbstractStore } from '../../models/StoreType';
 
 interface Subtitle extends AbstractStore {
@@ -39,7 +38,6 @@ class Subtitle extends Component<Tags.h2> {
     }
   };
 
-  // eslint-disable-next-line class-methods-use-this
   private onViewChange = <T>(arg: T, update: Update): void => {
     if (arg === Routes.garage) {
       this.storeKey = TitleKeys.garage;

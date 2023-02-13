@@ -2,13 +2,12 @@ import EventEmitter from '../../base/EventEmitter';
 
 import Store from '../../decorators/Store';
 
-import { Emit, Update } from './types';
-
 import { errorMessage } from '../../constants';
 import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 
+import { Emit, Update } from '../../models';
 import { Car } from '../../models/API';
 import { isCar, isCars, isResponse, isWinners } from '../../models/Predicates';
 import { AbstractStore } from '../../models/StoreType';

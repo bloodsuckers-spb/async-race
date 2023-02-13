@@ -1,12 +1,13 @@
 import Component from '../base/Component';
 
+import CustomEvents from '../enums/CustomEvents';
 import Routes from '../enums/Routes';
 import Tags from '../enums/Tags';
 
 export type Listener = <T>(...params: Array<T>) => void;
 
 export type EventMap = {
-  [key: string]: Array<Listener>;
+  [key in CustomEvents]: Array<Listener>;
 };
 
 export type NodeData = {
@@ -51,4 +52,6 @@ export interface AbstractLoader {
   load: (...args: Array<unknown>) => void;
 }
 
-export type Emit = <T>(eventName: string | number, params: T) => void;
+export type Emit = <T>(eventName: CustomEvents, params: T) => void;
+
+export type Update = () => void;
