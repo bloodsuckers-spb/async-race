@@ -9,8 +9,7 @@ import styles from './index.css';
 const HeaderNav = new Component<Tags.nav>({
   tagName: Tags.nav,
   classList: [styles.nav],
+  children: [HeaderList]
 });
-
-HeaderNav.append(HeaderList);
 
 export default HeaderNav;

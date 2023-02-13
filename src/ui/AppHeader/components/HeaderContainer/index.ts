@@ -11,8 +11,7 @@ const { container } = styles;
 const HeaderContainer = new Component<Tags.div>({
   tagName: Tags.div,
   classList: [container],
+  children: [HeaderContent],
 });
-
-HeaderContainer.append(HeaderContent);
 
 export default HeaderContainer;

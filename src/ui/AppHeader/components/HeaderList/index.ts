@@ -12,8 +12,7 @@ const { list } = styles;
 const HeaderList = new Component<Tags.ul>({
   tagName: Tags.ul,
   classList: [list],
+  children: [fistlistItem, secondListItem],
 });
-
-HeaderList.append(fistlistItem, secondListItem);
 
 export default HeaderList;

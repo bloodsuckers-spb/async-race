@@ -14,8 +14,7 @@ const { content } = styles;
 const HeaderContent = new Component<Tags.div>({
   tagName: Tags.div,
   classList: [content],
+  children: [Nav, AppHeading, AppPagination],
 });
-
-HeaderContent.append(Nav, AppHeading, AppPagination);
 
 export default HeaderContent;

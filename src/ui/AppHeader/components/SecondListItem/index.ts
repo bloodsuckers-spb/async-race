@@ -7,8 +7,7 @@ import Tags from '../../../../enums/Tags';
 const secondListItem = new Component<Tags.li>({
   tagName: Tags.li,
   classList: ['list-item'],
+  children: [secondNavLink]
 });
-
-secondListItem.append(secondNavLink);
 
 export default secondListItem;

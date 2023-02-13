@@ -7,8 +7,7 @@ import Tags from '../../../../enums/Tags';
 const fistlistItem = new Component<Tags.li>({
   tagName: Tags.li,
   classList: ['list-item'],
+  children: [firstNavLink]
 });
-
-fistlistItem.append(firstNavLink);
 
 export default fistlistItem;

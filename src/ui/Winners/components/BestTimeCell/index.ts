@@ -7,8 +7,7 @@ import Tags from '../../../../enums/Tags';
 const bestTimeCell = new Component<Tags.div>({
   tagName: Tags.div,
   classList: ['result-cell'],
+  children: [BestTimeDetails]
 });
-
-bestTimeCell.append(BestTimeDetails);
 
 export default bestTimeCell;

@@ -7,8 +7,7 @@ import Tags from '../../enums/Tags';
 const WinnersView = new Component<Tags.div>({
   tagName: Tags.div,
   classList: ['winners'],
+  children: [results],
 });
-
-WinnersView.append(results);
 
 export default WinnersView;

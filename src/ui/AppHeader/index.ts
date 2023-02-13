@@ -11,8 +11,7 @@ const { header } = styles;
 const AppHeader = new Component<Tags.header>({
   tagName: Tags.header,
   classList: [header],
+  children: [HeaderContainer],
 });
-
-AppHeader.append(HeaderContainer);
 
 export default AppHeader;

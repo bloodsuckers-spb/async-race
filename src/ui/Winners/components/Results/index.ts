@@ -9,10 +9,7 @@ import Tags from '../../../../enums/Tags';
 const results = new Component<Tags.div>({
   tagName: Tags.div,
   classList: ['results'],
+  children: [ResultsHeader, resultContent],
 });
-
-const children = [ResultsHeader, resultContent];
-
-results.append(...children);
 
 export default results;

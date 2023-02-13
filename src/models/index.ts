@@ -28,6 +28,7 @@ export type HTMLComponentProps<T, U> = {
   classList: Array<string>;
   nodeProps?: Partial<U>;
   parent?: HTMLElement | SVGElement;
+  children?: Array<Component<keyof HTMLElementTagNameMap>>;
 };
 
 export type ComponentProps<T extends keyof HTMLElementTagNameMap> = HTMLComponentProps<T, NodeData>;

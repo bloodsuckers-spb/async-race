@@ -9,8 +9,7 @@ import styles from './index.css';
 const AppMain = new Component<Tags.main>({
   tagName: Tags.main,
   classList: [styles.main],
+  children: [MainContainer],
 });
-
-AppMain.append(MainContainer);
 
 export default AppMain;

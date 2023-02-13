@@ -12,9 +12,7 @@ const { garage } = styles;
 const GarageView = new Component<Tags.div>({
   tagName: Tags.div,
   classList: [garage],
+  children: [forms, raceTrackList]
 });
-
-GarageView.append(forms);
-GarageView.append(raceTrackList);
 
 export default GarageView;

@@ -7,8 +7,7 @@ import Tags from '../../../../enums/Tags';
 const winsCell = new Component<Tags.div>({
   tagName: Tags.div,
   classList: ['result-cell'],
+  children: [winsDetails],
 });
-
-winsCell.append(winsDetails);
 
 export default winsCell;
