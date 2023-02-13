@@ -1,8 +1,6 @@
 /* eslint-disable no-prototype-builtins */
-/* eslint-disable max-len */
 /* eslint-disable class-methods-use-this */
-
-import { EventMap, Listener } from '../../models';
+import { EventMap, Listener } from './types';
 
 abstract class EventEmitter {
   protected static listeners: Partial<EventMap> = {};

@@ -4,12 +4,6 @@ import CustomEvents from '../enums/CustomEvents';
 import Routes from '../enums/Routes';
 import Tags from '../enums/Tags';
 
-export type Listener = <T>(...params: Array<T>) => void;
-
-export type EventMap = {
-  [key in CustomEvents]: Array<Listener>;
-};
-
 export type NodeData = {
   textContent: string;
   href: string;
