@@ -71,9 +71,7 @@ class RaceListItem extends Component<Tags.li> {
     }
   };
 
-  // eslint-disable-next-line class-methods-use-this
   public onRemove = <T>(id: T): void => {
-    console.log('onremove');
     if (typeof id !== 'number') {
       throw new Error(errorMessage);
     }

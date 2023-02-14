@@ -1,8 +1,8 @@
-import { Car, Winner } from 'models/API';
+// import { Car, Winner } from 'models/API';
 
 type StoreType = {
-  drawedCars: Map<`${Car['id']}`, Car>;
-  drawedWinners: Map<`${Winner['id']}`, Winner>;
+  // drawedCars: Map<`${Car['id']}`, Car>;
+  // drawedWinners: Map<`${Winner['id']}`, Winner>;
   carsAmount: number;
   winnersAmount: number;
   garageCurrentPage: number;

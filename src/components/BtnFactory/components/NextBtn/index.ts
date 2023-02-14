@@ -1,16 +1,20 @@
 import Component from '../../../../base/Component';
 
+import Loader from '../../../../decorators/Loader';
 import Store from '../../../../decorators/Store';
 
+import API from '../../../../enums/API';
 import CustomEvents from '../../../../enums/CustomEvents';
+import RequestMethods from '../../../../enums/RequestMethods';
 import Tags from '../../../../enums/Tags';
 
-import { Emit } from '../../../../models';
+import { AbstractLoader } from '../../../../models';
 import { AbstractStore } from '../../../../models/StoreType';
 
-interface NextBtn extends AbstractStore {}
+interface NextBtn extends AbstractStore, AbstractLoader {}
 
 @Store()
+@Loader()
 class NextBtn extends Component<Tags.button> {
   constructor() {
     super({
@@ -21,8 +25,8 @@ class NextBtn extends Component<Tags.button> {
         disabled: 'true',
       },
     });
-    this.node.onclick = (): void => this.hadleClick(this.emit);
 
+    this.node.onclick = this.hadleClick;
     this.on(CustomEvents.updateCarsAmout, this.update);
     this.on(CustomEvents.changeView, this.onViewChange);
   }
@@ -30,10 +34,14 @@ class NextBtn extends Component<Tags.button> {
   // eslint-disable-next-line class-methods-use-this
   private onViewChange = (): void => console.log('onViewChange');
 
-  private hadleClick = (emit: Emit): void => {
+  private hadleClick = (): void => {
     this.store.garageCurrentPage += 1;
-    // temp, TODO запрос
-    emit(CustomEvents.changeCurrentPage, {});
+    this.load({
+      method: RequestMethods.get,
+      queryString: `${API.garageLink}?_page=${this.store.garageCurrentPage}&_limit=5`,
+      eventName: CustomEvents.updateCars,
+      cb: this.emit,
+    });
   };
 
   private update = (): void => {
