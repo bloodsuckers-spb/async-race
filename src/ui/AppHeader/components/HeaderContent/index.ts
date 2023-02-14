@@ -1,8 +1,8 @@
 import Component from '../../../../base/Component';
 
 import AppHeading from '../../../../components/AppHeading';
-import AppPagination from '../../../../components/AppPagination';
 
+import paginationBox from '../../../AppPaginationBox';
 import Nav from '../HeaderNav';
 
 import Tags from '../../../../enums/Tags';
@@ -14,7 +14,7 @@ const { content } = styles;
 const HeaderContent = new Component<Tags.div>({
   tagName: Tags.div,
   classList: [content],
-  children: [Nav, AppHeading, AppPagination],
+  children: [Nav, AppHeading, paginationBox],
 });
 
 export default HeaderContent;

@@ -11,7 +11,8 @@ enum CustomEvents {
   getCar = 'getCar',
   updateWinner = 'updateWinner',
   deleteWinner = 'deleteWinner',
-  updateCarsAmout = 'updateCarsAmout'
+  updateCarsAmout = 'updateCarsAmout',
+  changeCurrentPage = 'changeCurrentPage'
 }
 
 export default CustomEvents;
