@@ -1,5 +1,5 @@
-import CarFormCreate, { CreateFormProps } from '../CarFormCreate';
-import CarFormUpdate, { updateCarFormProps } from '../CarFormUpdate';
+import CarFormCreate, { CreateFormProps } from './components/CreateCarForm';
+import CarFormUpdate, { updateCarFormProps } from './components/UpdateCarForm';
 
 import { appForms } from '../../constants';
 

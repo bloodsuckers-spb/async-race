@@ -1,6 +1,6 @@
-import Component from '../../../../base/Component';
+import Component from '../../../../../../base/Component';
 
-import Tags from '../../../../enums/Tags';
+import Tags from '../../../../../../enums/Tags';
 
 const UpdateCarBtn = new Component<Tags.button>({
   tagName: Tags.button,

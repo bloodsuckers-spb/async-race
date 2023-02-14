@@ -1,17 +1,17 @@
-import Component from '../../base/Component';
+import Component from '../../../../base/Component';
 
 import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
 
-import Loader from '../../decorators/Loader';
+import Loader from '../../../../decorators/Loader';
 
-import API from '../../enums/API';
-import CustomEvents from '../../enums/CustomEvents';
-import RequestMethods from '../../enums/RequestMethods';
-import Tags from '../../enums/Tags';
+import API from '../../../../enums/API';
+import CustomEvents from '../../../../enums/CustomEvents';
+import RequestMethods from '../../../../enums/RequestMethods';
+import Tags from '../../../../enums/Tags';
 
-import { FormProps } from '../../models';
+import { FormProps } from '../../../../models';
 
 interface CreateCarForm extends FormProps {
   load: (...args: Array<unknown>) => void;

@@ -1,22 +1,22 @@
 /* eslint-disable class-methods-use-this */
 
-import Component from '../../base/Component';
+import Component from '../../../../base/Component';
 
 import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
 
-import Loader from '../../decorators/Loader';
+import Loader from '../../../../decorators/Loader';
 
-import { errorMessage } from '../../constants';
+import { errorMessage } from '../../../../constants';
 
-import API from '../../enums/API';
-import CustomEvents from '../../enums/CustomEvents';
-import RequestMethods from '../../enums/RequestMethods';
-import Tags from '../../enums/Tags';
+import API from '../../../../enums/API';
+import CustomEvents from '../../../../enums/CustomEvents';
+import RequestMethods from '../../../../enums/RequestMethods';
+import Tags from '../../../../enums/Tags';
 
-import { FormProps } from '../../models';
-import { isCar } from '../../models/Predicates';
+import { FormProps } from '../../../../models';
+import { isCar } from '../../../../models/Predicates';
 
 interface CarFormUpdate extends FormProps {
   load: (...args: Array<unknown>) => void;
