@@ -50,3 +50,13 @@ export interface AbstractLoader {
 export type Emit = <T>(eventName: CustomEvents, params: T) => void;
 
 export type Update = () => void;
+
+export type AppForms = {
+  create: string;
+  update: string;
+};
+
+export type PaginationBtns = {
+  prev: string;
+  next: string;
+};

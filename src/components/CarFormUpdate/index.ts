@@ -18,12 +18,12 @@ import Tags from '../../enums/Tags';
 import { FormProps } from '../../models';
 import { isCar } from '../../models/Predicates';
 
-interface UpdateCarForm extends FormProps {
+interface CarFormUpdate extends FormProps {
   load: (...args: Array<unknown>) => void;
 }
 
 @Loader()
-class UpdateCarForm extends Component<Tags.form> {
+class CarFormUpdate extends Component<Tags.form> {
   private selectedId = 0;
   constructor({ textInput, colorInput, btn }: FormProps) {
     super({
@@ -94,8 +94,10 @@ class UpdateCarForm extends Component<Tags.form> {
   };
 }
 
-export default new UpdateCarForm({
+export const updateCarFormProps = {
   textInput: TextInput,
   colorInput: ColorInput,
   btn: Btn,
-});
+};
+
+export default CarFormUpdate;

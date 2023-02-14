@@ -9,6 +9,7 @@ import { Emit } from '../../../../models';
 import { AbstractStore } from '../../../../models/StoreType';
 
 interface PrevBtn extends AbstractStore {}
+
 @Store()
 class PrevBtn extends Component<Tags.button> {
   constructor() {
