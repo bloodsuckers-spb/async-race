@@ -14,6 +14,10 @@ import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
+type Render = (car: Car) => RaceListItem;
+
+type Cache = (car: Car) => void;
+
 interface RaceList extends AbstractStore {}
 
 @Store()
@@ -24,27 +28,55 @@ class RaceList extends Component<Tags.ul> {
       classList: [styles.list],
     });
 
-    this.on(CustomEvents.updateCars, this.onUpdate);
-    this.on(CustomEvents.addCar, this.onCreateCar);
+    this.on(CustomEvents.updateCars, <T>(args: T): void => this.onUpdate(args, this.addToCache, this.render));
+    this.on(CustomEvents.addCar, <T>(args: T): void => this.onCreateCar(args, this.addToCache, this.render));
   }
 
-  private onUpdate = <T>(args: T): void => {
+  private onUpdate = <T>(args: T, addToCache: Cache, render: Render): void => {
     if (!isCountedDataResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
-    this.node.textContent = '';
-    args.data.forEach((car) => this.render(car));
+    const { drawedCars } = this.store;
+
+    if (!drawedCars.size) {
+      args.data.forEach((car) => {
+        addToCache(car);
+        render(car);
+      });
+      return;
+    }
+
+    if (drawedCars.size === 5) {
+      drawedCars.clear();
+      this.node.textContent = '';
+      args.data.forEach((car) => {
+        addToCache(car);
+        render(car);
+      });
+    } else {
+      args.data.forEach((car) => {
+        if (!drawedCars.has(`${car.id}`)) {
+          addToCache(car);
+          render(car);
+        }
+      });
+    }
   };
 
-  private onCreateCar = <T>(arg: T): void => {
-    const { carsCount } = this.store;
+  private onCreateCar = <T>(arg: T, addToCache: Cache, render: Render): void => {
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);
     }
+    const { carsCount } = this.store;
     if (carsCount >= 5) {
       return;
     }
-    this.render(arg.data);
+    addToCache(arg.data);
+    render(arg.data);
+  };
+
+  private addToCache = (car: Car): void => {
+    this.store.drawedCars.set(`${car.id}`, car);
   };
 
   private render = (car: Car): RaceListItem => new RaceListItem(this, car);

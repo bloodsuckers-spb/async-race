@@ -16,6 +16,14 @@ abstract class EventEmitter {
     EventEmitter.listeners.set(eventName, observers.add(listener));
   }
 
+  protected off(eventName: CustomEvents, listener: Listener): void {
+    const observers = EventEmitter.listeners.get(eventName);
+    if (!observers) {
+      throw new Error('');
+    }
+    EventEmitter.listeners.set(eventName, new Set([...observers].filter((cb) => cb !== listener)));
+  }
+
   protected emit<T>(eventName: CustomEvents, params: T): void {
     const observers = EventEmitter.listeners.get(eventName);
     observers?.forEach((listener) => listener(params));

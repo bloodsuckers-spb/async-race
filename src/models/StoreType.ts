@@ -1,4 +1,8 @@
+import { Car, Winner } from './API';
+
 type StoreType = {
+  drawedCars: Map<`${Car['id']}`, Car>;
+  drawedWinners: Map<`${Winner['id']}`, Winner>;
   carsAmount: number;
   winnersAmount: number;
   garageCurrentPage: number;

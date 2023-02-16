@@ -3,6 +3,7 @@ import Component from '../../base/Component';
 import CarSvg from '../../ui/CarSvg';
 import Track from '../../ui/Track';
 
+import Store from '../../decorators/Store';
 import RaceItemHeader from '../RaceItemHeader';
 
 import { errorMessage } from '../../constants';
@@ -13,9 +14,13 @@ import Tags from '../../enums/Tags';
 import { HashType } from '../../models';
 import { Car } from '../../models/API';
 import { isCar, isResponse } from '../../models/Predicates';
+import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
+interface RaceListItem extends AbstractStore {}
+
+@Store()
 class RaceListItem extends Component<Tags.li> {
   protected header: RaceItemHeader;
   protected track: Track;
@@ -72,10 +77,14 @@ class RaceListItem extends Component<Tags.li> {
   };
 
   public onRemove = <T>(id: T): void => {
+    const { drawedCars } = this.store;
     if (typeof id !== 'number') {
       throw new Error(errorMessage);
     }
     if (id === this.id) {
+      this.off(CustomEvents.updateCar, this.onUpdate);
+      this.off(CustomEvents.removeCar, this.onRemove);
+      drawedCars.delete(`${this.id}`);
       this.destroy();
     }
   };

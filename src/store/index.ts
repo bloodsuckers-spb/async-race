@@ -1,6 +1,8 @@
 import StoreType from 'models/StoreType';
 
 const AppStore: StoreType = {
+  drawedCars: new Map(),
+  drawedWinners: new Map(),
   carsAmount: 0,
   winnersAmount: 0,
   garageCurrentPage: 1,
