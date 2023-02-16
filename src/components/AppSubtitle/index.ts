@@ -27,7 +27,6 @@ class Subtitle extends Component<Tags.h2> {
 
     this.on(CustomEvents.updateCars, this.update);
     this.on(CustomEvents.changeView, <T>(arg: T): void => this.onViewChange(arg, this.update));
-    // this.on(CustomEvents.changeCurrentPage, this.update);
   }
 
   private init = (): void => {

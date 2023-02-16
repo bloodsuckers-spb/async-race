@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 import EventEmitter from '../../base/EventEmitter';
 
 import Store from '../../decorators/Store';
@@ -44,12 +45,20 @@ class AppState extends EventEmitter {
 
     this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppState.updateHeading(this.emit)));
 
-    this.on(CustomEvents.clickNextGaragePage, () => this.incrementGaragePage(this.emit));
-    this.on(CustomEvents.clickPrevGaragePage, () => this.decrementGaragePage(this.emit));
+    this.on(CustomEvents.clickNextGaragePage, () =>
+      this.incrementGaragePage(() => AppState.updateCurrentPage(this.emit))
+    );
+    this.on(CustomEvents.clickPrevGaragePage, () =>
+      this.decrementGaragePage(() => AppState.updateCurrentPage(this.emit))
+    );
   }
 
   private static updateHeading = (emit: Emit): void => {
     emit(CustomEvents.updateHeading, {});
+  };
+
+  private static updateCurrentPage = (emit: Emit): void => {
+    emit(CustomEvents.changeCurrentPage, {});
   };
 
   private onUpdateWinners = <T>(args: T): void => {
@@ -86,14 +95,14 @@ class AppState extends EventEmitter {
     update();
   };
 
-  private incrementGaragePage = (emit: Emit): void => {
+  private incrementGaragePage = (update: Update): void => {
     this.store.garageCurrentPage += 1;
-    emit(CustomEvents.incrementGaragePage, {});
+    update();
   };
 
-  private decrementGaragePage = (emit: Emit): void => {
+  private decrementGaragePage = (update: Update): void => {
     this.store.garageCurrentPage -= 1;
-    emit(CustomEvents.decrementGaragePage, {});
+    update();
   };
 }
 

@@ -42,8 +42,7 @@ class App extends Component<Tags.div> {
     root.append(this.node);
 
     this.on(CustomEvents.removeCar, () => this.onRemoveCar(this.loadGarage, this.emit));
-    this.on(CustomEvents.incrementGaragePage, () => this.loadGarage(this.load));
-    this.on(CustomEvents.decrementGaragePage, () => this.loadGarage(this.load));
+    this.on(CustomEvents.changeCurrentPage, () => this.loadGarage(this.load));
 
     App.init(
       () => this.loadGarage(this.load),
