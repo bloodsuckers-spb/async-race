@@ -68,7 +68,7 @@ class AppState extends EventEmitter {
   };
 
   private static loadCars = (emit: Emit): void => {
-    emit(CustomEvents.loadCars, {});
+    emit(CustomEvents.carsLoading, {});
   };
 
   private onUpdateWinners = <T>(args: T): void => {
@@ -118,7 +118,7 @@ class AppState extends EventEmitter {
   private onGenerateCars = (load: EmitCallback, updateHeading: EmitCallback, emit: Emit): void => {
     this.store.carsCount += 15;
     const { carsCount, garageCurrentPage } = this.store;
-    if (carsCount % (garageCurrentPage * 5) < 5) {
+    if (carsCount % (garageCurrentPage * 5) > 0) {
       load(emit);
     } else {
       updateHeading(emit);
