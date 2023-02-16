@@ -25,7 +25,7 @@ class RaceList extends Component<Tags.ul> {
     });
 
     this.on(CustomEvents.updateCars, this.onUpdate);
-    this.on(CustomEvents.addCar, this.onCarAdded);
+    this.on(CustomEvents.addCar, this.onCreateCar);
   }
 
   private onUpdate = <T>(args: T): void => {
@@ -36,7 +36,7 @@ class RaceList extends Component<Tags.ul> {
     args.data.forEach((car) => this.render(car));
   };
 
-  private onCarAdded = <T>(arg: T): void => {
+  private onCreateCar = <T>(arg: T): void => {
     const { carsCount } = this.store;
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error(errorMessage);

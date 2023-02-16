@@ -15,7 +15,7 @@ import CustomEvents from '../../enums/CustomEvents';
 import RequestMethods from '../../enums/RequestMethods';
 import Tags from '../../enums/Tags';
 
-import { AbstractLoader } from '../../models';
+import { AbstractLoader, CallBack, Emit, Load } from '../../models';
 import { AbstractStore } from '../../models/StoreType';
 
 interface AppComponent extends AbstractLoader, AbstractStore {
@@ -36,30 +36,52 @@ class AppComponent extends Component<Tags.div> {
     if (AppComponent.count > 0) return;
     AppComponent.count += 1;
 
-    const getDataOptions = {
-      method: RequestMethods.get,
-      cb: this.emit,
-    };
-
-    const { garageCurrentPage, winnersCurrentPage } = this.store;
-
     this.router = router;
     this.appState = appState;
     this.node.append(fragment);
     root.append(this.node);
 
-    this.load({
-      ...getDataOptions,
+    this.on(CustomEvents.removeCar, () => this.onRemoveCar(this.loadGarage, this.emit));
+
+    AppComponent.init(
+      () => this.loadGarage(this.load),
+      () => this.loadWinners(this.load)
+    );
+  }
+
+  private static init = (loadGarage: CallBack, loadWinners: CallBack): void => {
+    loadGarage();
+    loadWinners();
+  };
+
+  private loadGarage = (load: Load): void => {
+    const { garageCurrentPage } = this.store;
+    load({
+      method: RequestMethods.get,
+      cb: this.emit,
       queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=5`,
       eventName: CustomEvents.updateCars,
     });
+  };
 
-    this.load({
-      ...getDataOptions,
+  private loadWinners = (load: Load): void => {
+    const { winnersCurrentPage } = this.store;
+    load({
+      method: RequestMethods.get,
+      cb: this.emit,
       queryString: `${API.winnersLink}?_page=${winnersCurrentPage}&_limit=10`,
       eventName: CustomEvents.getWinners,
     });
-  }
+  };
+
+  private onRemoveCar = (loadGarage: (load: Load) => void, emit: Emit): void => {
+    const { carsAmount } = this.store;
+    if (carsAmount <= 5) {
+      emit(CustomEvents.eraseCar, {});
+    } else {
+      loadGarage(this.load);
+    }
+  };
 }
 
 export default AppComponent;

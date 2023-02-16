@@ -4,6 +4,7 @@ enum CustomEvents {
   updateCars = 'updateCars',
   updateCar = 'updateCar',
   removeCar = 'removeCar',
+  eraseCar = 'eraseCar',
   typeCarName = 'typeCarName',
   addCar = 'addCar',
   selectCar = 'selectCar',

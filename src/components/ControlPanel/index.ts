@@ -26,7 +26,6 @@ interface ControlPanel extends AbstractLoader {
   start: Btn;
   reset: Btn;
   remove: Btn;
-
   name: string;
   color: string;
   id: number;

@@ -43,13 +43,17 @@ export interface FormProps {
   btn: Component<Tags.button>;
 }
 
+export type Load = (...args: Array<unknown>) => void;
+
 export interface AbstractLoader {
-  load: (...args: Array<unknown>) => void;
+  load: Load;
 }
 
 export type Emit = <T>(eventName: CustomEvents, params: T) => void;
 
 export type Update = () => void;
+
+export type CallBack = () => void;
 
 export type AppForms = {
   create: string;

@@ -32,7 +32,7 @@ class AppState extends EventEmitter {
       this.emit(CustomEvents.updateCarsAmout, {});
     });
 
-    this.on(CustomEvents.removeCar, (): void => {
+    this.on(CustomEvents.eraseCar, (): void => {
       this.decrementCars(() => AppState.updateHeading(this.emit));
       this.emit(CustomEvents.updateCarsAmout, {});
     });
