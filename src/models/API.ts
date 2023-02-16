@@ -41,6 +41,8 @@ export interface Car {
   id: number;
 }
 
+export type NewCar = Omit<Car, 'id'>;
+
 export interface Winner {
   wins: number;
   id: number;

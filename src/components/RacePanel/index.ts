@@ -10,7 +10,6 @@ import styles from './index.css';
 class RacePanel extends Component<Tags.div> {
   protected raceBtn: Btn;
   protected resetBtn: Btn;
-  protected generateBtn: Btn;
   constructor() {
     super({
       tagName: Tags.div,
@@ -18,7 +17,6 @@ class RacePanel extends Component<Tags.div> {
     });
     this.raceBtn = new Btn(this, Btns.race);
     this.resetBtn = new Btn(this, Btns.reset);
-    this.generateBtn = new Btn(this, Btns.generateCars);
     this.resetBtn.node.disabled = true;
   }
 }

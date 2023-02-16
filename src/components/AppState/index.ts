@@ -48,9 +48,12 @@ class AppState extends EventEmitter {
     this.on(CustomEvents.clickNextGaragePage, () =>
       this.incrementGaragePage(() => AppState.updateCurrentPage(this.emit))
     );
+
     this.on(CustomEvents.clickPrevGaragePage, () =>
       this.decrementGaragePage(() => AppState.updateCurrentPage(this.emit))
     );
+
+    this.on(CustomEvents.generateCars, (): void => this.onGenerateCars(() => AppState.updateHeading(this.emit)));
   }
 
   private static updateHeading = (emit: Emit): void => {
@@ -102,6 +105,12 @@ class AppState extends EventEmitter {
 
   private decrementGaragePage = (update: Update): void => {
     this.store.garageCurrentPage -= 1;
+    update();
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  private onGenerateCars = (update: Update): void => {
+    this.store.carsCount += 15;
     update();
   };
 }

@@ -10,7 +10,7 @@ abstract class EventEmitter {
       EventEmitter.listeners.set(eventName, new Set());
     }
     const observers = EventEmitter.listeners.get(eventName);
-    if (!(observers instanceof Set)) {
+    if (!observers) {
       throw new Error('');
     }
     EventEmitter.listeners.set(eventName, observers.add(listener));
