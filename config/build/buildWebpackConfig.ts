@@ -12,7 +12,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
     mode,
     entry: paths.entry,
     output: {
-      publicPath: '/',
+      // publicPath: '/',
       filename: 'bundle.[contenthash:8].js',
       assetModuleFilename: 'assets/[hash][ext][query]',
       path: paths.build,
