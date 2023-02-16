@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx webpack serve --env port=5000",
-    "build:prod": "npx webpack --env mode=production",
+    "build": "npx webpack --env mode=production",
     "build:dev": "npx webpack --env mode=development",
     "clear": "rd /s /q dist",
     "lint": "npx eslint ./src --fix"
