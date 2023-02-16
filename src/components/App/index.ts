@@ -43,7 +43,7 @@ class App extends Component<Tags.div> {
 
     this.on(CustomEvents.removeCar, () => this.onRemoveCar(this.loadGarage, this.emit));
     this.on(CustomEvents.changeCurrentPage, () => this.loadGarage(this.load));
-    this.on(CustomEvents.generateCars, this.onGenerateCars);
+    this.on(CustomEvents.loadCars, () => this.loadGarage(this.load));
 
     App.init(
       () => this.loadGarage(this.load),
@@ -83,11 +83,6 @@ class App extends Component<Tags.div> {
     } else {
       loadGarage(this.load);
     }
-  };
-
-  // eslint-disable-next-line class-methods-use-this
-  private onGenerateCars = <T>(arg: T): void => {
-    console.log(arg);
   };
 }
 

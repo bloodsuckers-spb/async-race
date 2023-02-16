@@ -55,6 +55,8 @@ export type Update = () => void;
 
 export type CallBack = () => void;
 
+export type EmitCallback = (emit: Emit) => void;
+
 export type AppForms = {
   create: string;
   update: string;

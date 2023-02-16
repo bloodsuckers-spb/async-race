@@ -8,7 +8,7 @@ import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 
-import { Emit, Update } from '../../models';
+import { Emit, EmitCallback, Update } from '../../models';
 import { isCars, isResponse, isWinners } from '../../models/Predicates';
 import { AbstractStore } from '../../models/StoreType';
 
@@ -53,7 +53,10 @@ class AppState extends EventEmitter {
       this.decrementGaragePage(() => AppState.updateCurrentPage(this.emit))
     );
 
-    this.on(CustomEvents.generateCars, (): void => this.onGenerateCars(() => AppState.updateHeading(this.emit)));
+    this.on(CustomEvents.generateCars, (): void => {
+      const { loadCars, updateHeading } = AppState;
+      this.onGenerateCars(loadCars, updateHeading, this.emit);
+    });
   }
 
   private static updateHeading = (emit: Emit): void => {
@@ -62,6 +65,10 @@ class AppState extends EventEmitter {
 
   private static updateCurrentPage = (emit: Emit): void => {
     emit(CustomEvents.changeCurrentPage, {});
+  };
+
+  private static loadCars = (emit: Emit): void => {
+    emit(CustomEvents.loadCars, {});
   };
 
   private onUpdateWinners = <T>(args: T): void => {
@@ -108,10 +115,14 @@ class AppState extends EventEmitter {
     update();
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  private onGenerateCars = (update: Update): void => {
+  private onGenerateCars = (load: EmitCallback, updateHeading: EmitCallback, emit: Emit): void => {
     this.store.carsCount += 15;
-    update();
+    const { carsCount, garageCurrentPage } = this.store;
+    if (carsCount % (garageCurrentPage * 5) < 5) {
+      load(emit);
+    } else {
+      updateHeading(emit);
+    }
   };
 }
 
