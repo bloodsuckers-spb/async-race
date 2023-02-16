@@ -22,7 +22,7 @@ class AppState extends EventEmitter {
     AppState.count += 1;
 
     this.on(CustomEvents.updateCars, <T>(args: T): void => {
-      this.onInitCars(args);
+      this.onUpdateCars(args);
       AppState.updateHeading(this.emit);
       this.emit(CustomEvents.updateCarsAmout, {});
     });
@@ -43,6 +43,9 @@ class AppState extends EventEmitter {
     });
 
     this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppState.updateHeading(this.emit)));
+
+    this.on(CustomEvents.clickNextGaragePage, () => this.incrementGaragePage(this.emit));
+    this.on(CustomEvents.clickPrevGaragePage, () => this.decrementGaragePage(this.emit));
   }
 
   private static updateHeading = (emit: Emit): void => {
@@ -56,7 +59,7 @@ class AppState extends EventEmitter {
     this.store.winnersCount = +args.headers[totalCount];
   };
 
-  private onInitCars = <T>(args: T): void => {
+  private onUpdateCars = <T>(args: T): void => {
     if (!isResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
@@ -81,6 +84,16 @@ class AppState extends EventEmitter {
   private incrementWinners = (update: Update): void => {
     this.store.winnersAmount += 1;
     update();
+  };
+
+  private incrementGaragePage = (emit: Emit): void => {
+    this.store.garageCurrentPage += 1;
+    emit(CustomEvents.incrementGaragePage, {});
+  };
+
+  private decrementGaragePage = (emit: Emit): void => {
+    this.store.garageCurrentPage -= 1;
+    emit(CustomEvents.decrementGaragePage, {});
   };
 }
 

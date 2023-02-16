@@ -3,9 +3,7 @@ import Component from '../../../../base/Component';
 import Loader from '../../../../decorators/Loader';
 import Store from '../../../../decorators/Store';
 
-import API from '../../../../enums/API';
 import CustomEvents from '../../../../enums/CustomEvents';
-import RequestMethods from '../../../../enums/RequestMethods';
 import Tags from '../../../../enums/Tags';
 
 import { AbstractLoader } from '../../../../models';
@@ -26,7 +24,7 @@ class PrevBtn extends Component<Tags.button> {
       },
     });
 
-    this.node.onclick = this.hadleClick;
+    this.node.onclick = (): void => this.emit(CustomEvents.clickPrevGaragePage, {});
     this.on(CustomEvents.updateCarsAmout, this.update);
     this.on(CustomEvents.changeView, this.onViewChange);
   }
@@ -43,16 +41,6 @@ class PrevBtn extends Component<Tags.button> {
 
   // eslint-disable-next-line class-methods-use-this
   private onViewChange = (): void => console.log('onViewChange');
-
-  private hadleClick = (): void => {
-    this.store.garageCurrentPage -= 1;
-    this.load({
-      method: RequestMethods.get,
-      queryString: `${API.garageLink}?_page=${this.store.garageCurrentPage}&_limit=5`,
-      eventName: CustomEvents.updateCars,
-      cb: this.emit,
-    });
-  };
 }
 
 export default PrevBtn;

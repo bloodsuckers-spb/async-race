@@ -13,7 +13,11 @@ enum CustomEvents {
   updateWinner = 'updateWinner',
   deleteWinner = 'deleteWinner',
   updateCarsAmout = 'updateCarsAmout',
-  changeCurrentPage = 'changeCurrentPage'
+  clickNextGaragePage = 'clickNextGaragePage',
+  clickPrevGaragePage = 'clickPrevGaragePage',
+  incrementGaragePage = 'incrementGaragePage',
+  decrementGaragePage = 'decrementGaragePage'
+  // changeCurrentPage = 'changeCurrentPage'
 }
 
 export default CustomEvents;

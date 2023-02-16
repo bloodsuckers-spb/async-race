@@ -1,7 +1,7 @@
-import AppComponent from './components/AppComponent';
+import App from './components/App';
 
 import AppProps from './constants/AppProps';
 
 import './global.css';
 
-((): AppComponent => new AppComponent(AppProps))();
+((): App => new App(AppProps))();

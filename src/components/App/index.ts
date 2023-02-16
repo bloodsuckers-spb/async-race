@@ -18,14 +18,14 @@ import Tags from '../../enums/Tags';
 import { AbstractLoader, CallBack, Emit, Load } from '../../models';
 import { AbstractStore } from '../../models/StoreType';
 
-interface AppComponent extends AbstractLoader, AbstractStore {
+interface App extends AbstractLoader, AbstractStore {
   router: Router;
   appState: AppState;
 }
 
 @Loader()
 @Store()
-class AppComponent extends Component<Tags.div> {
+class App extends Component<Tags.div> {
   private static count = 0;
   constructor({ root, fragment, router, appState }: Props) {
     super({
@@ -33,8 +33,8 @@ class AppComponent extends Component<Tags.div> {
       classList: ['root'],
     });
 
-    if (AppComponent.count > 0) return;
-    AppComponent.count += 1;
+    if (App.count > 0) return;
+    App.count += 1;
 
     this.router = router;
     this.appState = appState;
@@ -42,8 +42,10 @@ class AppComponent extends Component<Tags.div> {
     root.append(this.node);
 
     this.on(CustomEvents.removeCar, () => this.onRemoveCar(this.loadGarage, this.emit));
+    this.on(CustomEvents.incrementGaragePage, () => this.loadGarage(this.load));
+    this.on(CustomEvents.decrementGaragePage, () => this.loadGarage(this.load));
 
-    AppComponent.init(
+    App.init(
       () => this.loadGarage(this.load),
       () => this.loadWinners(this.load)
     );
@@ -84,4 +86,4 @@ class AppComponent extends Component<Tags.div> {
   };
 }
 
-export default AppComponent;
+export default App;

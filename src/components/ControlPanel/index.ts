@@ -5,8 +5,6 @@ import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
-import Loader from '../../decorators/Loader';
-
 import { errorMessage } from '../../constants';
 
 import API from '../../enums/API';
@@ -31,7 +29,6 @@ interface ControlPanel extends AbstractLoader {
   id: number;
 }
 
-@Loader()
 class ControlPanel extends Component<Tags.div> {
   constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
