@@ -29,8 +29,16 @@ interface ControlPanel extends AbstractLoader {
   id: number;
 }
 
+type Props = {
+  parent: Component<keyof HTMLElementTagNameMap>;
+  carData: Car;
+  handlers: {
+    startAnimation: () => void;
+  };
+};
+
 class ControlPanel extends Component<Tags.div> {
-  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
+  constructor({ parent, carData: { name, color, id }, handlers: { startAnimation } }: Props) {
     super({
       tagName: Tags.div,
       classList: [styles.panel],
@@ -53,6 +61,7 @@ class ControlPanel extends Component<Tags.div> {
         id: this.id,
       });
 
+    this.start.node.onclick = startAnimation;
     this.remove.node.onclick = this.onDeleteCar;
 
     this.reset.node.disabled = true;

@@ -10,17 +10,26 @@ import { Car } from '../../models/API';
 
 import styles from './index.css';
 
+type Props = {
+  parent: Component<keyof HTMLElementTagNameMap>;
+  carData: Car;
+  handlers: {
+    startAnimation: () => void;
+    stopAnimation: () => void
+  };
+};
+
 class RaceItemHeader extends Component<Tags.header> {
   public heading: CarHeading;
   public controlPanel: ControlPanel;
-  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
+  constructor({ parent, carData, handlers }: Props) {
     super({
       tagName: Tags.header,
       classList: [styles.header],
       parent: parent.node,
     });
-    this.heading = new CarHeading(this, name);
-    this.controlPanel = new ControlPanel(this, { name, color, id });
+    this.heading = new CarHeading(this, carData.name);
+    this.controlPanel = new ControlPanel({ parent: this, carData, handlers });
   }
 }
 

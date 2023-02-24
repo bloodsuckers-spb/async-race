@@ -17,7 +17,7 @@ class CarCell extends Component<Tags.div> {
       tagName: Tags.div,
       classList: ['cell'],
     });
-    this.carSvg = new CarSvg(this, color);
+    this.carSvg = new CarSvg({ parent: this, color });
     this.carSvg.node.classList.add(small);
   }
 }

@@ -18,15 +18,18 @@ import { AbstractStore } from '../../models/StoreType';
 
 import styles from './index.css';
 
-interface RaceListItem extends AbstractStore {}
+interface RaceListItem extends AbstractStore {
+  header: RaceItemHeader;
+  track: Track;
+  carSvg: CarSvg;
+  name: string;
+  color: HashType;
+  animationId: number;
+  currentPosition: number;
+}
 
 @Store()
 class RaceListItem extends Component<Tags.li> {
-  protected header: RaceItemHeader;
-  protected track: Track;
-  protected carSvg: CarSvg;
-  protected name: string;
-  protected color: HashType;
   protected readonly id: number;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
     super({
@@ -35,12 +38,30 @@ class RaceListItem extends Component<Tags.li> {
       parent: parent.node,
     });
 
-    this.header = new RaceItemHeader(this, { name, color, id });
+    this.header = new RaceItemHeader({
+      parent: this,
+      handlers: {
+        startAnimation: this.startAnimation,
+        stopAnimation: this.stopAnimation,
+      },
+      carData: {
+        name,
+        color,
+        id,
+      },
+    });
+
     this.track = new Track(this);
-    this.carSvg = new CarSvg(this.track, color);
+    this.carSvg = new CarSvg({
+      parent: this,
+      color,
+    });
+
     this.name = name;
     this.color = color;
     this.id = id;
+    this.currentPosition = 0;
+
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
   }
@@ -89,8 +110,26 @@ class RaceListItem extends Component<Tags.li> {
     }
   };
 
-  // private startAnimation() {}
-  // stopAnimation() {}
+  private startAnimation = (): void => {
+    const dx = 5;
+    const animate = (): void => {
+      this.currentPosition += dx;
+      this.carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
+      if (this.currentPosition < 500) {
+        this.animationId = requestAnimationFrame(animate);
+      } else {
+        cancelAnimationFrame(this.animationId);
+        this.currentPosition = 0;
+      }
+    };
+    animate();
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  private stopAnimation(): void {
+    console.log('stop');
+  }
+
   // moveToOriginPosition() {}
 }
 

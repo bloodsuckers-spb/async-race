@@ -12,7 +12,7 @@ import webpack from 'webpack';
 export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
   return [
     new HtmlWebpackPlugin({
-      title: '',
+      title: 'Async-race',
       template: paths.html,
     }),
     new webpack.ProgressPlugin(),
