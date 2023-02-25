@@ -16,6 +16,7 @@ type Props = {
   handlers: {
     startAnimation: () => void;
     stopAnimation: () => void
+    moveToOriginPosition: () => void;
   };
 };
 

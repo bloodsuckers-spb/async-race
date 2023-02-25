@@ -5,6 +5,8 @@ import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
+import { ControlPanelBtns } from './types';
+
 import { errorMessage } from '../../constants';
 
 import API from '../../enums/API';
@@ -20,10 +22,7 @@ import { isCar } from '../../models/Predicates';
 import styles from './index.css';
 
 interface ControlPanel extends AbstractLoader {
-  select: Btn;
-  start: Btn;
-  reset: Btn;
-  remove: Btn;
+  btns: ControlPanelBtns;
   name: string;
   color: string;
   id: number;
@@ -34,40 +33,78 @@ type Props = {
   carData: Car;
   handlers: {
     startAnimation: () => void;
+    stopAnimation: () => void;
+    moveToOriginPosition: () => void;
   };
 };
 
 class ControlPanel extends Component<Tags.div> {
-  constructor({ parent, carData: { name, color, id }, handlers: { startAnimation } }: Props) {
+  constructor({
+    parent,
+    carData: { name, color, id },
+    handlers: { startAnimation, stopAnimation, moveToOriginPosition },
+  }: Props) {
     super({
       tagName: Tags.div,
       classList: [styles.panel],
       parent: parent.node,
     });
 
-    this.select = new Btn(this, Btns.select);
-    this.start = new Btn(this, Btns.start);
-    this.reset = new Btn(this, Btns.reset);
-    this.remove = new Btn(this, Btns.remove);
+    this.btns = {
+      select: new Btn({
+        parent: this,
+        text: Btns.select,
+        isDisabled: false,
+      }),
+      start: new Btn({
+        parent: this,
+        text: Btns.start,
+        isDisabled: false,
+      }),
+      reset: new Btn({
+        parent: this,
+        text: Btns.reset,
+        isDisabled: true,
+      }),
+      remove: new Btn({
+        parent: this,
+        text: Btns.remove,
+        isDisabled: false,
+      }),
+    };
 
     this.name = name;
     this.color = color;
     this.id = id;
 
-    this.select.node.onclick = (): void =>
+    this.btns.select.node.onclick = (): void =>
       this.emit(CustomEvents.selectCar, {
         name: this.name,
         color: this.color,
         id: this.id,
       });
 
-    this.start.node.onclick = startAnimation;
-    this.remove.node.onclick = this.onDeleteCar;
+    this.btns.start.node.onclick = (): void => {
+      ControlPanel.changeBtnsState(this.btns);
+      startAnimation();
+    };
 
-    this.reset.node.disabled = true;
+    this.btns.reset.node.onclick = (): void => {
+      ControlPanel.changeBtnsState(this.btns);
+      stopAnimation();
+      moveToOriginPosition();
+    };
 
+    this.btns.remove.node.onclick = this.onDeleteCar;
     this.on(CustomEvents.selectCar, this.onSelectCar);
   }
+
+  private static changeBtnsState = ({ select, start, reset, remove }: ControlPanelBtns): void => {
+    [select, start, reset, remove].forEach(({ node }) => {
+      // eslint-disable-next-line no-param-reassign
+      node.disabled = !node.disabled;
+    });
+  };
 
   private onSelectCar = <T>(data: T): void => {
     if (!isCar(data)) {

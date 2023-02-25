@@ -1,6 +1,5 @@
 import Component from '../../base/Component';
 
-import CarSvg from '../../ui/CarSvg';
 import Track from '../../ui/Track';
 
 import Store from '../../decorators/Store';
@@ -21,17 +20,17 @@ import styles from './index.css';
 interface RaceListItem extends AbstractStore {
   header: RaceItemHeader;
   track: Track;
-  carSvg: CarSvg;
   name: string;
   color: HashType;
   animationId: number;
+  finalPostion: number;
   currentPosition: number;
 }
 
 @Store()
 class RaceListItem extends Component<Tags.li> {
   protected readonly id: number;
-  constructor(parent: Component<keyof HTMLElementTagNameMap>, { name, color, id }: Car) {
+  constructor(parent: Component<keyof HTMLElementTagNameMap>, carData: Car) {
     super({
       tagName: Tags.li,
       classList: [styles.racetrack],
@@ -40,26 +39,25 @@ class RaceListItem extends Component<Tags.li> {
 
     this.header = new RaceItemHeader({
       parent: this,
+      carData,
       handlers: {
         startAnimation: this.startAnimation,
         stopAnimation: this.stopAnimation,
-      },
-      carData: {
-        name,
-        color,
-        id,
+        moveToOriginPosition: this.moveToOriginPosition,
       },
     });
 
-    this.track = new Track(this);
-    this.carSvg = new CarSvg({
+    const { name, color, id } = carData;
+
+    this.track = new Track({
       parent: this,
-      color,
+      carColor: color,
     });
 
     this.name = name;
     this.color = color;
     this.id = id;
+
     this.currentPosition = 0;
 
     this.on(CustomEvents.updateCar, this.onUpdate);
@@ -83,7 +81,7 @@ class RaceListItem extends Component<Tags.li> {
     }
 
     if (this.color !== color) {
-      const { carSvg } = this;
+      const { carSvg } = this.track;
       this.color = color;
       carSvg.node.style.fill = `${color}`;
     }
@@ -111,26 +109,30 @@ class RaceListItem extends Component<Tags.li> {
   };
 
   private startAnimation = (): void => {
+    // const framesCount = (10 / 1000) * 60;
+    const finalPostion = this.track.finish.node.offsetLeft;
     const dx = 5;
     const animate = (): void => {
       this.currentPosition += dx;
-      this.carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
-      if (this.currentPosition < 500) {
+      this.track.carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
+      if (this.currentPosition < finalPostion) {
         this.animationId = requestAnimationFrame(animate);
       } else {
         cancelAnimationFrame(this.animationId);
-        this.currentPosition = 0;
       }
     };
     animate();
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  private stopAnimation(): void {
-    console.log('stop');
-  }
+  private stopAnimation = (): void => {
+    cancelAnimationFrame(this.animationId);
+  };
 
-  // moveToOriginPosition() {}
+  private moveToOriginPosition = (): void => {
+    const { node } = this.track.carSvg;
+    this.currentPosition = 0;
+    node.style.transform = 'translateX(0px)';
+  };
 }
 
 export default RaceListItem;

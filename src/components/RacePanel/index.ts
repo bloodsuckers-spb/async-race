@@ -15,9 +15,17 @@ class RacePanel extends Component<Tags.div> {
       tagName: Tags.div,
       classList: [styles.panel],
     });
-    this.raceBtn = new Btn(this, Btns.race);
-    this.resetBtn = new Btn(this, Btns.reset);
-    this.resetBtn.node.disabled = true;
+
+    this.raceBtn = new Btn({
+      parent: this,
+      text: Btns.race,
+      isDisabled: false,
+    });
+    this.resetBtn = new Btn({
+      parent: this,
+      text: Btns.reset,
+      isDisabled: false,
+    });
   }
 }
 

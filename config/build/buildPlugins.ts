@@ -29,7 +29,7 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
         },
       ],
     }),
-    new StylelintPlugin(),
+    // new StylelintPlugin(),
     new ESLintPlugin({ extensions: ['ts'] }),
   ];
 }

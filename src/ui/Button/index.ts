@@ -3,8 +3,14 @@ import Component from '../../base/Component';
 import Btns from '../../enums/Btns';
 import Tags from '../../enums/Tags';
 
+type Props = {
+  parent: Component<keyof HTMLElementTagNameMap>;
+  text: Btns;
+  isDisabled: boolean;
+};
+
 class Btn extends Component<Tags.button> {
-  constructor(protected readonly parent: Component<keyof HTMLElementTagNameMap>, text: Btns) {
+  constructor({ parent, text, isDisabled }: Props) {
     super({
       tagName: Tags.button,
       classList: ['btn'],
@@ -13,6 +19,7 @@ class Btn extends Component<Tags.button> {
       },
       parent: parent.node,
     });
+    this.node.disabled = isDisabled;
   }
 }
 
