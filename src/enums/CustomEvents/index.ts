@@ -17,7 +17,7 @@ enum CustomEvents {
   clickPrevGaragePage = 'clickPrevGaragePage',
   changeCurrentPage = 'changeCurrentPage',
   generateCars = 'generateCars',
-  carsLoading = 'carsLoading'
+  carsLoading = 'carsLoading',
 }
 
 export default CustomEvents;

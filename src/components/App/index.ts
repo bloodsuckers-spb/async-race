@@ -5,15 +5,11 @@ import Component from '../../base/Component';
 import Router from 'components/AppRouter';
 import AppState from 'components/AppState';
 
-import Loader from '../../decorators/Loader';
-import Store from '../../decorators/Store';
+import { Loader, Store } from '../../decorators';
 
 import { Props } from './types';
 
-import API from '../../enums/API';
-import CustomEvents from '../../enums/CustomEvents';
-import RequestMethods from '../../enums/RequestMethods';
-import Tags from '../../enums/Tags';
+import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
 
 import { AbstractLoader, CallBack, Emit, Load } from '../../models';
 import { AbstractStore } from '../../models/StoreType';
