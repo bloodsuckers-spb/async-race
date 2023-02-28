@@ -2,6 +2,24 @@ import Component from '../base/Component';
 
 import { Store } from '../store/types';
 
+import {
+  AbstractResponse,
+  Car,
+  CarResponse,
+  CarsResponse,
+  CountedDataHeaders,
+  CountedDataResponse,
+  GetCarsResponse,
+  Headers,
+  LoadDecorator,
+  Loading,
+  LoadResponse,
+  NewCar,
+  QueryString,
+  RequestOptions,
+  Winner,
+} from './API';
+
 import { CustomEvents, Routes, Tags } from '../enums';
 
 export type NodeData = {
@@ -70,3 +88,21 @@ export type PaginationBtns = {
 export interface AbstractStore {
   store: Store;
 }
+
+export {
+  AbstractResponse,
+  Car,
+  CarResponse,
+  CarsResponse,
+  CountedDataHeaders,
+  CountedDataResponse,
+  GetCarsResponse,
+  Headers,
+  LoadDecorator,
+  Loading,
+  LoadResponse,
+  NewCar,
+  QueryString,
+  RequestOptions,
+  Winner,
+};

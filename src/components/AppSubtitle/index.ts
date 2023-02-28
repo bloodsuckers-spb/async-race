@@ -3,10 +3,7 @@ import Component from '../../base/Component';
 
 import Store from '../../decorators/Store';
 
-import CustomEvents from '../../enums/CustomEvents';
-import Routes from '../../enums/Routes';
-import Tags from '../../enums/Tags';
-import TitleKeys from '../../enums/TitleKeys';
+import { CustomEvents, Routes, Tags, TitleKeys } from '../../enums';
 
 import { AbstractStore, Update } from '../../models';
 

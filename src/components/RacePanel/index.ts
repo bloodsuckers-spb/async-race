@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
@@ -29,6 +28,4 @@ class RacePanel extends Component<Tags.div> {
   }
 }
 
-const racePanel = new RacePanel();
-
-export default racePanel;
+export default new RacePanel();

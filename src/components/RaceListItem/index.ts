@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 /* eslint-disable @typescript-eslint/semi */
 import Component from '../../base/Component';
 
@@ -11,8 +10,7 @@ import { errorMessage } from '../../constants';
 
 import { CustomEvents, Tags } from '../../enums';
 
-import { AbstractStore, HashType } from '../../models';
-import { Car } from '../../models/API';
+import { AbstractStore, Car, HashType } from '../../models';
 import { isCar, isResponse } from '../../models/predicates';
 
 import styles from './index.css';

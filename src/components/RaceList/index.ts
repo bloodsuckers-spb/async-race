@@ -6,8 +6,7 @@ import RaceListItem from '../RaceListItem';
 
 import { errorMessage } from '../../constants';
 
-import CustomEvents from '../../enums/CustomEvents';
-import Tags from '../../enums/Tags';
+import { CustomEvents, Tags } from '../../enums';
 
 import { Car } from '../../models/API';
 import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
