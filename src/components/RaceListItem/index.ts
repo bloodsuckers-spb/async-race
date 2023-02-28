@@ -1,19 +1,25 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable @typescript-eslint/semi */
 import Component from '../../base/Component';
 
 import Track from '../../ui/Track';
 
-import { Store } from '../../decorators'
+import { Loader, Store } from '../../decorators';
 import RaceItemHeader from '../RaceItemHeader';
 
 import { errorMessage } from '../../constants';
 
-import { CustomEvents, Tags } from '../../enums';
+import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
 
 import { AbstractStore, Car, HashType } from '../../models';
 import { isCar, isResponse } from '../../models/predicates';
 
 import styles from './index.css';
+
+type Animation = {
+  id: number;
+  time: number;
+};
 
 interface RaceListItem extends AbstractStore {
   header: RaceItemHeader;
@@ -22,11 +28,13 @@ interface RaceListItem extends AbstractStore {
   color: HashType;
   animationId: number;
   finalPostion: number;
-  currentPosition: number;
 }
 
 @Store()
+@Loader()
 class RaceListItem extends Component<Tags.li> {
+  protected currentPosition = 0;
+  protected time = 0;
   protected readonly id: number;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, carData: Car) {
     super({
@@ -55,8 +63,6 @@ class RaceListItem extends Component<Tags.li> {
     this.name = name;
     this.color = color;
     this.id = id;
-
-    this.currentPosition = 0;
 
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
@@ -106,20 +112,38 @@ class RaceListItem extends Component<Tags.li> {
     }
   };
 
-  private startAnimation = (): void => {
-    // const framesCount = (10 / 1000) * 60;
-    const finalPostion = this.track.finish.node.offsetLeft;
-    const dx = 5;
-    const animate = (): void => {
-      this.currentPosition += dx;
-      this.track.carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
-      if (this.currentPosition < finalPostion) {
-        this.animationId = requestAnimationFrame(animate);
-      } else {
-        cancelAnimationFrame(this.animationId);
-      }
-    };
-    animate();
+  public startEngine = async (): Promise<void> => {
+    const response = await fetch(`${API.engineLink}?id=${this.id}&status=started`, {
+      method: RequestMethods.patch,
+    });
+    return response.json();
+  };
+
+  public stopEngine = async (): Promise<void> => {
+    const response = await fetch(`${API.engineLink}?id=${this.id}&status=stopped`, {
+      method: RequestMethods.patch,
+    });
+    return response.json();
+  };
+
+  private startAnimation = (): Promise<Animation> => {
+    return new Promise((response) => {
+      const finalPostion = this.track.finish.node.offsetLeft;
+      // const framesCount = (this.time / 1000) * 60;
+      // const dx = (finalPostion - this.track.carSvg.node.offsetLeft) / framesCount;
+      const dx = 5;
+      const animate = (): void => {
+        this.currentPosition += dx;
+        this.track.carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
+        if (this.currentPosition < finalPostion) {
+          this.animationId = requestAnimationFrame(animate);
+        } else {
+          const result = { id: this.id, time: this.time };
+          response(result);
+        }
+      };
+      animate();
+    });
   };
 
   private stopAnimation = (): void => {
