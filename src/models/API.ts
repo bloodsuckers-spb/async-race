@@ -60,17 +60,13 @@ export type RequestOptions = {
   headers?: {};
 };
 
-export type Load = {
+export interface Load {
   method: RequestMethods;
   queryString: QueryString;
   eventName: CustomEvents;
   options: Record<string, string>;
-};
+}
 
-export type LoadDecorator = {
-  method: RequestMethods;
-  queryString: QueryString;
-  eventName: CustomEvents;
-  options: Record<string, string>;
+export interface LoadDecorator extends Load {
   cb: (...args: Array<unknown>) => void;
-};
+}
