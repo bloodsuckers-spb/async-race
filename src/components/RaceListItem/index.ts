@@ -9,7 +9,7 @@ import RaceItemHeader from '../RaceItemHeader';
 
 import { errorMessage } from '../../constants';
 
-import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
+import { CustomEvents, Tags } from '../../enums';
 
 import { AbstractStore, Car, HashType } from '../../models';
 import { isCar, isResponse } from '../../models/predicates';
@@ -110,20 +110,6 @@ class RaceListItem extends Component<Tags.li> {
       drawedCars.delete(`${this.id}`);
       this.destroy();
     }
-  };
-
-  public startEngine = async (): Promise<void> => {
-    const response = await fetch(`${API.engineLink}?id=${this.id}&status=started`, {
-      method: RequestMethods.patch,
-    });
-    return response.json();
-  };
-
-  public stopEngine = async (): Promise<void> => {
-    const response = await fetch(`${API.engineLink}?id=${this.id}&status=stopped`, {
-      method: RequestMethods.patch,
-    });
-    return response.json();
   };
 
   private startAnimation = (): Promise<Animation> => {
