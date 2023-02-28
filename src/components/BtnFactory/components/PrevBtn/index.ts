@@ -4,8 +4,7 @@ import PaginationBtn from '../../PagintionBtn';
 
 import CustomEvents from '../../../../enums/CustomEvents';
 
-import { AbstractLoader } from '../../../../models';
-import { AbstractStore } from '../../../../models/StoreType';
+import { AbstractLoader, AbstractStore } from '../../../../models';
 
 interface PrevBtn extends AbstractStore, AbstractLoader {}
 

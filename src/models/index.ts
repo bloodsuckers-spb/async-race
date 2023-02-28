@@ -1,8 +1,8 @@
 import Component from '../base/Component';
 
-import CustomEvents from '../enums/CustomEvents';
-import Routes from '../enums/Routes';
-import Tags from '../enums/Tags';
+import { Store } from '../store/types';
+
+import { CustomEvents, Routes, Tags } from '../enums';
 
 export type NodeData = {
   textContent: string;
@@ -66,3 +66,7 @@ export type PaginationBtns = {
   prev: string;
   next: string;
 };
+
+export interface AbstractStore {
+  store: Store;
+}

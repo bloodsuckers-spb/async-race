@@ -2,8 +2,8 @@
 /* eslint-disable import/order */
 import Component from '../../base/Component';
 
+import { AppState } from 'components';
 import Router from 'components/AppRouter';
-import AppState from 'components/AppState';
 
 import { Loader, Store } from '../../decorators';
 
@@ -11,8 +11,7 @@ import { Props } from './types';
 
 import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
 
-import { AbstractLoader, CallBack, Emit, Load } from '../../models';
-import { AbstractStore } from '../../models/StoreType';
+import { AbstractLoader, AbstractStore, CallBack, Emit, Load } from '../../models';
 
 interface App extends AbstractLoader, AbstractStore {
   router: Router;

@@ -1,6 +1,6 @@
-import StoreType from 'models/StoreType';
+import { Store } from './types';
 
-const AppStore: StoreType = {
+const AppStore: Store = {
   drawedCars: new Map(),
   drawedWinners: new Map(),
   carsAmount: 0,

@@ -1,6 +1,6 @@
-import { Car, Winner } from './API';
+import { Car, Winner } from 'models/API';
 
-type StoreType = {
+export type Store = {
   drawedCars: Map<`${Car['id']}`, Car>;
   drawedWinners: Map<`${Winner['id']}`, Winner>;
   carsAmount: number;
@@ -12,9 +12,3 @@ type StoreType = {
   set winnersCount(count: number);
   get winnersCount(): number;
 };
-
-export interface AbstractStore {
-  store: StoreType;
-}
-
-export default StoreType;

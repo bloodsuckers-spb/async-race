@@ -1,8 +1,7 @@
-/* eslint-disable class-methods-use-this */
 /* eslint-disable arrow-body-style */
+/* eslint-disable class-methods-use-this */
 import AppStore from '../../store';
-
-import StoreType from '../../models/StoreType';
+import { Store as StoreType } from '../../store/types';
 
 const Store = () => {
   return <T extends { new (...args: any[]): {} }>(Constructor: T): T =>

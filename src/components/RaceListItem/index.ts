@@ -1,19 +1,19 @@
+/* eslint-disable import/order */
+/* eslint-disable @typescript-eslint/semi */
 import Component from '../../base/Component';
 
 import Track from '../../ui/Track';
 
-import Store from '../../decorators/Store';
+import { Store } from '../../decorators'
 import RaceItemHeader from '../RaceItemHeader';
 
 import { errorMessage } from '../../constants';
 
-import CustomEvents from '../../enums/CustomEvents';
-import Tags from '../../enums/Tags';
+import { CustomEvents, Tags } from '../../enums';
 
-import { HashType } from '../../models';
+import { AbstractStore, HashType } from '../../models';
 import { Car } from '../../models/API';
-import { isCar, isResponse } from '../../models/Predicates';
-import { AbstractStore } from '../../models/StoreType';
+import { isCar, isResponse } from '../../models/predicates';
 
 import styles from './index.css';
 

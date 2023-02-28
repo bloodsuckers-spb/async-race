@@ -8,8 +8,7 @@ import Routes from '../../enums/Routes';
 import Tags from '../../enums/Tags';
 import TitleKeys from '../../enums/TitleKeys';
 
-import { Update } from '../../models';
-import { AbstractStore } from '../../models/StoreType';
+import { AbstractStore, Update } from '../../models';
 
 interface Subtitle extends AbstractStore {
   storeKey: TitleKeys | null;

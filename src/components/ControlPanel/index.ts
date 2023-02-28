@@ -17,7 +17,7 @@ import Tags from '../../enums/Tags';
 
 import { AbstractLoader } from '../../models';
 import { Car } from '../../models/API';
-import { isCar } from '../../models/Predicates';
+import { isCar } from '../../models/predicates';
 
 import styles from './index.css';
 

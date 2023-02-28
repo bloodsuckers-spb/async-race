@@ -8,9 +8,8 @@ import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 
-import { Emit, EmitCallback, Update } from '../../models';
-import { isCars, isResponse, isWinners } from '../../models/Predicates';
-import { AbstractStore } from '../../models/StoreType';
+import { AbstractStore, Emit, EmitCallback, Update } from '../../models';
+import { isCars, isResponse, isWinners } from '../../models/predicates';
 
 interface AppState extends AbstractStore {}
 

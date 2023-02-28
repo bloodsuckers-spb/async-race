@@ -14,7 +14,7 @@ import RequestMethods from '../../../../enums/RequestMethods';
 import Tags from '../../../../enums/Tags';
 
 import { FormProps } from '../../../../models';
-import { isCar } from '../../../../models/Predicates';
+import { isCar } from '../../../../models/predicates';
 
 interface CarFormUpdate extends FormProps {
   load: (...args: Array<unknown>) => void;

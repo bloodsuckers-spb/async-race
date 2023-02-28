@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import Component from '../../base/Component';
 
 import Store from '../../decorators/Store';
@@ -9,8 +10,8 @@ import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Car } from '../../models/API';
-import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/Predicates';
-import { AbstractStore } from '../../models/StoreType';
+import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
+import { AbstractStore } from 'models';
 
 import styles from './index.css';
 

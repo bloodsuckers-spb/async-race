@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable no-await-in-loop */
 import axios from 'axios';
 
@@ -13,8 +14,8 @@ import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Winner } from '../../models/API';
-import { isCountedDataResponse, isWinners } from '../../models/Predicates';
-import { AbstractStore } from '../../models/StoreType';
+import { isCountedDataResponse, isWinners } from '../../models/predicates';
+import { AbstractStore } from 'models';
 
 import styles from './index.css';
 

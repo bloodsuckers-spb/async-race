@@ -1,9 +1,9 @@
+/* eslint-disable import/order */
 import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
-import Btns from '../../enums/Btns';
-import Tags from '../../enums/Tags';
+import { Btns, Tags } from '../../enums';
 
 import styles from './index.css';
 

@@ -1,11 +1,10 @@
-import Loader from '../../../../decorators/Loader';
-import Store from '../../../../decorators/Store';
+/* eslint-disable import/order */
+import { Loader, Store } from '../../../../decorators';
 import PaginationBtn from '../../PagintionBtn';
 
 import CustomEvents from '../../../../enums/CustomEvents';
 
-import { AbstractLoader } from '../../../../models';
-import { AbstractStore } from '../../../../models/StoreType';
+import { AbstractLoader, AbstractStore } from '../../../../models';
 
 type StateProps = {
   currentPage: number;
