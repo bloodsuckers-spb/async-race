@@ -1,28 +1,31 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/order */
-import axios from 'axios';
 
 import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
+import { AsyncFetch } from '../../decorators';
+
 import { ControlPanelBtns, Props } from './types';
 
-import { errorMessage } from '../../constants';
-
-import { API, Btns, CustomEvents, RequestMethods, Tags } from '../../enums';
+import { Btns, CustomEvents, Tags } from '../../enums';
 
 import { AbstractLoader } from '../../models';
 import { isCar } from '../../models/predicates';
 
 import styles from './index.css';
 
-interface ControlPanel extends AbstractLoader {
+import { AbstractFetch } from 'decorators/Fetch';
+
+interface ControlPanel extends AbstractLoader, AbstractFetch {
   btns: ControlPanelBtns;
   name: string;
   color: string;
   id: number;
 }
 
+@AsyncFetch()
 class ControlPanel extends Component<Tags.div> {
   constructor({ parent, carData: { name, color, id }, handlers: { startDriving, stopDriving } }: Props) {
     super({
@@ -81,14 +84,13 @@ class ControlPanel extends Component<Tags.div> {
 
   private static changeBtnsState = ({ select, start, reset, remove }: ControlPanelBtns): void => {
     [select, start, reset, remove].forEach(({ node }) => {
-      // eslint-disable-next-line no-param-reassign
       node.disabled = !node.disabled;
     });
   };
 
   private onSelectCar = <T>(data: T): void => {
     if (!isCar(data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
     const { color, name, id } = data;
 
@@ -106,7 +108,10 @@ class ControlPanel extends Component<Tags.div> {
   };
 
   private onDeleteCar = (): void => {
-    axios[RequestMethods.delete](`${API.garageLink}/${this.id}`)
+    this.awaitedFetch({
+      method: 'DELETE',
+      queryString: `${this.GARAGE_URL}/${this.id}`,
+    })
       .then(() => this.emit(CustomEvents.removeCar, this.id))
       .catch(() => console.error);
   };

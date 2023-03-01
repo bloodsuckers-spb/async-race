@@ -10,7 +10,7 @@ import { AbstractFetch } from '../../decorators/Fetch';
 
 import { Props } from './types';
 
-import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
+import { CustomEvents, RequestMethods, Tags } from '../../enums';
 
 import { AbstractLoader, AbstractStore, CallBack, Emit, Load } from '../../models';
 
@@ -59,10 +59,11 @@ class App extends Component<Tags.div> {
 
   private loadGarage = (load: Load): void => {
     const { garageCurrentPage } = this.store;
+    console.log(this.GARAGE_URL);
     load({
       method: RequestMethods.get,
       cb: this.emit,
-      queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=${App.limit.carsLimit}`,
+      queryString: `${this.GARAGE_URL}?_page=${garageCurrentPage}&_limit=${App.limit.carsLimit}`,
       eventName: CustomEvents.updateCars,
     });
   };
@@ -71,7 +72,7 @@ class App extends Component<Tags.div> {
     const { winnersCurrentPage } = this.store;
     this.fetchCountedData({
       method: 'GET',
-      queryString: `${API.winnersLink}?_page=${winnersCurrentPage}&_limit=${App.limit.winnersLimit}}`,
+      queryString: `${this.WINNERS_URL}?_page=${winnersCurrentPage}&_limit=${App.limit.winnersLimit}}`,
       eventName: 'GetWinners',
       emit,
     });

@@ -6,6 +6,7 @@ const fetchMethods = {
   GET: 'GET',
   POST: 'POST',
   PATCH: 'PATCH',
+  DELETE: 'DELETE',
 } as const;
 
 const customEvents = {
@@ -21,6 +22,10 @@ type FetchProps = {
 };
 
 export interface AbstractFetch {
+  BASE_URL: string;
+  GARAGE_URL: string;
+  WINNERS_URL: string;
+  ENGINE_URL: string;
   fetch: (props: FetchProps) => void;
   fetchCountedData: (props: FetchProps) => void;
   awaitedFetch: <R>(props: Pick<FetchProps, 'method' | 'queryString'>) => Promise<R>;
@@ -35,6 +40,18 @@ const AsyncFetch = () => {
       });
     };
     return class extends Constructor {
+      protected get BASE_URL(): string {
+        return 'http://127.0.0.1:3000';
+      }
+      protected get GARAGE_URL(): string {
+        return `${this.BASE_URL}/garage`;
+      }
+      protected get WINNERS_URL(): string {
+        return `${this.BASE_URL}/winners`;
+      }
+      protected get ENGINE_URL(): string {
+        return `${this.BASE_URL}/engine`;
+      }
       protected fetch({ method, queryString, eventName, emit }: FetchProps): void {
         asyncFetch({ method, queryString })
           .then((response) => response.json())
@@ -53,10 +70,7 @@ const AsyncFetch = () => {
           .catch(console.error);
       }
 
-      protected async awaitedFetch<R>({
-        method,
-        queryString,
-      }: Pick<FetchProps, 'method' | 'queryString'>): Promise<R> {
+      protected async awaitedFetch<R>({ method, queryString }: Pick<FetchProps, 'method' | 'queryString'>): Promise<R> {
         const response = await asyncFetch({ method, queryString });
         return response.json();
       }

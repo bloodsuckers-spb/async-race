@@ -10,8 +10,6 @@ import RaceItemHeader from '../RaceItemHeader';
 
 import { Animation, DriverStatus, StartEngine } from './types';
 
-import { errorMessage } from '../../constants';
-
 import { CustomEvents, Tags } from '../../enums';
 
 import { AbstractStore, Car, HashType } from '../../models';
@@ -31,7 +29,6 @@ interface RaceListItem extends AbstractStore, AbstractFetch {
 @Store()
 @AsyncFetch()
 class RaceListItem extends Component<Tags.li> {
-  private static readonly ENGINE_URL = 'http://127.0.0.1:3000/engine';
   private static readonly ENGINE_STATE = {
     Drive: 'drive',
     Started: 'started',
@@ -73,7 +70,7 @@ class RaceListItem extends Component<Tags.li> {
 
   private onUpdate = <T>(arg: T): void => {
     if (!isResponse(arg) || !isCar(arg.data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     const { controlPanel } = this.header;
@@ -105,7 +102,7 @@ class RaceListItem extends Component<Tags.li> {
   public onRemove = <T>(id: T): void => {
     const { drawedCars } = this.store;
     if (typeof id !== 'number') {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
     if (id === this.id) {
       this.off(CustomEvents.updateCar, this.onUpdate);
@@ -135,8 +132,9 @@ class RaceListItem extends Component<Tags.li> {
   };
 
   private getDriveStatus = async (): Promise<DriverStatus> => {
-    const { ENGINE_URL, ENGINE_STATE } = RaceListItem;
-    const response = await fetch(`${ENGINE_URL}?id=${this.id}&status=${ENGINE_STATE.Drive}`, {
+    const { ENGINE_STATE } = RaceListItem;
+    const { ENGINE_URL, id } = this;
+    const response = await fetch(`${ENGINE_URL}?id=${id}&status=${ENGINE_STATE.Drive}`, {
       method: 'PATCH',
     });
     return {
@@ -145,18 +143,20 @@ class RaceListItem extends Component<Tags.li> {
   };
 
   private startEngine = (): Promise<StartEngine> => {
-    const { ENGINE_URL, ENGINE_STATE } = RaceListItem;
+    const { ENGINE_STATE } = RaceListItem;
+    const { ENGINE_URL, id } = this;
     return this.awaitedFetch<StartEngine>({
       method: 'PATCH',
-      queryString: `${ENGINE_URL}?id=${this.id}&status=${ENGINE_STATE.Started}`,
+      queryString: `${ENGINE_URL}?id=${id}&status=${ENGINE_STATE.Started}`,
     });
   };
 
   private stopEngine = (): Promise<void> => {
-    const { ENGINE_URL, ENGINE_STATE } = RaceListItem;
+    const { ENGINE_STATE } = RaceListItem;
+    const { ENGINE_URL, id } = this;
     return this.awaitedFetch({
       method: 'PATCH',
-      queryString: `${ENGINE_URL}?id=${this.id}&status=${ENGINE_STATE.Stopped}`,
+      queryString: `${ENGINE_URL}?id=${id}&status=${ENGINE_STATE.Stopped}`,
     });
   };
 
