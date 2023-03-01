@@ -58,7 +58,6 @@ class App extends Component<Tags.div> {
 
   private loadGarage = (load: Load): void => {
     const { garageCurrentPage } = this.store;
-    console.log(this.GARAGE_URL);
     load({
       method: RequestMethods.get,
       cb: this.emit,
