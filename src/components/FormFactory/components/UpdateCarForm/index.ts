@@ -4,23 +4,19 @@ import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
 
-import Loader from '../../../../decorators/Loader';
+import { AsyncFetch, Loader } from '../../../../decorators';
 
-import { errorMessage } from '../../../../constants';
+import { CustomEvents, RequestMethods, Tags } from '../../../../enums';
 
-import API from '../../../../enums/API';
-import CustomEvents from '../../../../enums/CustomEvents';
-import RequestMethods from '../../../../enums/RequestMethods';
-import Tags from '../../../../enums/Tags';
-
-import { FormProps } from '../../../../models';
+import { AbstractFetch, FormProps } from '../../../../models';
 import { isCar } from '../../../../models/predicates';
 
-interface CarFormUpdate extends FormProps {
+interface CarFormUpdate extends FormProps, AbstractFetch {
   load: (...args: Array<unknown>) => void;
 }
 
 @Loader()
+@AsyncFetch()
 class CarFormUpdate extends Component<Tags.form> {
   private selectedId = 0;
   constructor({ textInput, colorInput, btn }: FormProps) {
@@ -46,7 +42,7 @@ class CarFormUpdate extends Component<Tags.form> {
 
   private onSelect = <T>(data: T): void => {
     if (typeof data !== 'object' || data === null || !isCar(data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     const { name, id, color } = data;
@@ -75,7 +71,7 @@ class CarFormUpdate extends Component<Tags.form> {
   private handleClick = (): void => {
     this.load({
       method: RequestMethods.put,
-      queryString: `${API.baseLink}/garage/${this.selectedId}`,
+      queryString: `${this.GARAGE_URL}/${this.selectedId}`,
       eventName: CustomEvents.updateCar,
       options: {
         name: this.textInput.node.value,

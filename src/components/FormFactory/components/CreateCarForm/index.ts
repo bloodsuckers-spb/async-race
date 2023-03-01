@@ -4,20 +4,18 @@ import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
 
-import Loader from '../../../../decorators/Loader';
+import { AsyncFetch, Loader } from '../../../../decorators';
 
-import API from '../../../../enums/API';
-import CustomEvents from '../../../../enums/CustomEvents';
-import RequestMethods from '../../../../enums/RequestMethods';
-import Tags from '../../../../enums/Tags';
+import { CustomEvents, RequestMethods, Tags } from '../../../../enums';
 
-import { FormProps } from '../../../../models';
+import { AbstractFetch, FormProps } from '../../../../models';
 
-interface CreateCarForm extends FormProps {
+interface CreateCarForm extends FormProps, AbstractFetch {
   load: (...args: Array<unknown>) => void;
 }
 
 @Loader()
+@AsyncFetch()
 class CreateCarForm extends Component<Tags.form> {
   constructor({ textInput, colorInput, btn }: FormProps) {
     super({
@@ -43,7 +41,7 @@ class CreateCarForm extends Component<Tags.form> {
 
     this.load({
       method: RequestMethods.post,
-      queryString: `${API.baseLink}/garage`,
+      queryString: `${this.GARAGE_URL}`,
       eventName: CustomEvents.addCar,
       options: {
         name: this.textInput.node.value,
