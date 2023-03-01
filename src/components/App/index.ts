@@ -53,16 +53,6 @@ class App extends Component<Tags.div> {
     loadWinners();
   };
 
-  // private loadGarage = (): void => {
-  //   const { garageCurrentPage } = this.store;
-  //   this.fetch({
-  //     method: 'GET',
-  //     queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=5`,
-  //     eventName: CustomEvents.updateCars,
-  //     cb: this.emit,
-  //   });
-  // };
-
   private loadGarage = (load: Load): void => {
     const { garageCurrentPage } = this.store;
     load({
@@ -79,7 +69,7 @@ class App extends Component<Tags.div> {
       method: 'GET',
       queryString: `${API.winnersLink}?_page=${winnersCurrentPage}&_limit=10`,
       eventName: 'GetWinners',
-      emit
+      emit,
     });
   };
 
