@@ -5,7 +5,8 @@ import Component from '../../base/Component';
 import { AppState } from 'components';
 import Router from 'components/AppRouter';
 
-import { Loader, Store } from '../../decorators';
+import { AsyncFetch, Loader, Store } from '../../decorators';
+import { AbstractFetch } from '../../decorators/Fetch';
 
 import { Props } from './types';
 
@@ -13,13 +14,14 @@ import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
 
 import { AbstractLoader, AbstractStore, CallBack, Emit, Load } from '../../models';
 
-interface App extends AbstractLoader, AbstractStore {
+interface App extends AbstractLoader, AbstractFetch, AbstractStore {
   router: Router;
   appState: AppState;
 }
 
 @Loader()
 @Store()
+@AsyncFetch()
 class App extends Component<Tags.div> {
   private static count = 0;
   constructor({ root, fragment, router, appState }: Props) {
@@ -42,7 +44,7 @@ class App extends Component<Tags.div> {
 
     App.init(
       () => this.loadGarage(this.load),
-      () => this.loadWinners(this.load)
+      () => this.loadWinners(this.emit)
     );
   }
 
@@ -50,6 +52,16 @@ class App extends Component<Tags.div> {
     loadGarage();
     loadWinners();
   };
+
+  // private loadGarage = (): void => {
+  //   const { garageCurrentPage } = this.store;
+  //   this.fetch({
+  //     method: 'GET',
+  //     queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=5`,
+  //     eventName: CustomEvents.updateCars,
+  //     cb: this.emit,
+  //   });
+  // };
 
   private loadGarage = (load: Load): void => {
     const { garageCurrentPage } = this.store;
@@ -61,13 +73,13 @@ class App extends Component<Tags.div> {
     });
   };
 
-  private loadWinners = (load: Load): void => {
+  private loadWinners = (emit: Emit): void => {
     const { winnersCurrentPage } = this.store;
-    load({
-      method: RequestMethods.get,
-      cb: this.emit,
+    this.fetchCountedData({
+      method: 'GET',
       queryString: `${API.winnersLink}?_page=${winnersCurrentPage}&_limit=10`,
-      eventName: CustomEvents.getWinners,
+      eventName: 'GetWinners',
+      emit
     });
   };
 

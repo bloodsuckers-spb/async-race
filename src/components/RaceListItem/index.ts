@@ -4,7 +4,8 @@ import Component from '../../base/Component';
 
 import Track from '../../ui/Track';
 
-import { Loader, Store } from '../../decorators';
+import { AsyncFetch, Store } from '../../decorators';
+import { AbstractFetch } from '../../decorators/Fetch';
 import RaceItemHeader from '../RaceItemHeader';
 
 import { errorMessage } from '../../constants';
@@ -21,7 +22,7 @@ type Animation = {
   time: number;
 };
 
-interface RaceListItem extends AbstractStore {
+interface RaceListItem extends AbstractStore, AbstractFetch {
   header: RaceItemHeader;
   track: Track;
   name: string;
@@ -31,7 +32,7 @@ interface RaceListItem extends AbstractStore {
 }
 
 @Store()
-@Loader()
+@AsyncFetch()
 class RaceListItem extends Component<Tags.li> {
   protected currentPosition = 0;
   protected time = 0;
@@ -112,7 +113,13 @@ class RaceListItem extends Component<Tags.li> {
     }
   };
 
+  // eslint-disable-next-line class-methods-use-this
+  public startEngine = (): void => {
+    // this.fetch({ method: 'PATCH', queryString: `http://127.0.0.1:3000/engine?id=${this.id}&status=started` });
+  };
+
   private startAnimation = (): Promise<Animation> => {
+    this.startEngine()
     return new Promise((response) => {
       const finalPostion = this.track.finish.node.offsetLeft;
       // const framesCount = (this.time / 1000) * 60;

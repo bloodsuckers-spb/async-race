@@ -8,7 +8,7 @@ enum CustomEvents {
   typeCarName = 'typeCarName',
   addCar = 'addCar',
   selectCar = 'selectCar',
-  getWinners = 'getWinners',
+  GetWinners = 'GetWinners',
   getCar = 'getCar',
   updateWinner = 'updateWinner',
   deleteWinner = 'deleteWinner',

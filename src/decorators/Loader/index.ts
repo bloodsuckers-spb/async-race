@@ -1,11 +1,11 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable class-methods-use-this */
 import axios, { AxiosResponse } from 'axios';
 
-import CustomEvents from '../../enums/CustomEvents';
+import { CustomEvents } from '../../enums';
 
 import { LoadDecorator } from '../../models/API';
 
-// eslint-disable-next-line arrow-body-style
 const Loader = () => {
   return <T extends { new (...args: any[]): {} }>(Constructor: T): T =>
     class extends Constructor {

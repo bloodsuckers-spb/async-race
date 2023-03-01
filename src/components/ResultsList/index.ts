@@ -14,7 +14,7 @@ import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Winner } from '../../models/API';
-import { isCountedDataResponse, isWinners } from '../../models/predicates';
+import { isWinners } from '../../models/predicates';
 import { AbstractStore } from 'models';
 
 import styles from './index.css';
@@ -29,15 +29,25 @@ class ResultsContent extends Component<Tags.div> {
       tagName: Tags.div,
       classList: [styles.results],
     });
-    this.on(CustomEvents.getWinners, <T>(args: T) => {
-      this.addWinners(ResultsContent.onGetWinners(args));
+    this.on(CustomEvents.GetWinners, <T>(args: T) => {
+      this.addWinners(this.onGetWinners(args));
     });
   }
 
-  private static onGetWinners = <T>(args: T): Array<Winner> => {
-    if (!isCountedDataResponse(args) || !isWinners(args.data)) {
+  private onGetWinners = <T>(args: T): Array<Winner> => {
+    if (typeof args !== 'object' || args === null) {
       throw new Error(errorMessage);
     }
+
+    if (!('data' in args) || !('count' in args)) {
+      throw new Error(errorMessage);
+    }
+
+    if (!isWinners(args.data)) {
+      throw new Error(errorMessage);
+    }
+
+    this.store.winnersCount = +`${args.count}`;
     return args.data;
   };
 

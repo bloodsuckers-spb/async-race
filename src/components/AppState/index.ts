@@ -9,7 +9,7 @@ import { totalCount } from '../../constants/API';
 import CustomEvents from '../../enums/CustomEvents';
 
 import { AbstractStore, Emit, EmitCallback, Update } from '../../models';
-import { isCars, isResponse, isWinners } from '../../models/predicates';
+import { isCars, isResponse } from '../../models/predicates';
 
 interface AppState extends AbstractStore {}
 
@@ -37,10 +37,7 @@ class AppState extends EventEmitter {
       this.emit(CustomEvents.updateCarsAmout, {});
     });
 
-    this.on(CustomEvents.getWinners, <T>(args: T): void => {
-      this.onUpdateWinners(args);
-      AppState.updateHeading(this.emit);
-    });
+    this.on(CustomEvents.GetWinners, (): void => AppState.updateHeading(this.emit));
 
     this.on(CustomEvents.deleteWinner, () => this.decrementWinners(() => AppState.updateHeading(this.emit)));
 
@@ -68,13 +65,6 @@ class AppState extends EventEmitter {
 
   private static loadCars = (emit: Emit): void => {
     emit(CustomEvents.carsLoading, {});
-  };
-
-  private onUpdateWinners = <T>(args: T): void => {
-    if (!isResponse(args) || !isWinners(args.data)) {
-      throw new Error(errorMessage);
-    }
-    this.store.winnersCount = +args.headers[totalCount];
   };
 
   private onUpdateCars = <T>(args: T): void => {
