@@ -4,7 +4,6 @@ import EventEmitter from '../../base/EventEmitter';
 import Store from '../../decorators/Store';
 
 import { errorMessage } from '../../constants';
-import { totalCount } from '../../constants/API';
 
 import CustomEvents from '../../enums/CustomEvents';
 
@@ -71,7 +70,7 @@ class AppState extends EventEmitter {
     if (!isResponse(args) || !isCars(args.data)) {
       throw new Error(errorMessage);
     }
-    this.store.carsCount = +args.headers[totalCount];
+    this.store.carsCount = +args.headers['x-total-count'];
   };
 
   private decrementCars = (update: Update): void => {

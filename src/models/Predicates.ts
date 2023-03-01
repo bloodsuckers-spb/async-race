@@ -1,7 +1,6 @@
 import { AbstractResponse, Car, CountedDataResponse, Winner } from './API';
 
 import { errorMessage } from '../constants';
-import { totalCount } from '../constants/API';
 
 export const isResponse = <T>(arg: T | AbstractResponse): arg is AbstractResponse => {
   if (typeof arg !== 'object' || arg === null) {
@@ -24,7 +23,7 @@ export const isCountedDataResponse = <T>(arg: T | CountedDataResponse): arg is C
     return false;
   }
 
-  if (typeof arg.headers !== 'object' || !(totalCount in arg.headers)) {
+  if (typeof arg.headers !== 'object' || !('x-total-count' in arg.headers)) {
     return false;
   }
 
