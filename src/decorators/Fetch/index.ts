@@ -12,6 +12,8 @@ export type FetchProps = {
   emit: <T>(eventName: CustomEvents, params: T) => void;
 };
 
+// baseLink = 'https://async-race-api-d3de.onrender.com',
+
 const AsyncFetch = () => {
   return <T extends { new (...args: any[]): {} }>(Constructor: T): T => {
     const totalCount = 'X-Total-Count';
