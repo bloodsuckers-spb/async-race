@@ -8,6 +8,8 @@ import { AsyncFetch, Store } from '../../decorators';
 import { AbstractFetch } from '../../decorators/Fetch';
 import RaceItemHeader from '../RaceItemHeader';
 
+import { Animation, DriverStatus, StartEngine } from './types';
+
 import { errorMessage } from '../../constants';
 
 import { CustomEvents, Tags } from '../../enums';
@@ -17,11 +19,6 @@ import { isCar, isResponse } from '../../models/predicates';
 
 import styles from './index.css';
 
-type Animation = {
-  id: number;
-  time: number;
-};
-
 interface RaceListItem extends AbstractStore, AbstractFetch {
   header: RaceItemHeader;
   track: Track;
@@ -30,15 +27,6 @@ interface RaceListItem extends AbstractStore, AbstractFetch {
   animationId: number;
   finalPostion: number;
 }
-
-type StartEngine = {
-  velocity: number;
-  distance: number;
-};
-
-type DriverStatus = {
-  success: boolean;
-};
 
 @Store()
 @AsyncFetch()
