@@ -23,6 +23,7 @@ type FetchProps = {
 export interface AbstractFetch {
   fetch: (props: FetchProps) => void;
   fetchCountedData: (props: FetchProps) => void;
+  awaitedFetch: <R>(props: Pick<FetchProps, 'method' | 'queryString'>) => Promise<R>;
 }
 
 const AsyncFetch = () => {
@@ -50,6 +51,14 @@ const AsyncFetch = () => {
           })
           .then((response) => emit(CustomEvents[eventName], response))
           .catch(console.error);
+      }
+
+      protected async awaitedFetch<R>({
+        method,
+        queryString,
+      }: Pick<FetchProps, 'method' | 'queryString'>): Promise<R> {
+        const response = await asyncFetch({ method, queryString });
+        return response.json();
       }
     };
   };

@@ -14,9 +14,8 @@ type Props = {
   parent: Component<keyof HTMLElementTagNameMap>;
   carData: Car;
   handlers: {
-    startAnimation: () => void;
-    stopAnimation: () => void
-    moveToOriginPosition: () => void;
+    startDriving: () => void;
+    stopDriving: () => void
   };
 };
 

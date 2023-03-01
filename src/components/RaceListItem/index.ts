@@ -31,12 +31,27 @@ interface RaceListItem extends AbstractStore, AbstractFetch {
   finalPostion: number;
 }
 
+type StartEngine = {
+  velocity: number;
+  distance: number;
+};
+
+type DriverStatus = {
+  success: boolean;
+};
+
 @Store()
 @AsyncFetch()
 class RaceListItem extends Component<Tags.li> {
-  protected currentPosition = 0;
-  protected time = 0;
+  private static readonly ENGINE_URL = 'http://127.0.0.1:3000/engine';
+  private static readonly ENGINE_STATE = {
+    Drive: 'drive',
+    Started: 'started',
+    Stopped: 'stopped',
+  };
   protected readonly id: number;
+  protected currentPosition = 0;
+  protected time = 10;
   constructor(parent: Component<keyof HTMLElementTagNameMap>, carData: Car) {
     super({
       tagName: Tags.li,
@@ -44,17 +59,16 @@ class RaceListItem extends Component<Tags.li> {
       parent: parent.node,
     });
 
+    const { name, color, id } = carData;
+
     this.header = new RaceItemHeader({
       parent: this,
       carData,
       handlers: {
-        startAnimation: this.startAnimation,
-        stopAnimation: this.stopAnimation,
-        moveToOriginPosition: this.moveToOriginPosition,
+        startDriving: this.startDriving,
+        stopDriving: this.stopDriving,
       },
     });
-
-    const { name, color, id } = carData;
 
     this.track = new Track({
       parent: this,
@@ -113,17 +127,58 @@ class RaceListItem extends Component<Tags.li> {
     }
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  public startEngine = (): void => {
-    // this.fetch({ method: 'PATCH', queryString: `http://127.0.0.1:3000/engine?id=${this.id}&status=started` });
+  private startDriving = (): void => {
+    this.startEngine().then((response) => {
+      this.setDuration(response);
+      this.startAnimation();
+      this.getDriveStatus().then(({ success }) => {
+        if (!success) {
+          this.stopAnimation();
+        }
+      });
+    });
   };
 
-  private startAnimation = (): Promise<Animation> => {
-    this.startEngine()
+  private stopDriving = (): void => {
+    this.stopEngine().then(() => {
+      this.stopAnimation();
+      this.moveToOriginPosition();
+    });
+  };
+
+  private getDriveStatus = async (): Promise<DriverStatus> => {
+    const { ENGINE_URL, ENGINE_STATE } = RaceListItem;
+    const response = await fetch(`${ENGINE_URL}?id=${this.id}&status=${ENGINE_STATE.Drive}`, {
+      method: 'PATCH',
+    });
+    return {
+      success: response.status === 200,
+    };
+  };
+
+  private startEngine = (): Promise<StartEngine> => {
+    const { ENGINE_URL, ENGINE_STATE } = RaceListItem;
+    return this.awaitedFetch<StartEngine>({
+      method: 'PATCH',
+      queryString: `${ENGINE_URL}?id=${this.id}&status=${ENGINE_STATE.Started}`,
+    });
+  };
+
+  private stopEngine = (): Promise<void> => {
+    const { ENGINE_URL, ENGINE_STATE } = RaceListItem;
+    return this.awaitedFetch({
+      method: 'PATCH',
+      queryString: `${ENGINE_URL}?id=${this.id}&status=${ENGINE_STATE.Stopped}`,
+    });
+  };
+
+  private setDuration = ({ distance, velocity }: StartEngine): void => {
+    this.time = Math.round(distance / velocity);
+  };
+
+  private startAnimation = async (): Promise<Animation> => {
     return new Promise((response) => {
       const finalPostion = this.track.finish.node.offsetLeft;
-      // const framesCount = (this.time / 1000) * 60;
-      // const dx = (finalPostion - this.track.carSvg.node.offsetLeft) / framesCount;
       const dx = 5;
       const animate = (): void => {
         this.currentPosition += dx;
@@ -131,8 +186,7 @@ class RaceListItem extends Component<Tags.li> {
         if (this.currentPosition < finalPostion) {
           this.animationId = requestAnimationFrame(animate);
         } else {
-          const result = { id: this.id, time: this.time };
-          response(result);
+          response({ id: this.id, time: this.time });
         }
       };
       animate();

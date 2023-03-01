@@ -32,18 +32,13 @@ type Props = {
   parent: Component<keyof HTMLElementTagNameMap>;
   carData: Car;
   handlers: {
-    startAnimation: () => void;
-    stopAnimation: () => void;
-    moveToOriginPosition: () => void;
+    startDriving: () => void;
+    stopDriving: () => void;
   };
 };
 
 class ControlPanel extends Component<Tags.div> {
-  constructor({
-    parent,
-    carData: { name, color, id },
-    handlers: { startAnimation, stopAnimation, moveToOriginPosition },
-  }: Props) {
+  constructor({ parent, carData: { name, color, id }, handlers: { startDriving, stopDriving } }: Props) {
     super({
       tagName: Tags.div,
       classList: [styles.panel],
@@ -86,13 +81,12 @@ class ControlPanel extends Component<Tags.div> {
 
     this.btns.start.node.onclick = (): void => {
       ControlPanel.changeBtnsState(this.btns);
-      startAnimation();
+      startDriving();
     };
 
     this.btns.reset.node.onclick = (): void => {
       ControlPanel.changeBtnsState(this.btns);
-      stopAnimation();
-      moveToOriginPosition();
+      stopDriving();
     };
 
     this.btns.remove.node.onclick = this.onDeleteCar;
