@@ -24,6 +24,10 @@ interface App extends AbstractLoader, AbstractFetch, AbstractStore {
 @AsyncFetch()
 class App extends Component<Tags.div> {
   private static count = 0;
+  private static limit = {
+    carsLimit: 5,
+    winnersLimit: 10,
+  };
   constructor({ root, fragment, router, appState }: Props) {
     super({
       tagName: Tags.div,
@@ -58,7 +62,7 @@ class App extends Component<Tags.div> {
     load({
       method: RequestMethods.get,
       cb: this.emit,
-      queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=5`,
+      queryString: `${API.garageLink}?_page=${garageCurrentPage}&_limit=${App.limit.carsLimit}`,
       eventName: CustomEvents.updateCars,
     });
   };
@@ -67,7 +71,7 @@ class App extends Component<Tags.div> {
     const { winnersCurrentPage } = this.store;
     this.fetchCountedData({
       method: 'GET',
-      queryString: `${API.winnersLink}?_page=${winnersCurrentPage}&_limit=10`,
+      queryString: `${API.winnersLink}?_page=${winnersCurrentPage}&_limit=${App.limit.winnersLimit}}`,
       eventName: 'GetWinners',
       emit,
     });
