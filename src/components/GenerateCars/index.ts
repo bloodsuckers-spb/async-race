@@ -14,7 +14,7 @@ import { Emit, HashType } from '../../models';
 import { NewCar } from '../../models/API';
 
 class GenerateCars extends Component<Tags.button> {
-  private static letters = '0123456789ABCDEF';
+  private static readonly letters = '0123456789ABCDEF';
   constructor() {
     super({
       tagName: Tags.button,
