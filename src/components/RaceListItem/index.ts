@@ -5,14 +5,13 @@ import Component from '../../base/Component';
 import Track from '../../ui/Track';
 
 import { AsyncFetch, Store } from '../../decorators';
-import { AbstractFetch } from '../../decorators/Fetch';
 import RaceItemHeader from '../RaceItemHeader';
 
 import { Animation, DriverStatus, StartEngine } from './types';
 
 import { CustomEvents, Tags } from '../../enums';
 
-import { AbstractStore, Car, HashType } from '../../models';
+import { AbstractFetch, AbstractStore, Car, HashType } from '../../models';
 import { isCar, isResponse } from '../../models/predicates';
 
 import styles from './index.css';

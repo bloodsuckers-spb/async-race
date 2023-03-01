@@ -1,5 +1,6 @@
 import Component from '../base/Component';
 
+import { FetchProps } from '../decorators/Fetch';
 import { Store } from '../store/types';
 
 import {
@@ -87,6 +88,16 @@ export type PaginationBtns = {
 
 export interface AbstractStore {
   store: Store;
+}
+
+export interface AbstractFetch {
+  BASE_URL: string;
+  GARAGE_URL: string;
+  WINNERS_URL: string;
+  ENGINE_URL: string;
+  fetch: (props: FetchProps) => void;
+  fetchCountedData: (props: FetchProps) => void;
+  awaitedFetch: <R>(props: Pick<FetchProps, 'method' | 'queryString'>) => Promise<R>;
 }
 
 export {

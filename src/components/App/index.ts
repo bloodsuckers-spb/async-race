@@ -6,13 +6,12 @@ import { AppState } from 'components';
 import Router from 'components/AppRouter';
 
 import { AsyncFetch, Loader, Store } from '../../decorators';
-import { AbstractFetch } from '../../decorators/Fetch';
 
 import { Props } from './types';
 
 import { CustomEvents, RequestMethods, Tags } from '../../enums';
 
-import { AbstractLoader, AbstractStore, CallBack, Emit, Load } from '../../models';
+import { AbstractFetch, AbstractLoader, AbstractStore, CallBack, Emit, Load } from '../../models';
 
 interface App extends AbstractLoader, AbstractFetch, AbstractStore {
   router: Router;

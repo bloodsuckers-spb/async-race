@@ -16,3 +16,10 @@ export const appForms: AppForms = {
   create: 'create',
   update: 'update',
 } as const;
+
+export const fetchMethods = {
+  GET: 'GET',
+  POST: 'POST',
+  PATCH: 'PATCH',
+  DELETE: 'DELETE',
+} as const;

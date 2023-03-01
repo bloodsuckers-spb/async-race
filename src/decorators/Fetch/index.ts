@@ -1,35 +1,20 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable class-methods-use-this */
-import { CustomEvents } from '../../enums';
+import { fetchMethods } from '../../constants';
 
-const fetchMethods = {
-  GET: 'GET',
-  POST: 'POST',
-  PATCH: 'PATCH',
-  DELETE: 'DELETE',
-} as const;
+import { CustomEvents } from '../../enums';
 
 const customEvents = {
   GetWinners: 'GetWinners',
 } as const;
 
-type FetchProps = {
+export type FetchProps = {
   method: keyof typeof fetchMethods;
   eventName: keyof typeof customEvents;
   queryString: string;
   options?: Record<string, string>;
   emit: <T>(eventName: CustomEvents, params: T) => void;
 };
-
-export interface AbstractFetch {
-  BASE_URL: string;
-  GARAGE_URL: string;
-  WINNERS_URL: string;
-  ENGINE_URL: string;
-  fetch: (props: FetchProps) => void;
-  fetchCountedData: (props: FetchProps) => void;
-  awaitedFetch: <R>(props: Pick<FetchProps, 'method' | 'queryString'>) => Promise<R>;
-}
 
 const AsyncFetch = () => {
   return <T extends { new (...args: any[]): {} }>(Constructor: T): T => {

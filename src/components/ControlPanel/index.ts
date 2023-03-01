@@ -11,12 +11,10 @@ import { ControlPanelBtns, Props } from './types';
 
 import { Btns, CustomEvents, Tags } from '../../enums';
 
-import { AbstractLoader } from '../../models';
+import { AbstractFetch, AbstractLoader } from '../../models';
 import { isCar } from '../../models/predicates';
 
 import styles from './index.css';
-
-import { AbstractFetch } from 'decorators/Fetch';
 
 interface ControlPanel extends AbstractLoader, AbstractFetch {
   btns: ControlPanelBtns;
