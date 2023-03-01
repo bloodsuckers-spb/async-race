@@ -5,19 +5,14 @@ import Component from '../../base/Component';
 import Store from '../../decorators/Store';
 import RaceListItem from '../RaceListItem';
 
-import { errorMessage } from '../../constants';
+import { Cache, Render } from './types';
 
 import { CustomEvents, Tags } from '../../enums';
 
-import { Car } from '../../models/API';
 import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
-import { AbstractStore } from 'models';
+import { AbstractStore, Car } from 'models';
 
 import styles from './index.css';
-
-type Render = (car: Car) => RaceListItem;
-
-type Cache = (car: Car) => void;
 
 interface RaceList extends AbstractStore {}
 
@@ -35,7 +30,7 @@ class RaceList extends Component<Tags.ul> {
 
   private onUpdate = <T>(args: T, addToCache: Cache, render: Render): void => {
     if (!isCountedDataResponse(args) || !isCars(args.data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
     const { drawedCars } = this.store;
 
@@ -66,7 +61,7 @@ class RaceList extends Component<Tags.ul> {
 
   private onCreateCar = <T>(arg: T, addToCache: Cache, render: Render): void => {
     if (!isResponse(arg) || !isCar(arg.data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
     const { carsCount } = this.store;
     if (carsCount >= 5) {
