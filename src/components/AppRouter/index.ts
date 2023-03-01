@@ -5,8 +5,7 @@ import EventEmitter from '../../base/EventEmitter';
 
 import { HandleLocation, Navigate, RenderView, RouterProps } from './types';
 
-import CustomEvents from '../../enums/CustomEvents';
-import Tags from '../../enums/Tags';
+import { CustomEvents, Tags } from '../../enums';
 
 import { AppView, Emit } from '../../models';
 

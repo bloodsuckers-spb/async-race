@@ -5,18 +5,13 @@ import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
-import { ControlPanelBtns } from './types';
+import { ControlPanelBtns, Props } from './types';
 
 import { errorMessage } from '../../constants';
 
-import API from '../../enums/API';
-import Btns from '../../enums/Btns';
-import CustomEvents from '../../enums/CustomEvents';
-import RequestMethods from '../../enums/RequestMethods';
-import Tags from '../../enums/Tags';
+import { API, Btns, CustomEvents, RequestMethods, Tags } from '../../enums';
 
 import { AbstractLoader } from '../../models';
-import { Car } from '../../models/API';
 import { isCar } from '../../models/predicates';
 
 import styles from './index.css';
@@ -27,15 +22,6 @@ interface ControlPanel extends AbstractLoader {
   color: string;
   id: number;
 }
-
-type Props = {
-  parent: Component<keyof HTMLElementTagNameMap>;
-  carData: Car;
-  handlers: {
-    startDriving: () => void;
-    stopDriving: () => void;
-  };
-};
 
 class ControlPanel extends Component<Tags.div> {
   constructor({ parent, carData: { name, color, id }, handlers: { startDriving, stopDriving } }: Props) {
