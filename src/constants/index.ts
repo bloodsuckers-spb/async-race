@@ -23,3 +23,7 @@ export const fetchMethods = {
   PATCH: 'PATCH',
   DELETE: 'DELETE',
 } as const;
+
+export const customEvents = {
+  GetWinners: 'GetWinners',
+} as const;

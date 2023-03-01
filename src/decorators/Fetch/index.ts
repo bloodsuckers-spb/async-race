@@ -1,12 +1,8 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable class-methods-use-this */
-import { fetchMethods } from '../../constants';
+import { customEvents, fetchMethods } from '../../constants';
 
 import { CustomEvents } from '../../enums';
-
-const customEvents = {
-  GetWinners: 'GetWinners',
-} as const;
 
 export type FetchProps = {
   method: keyof typeof fetchMethods;
