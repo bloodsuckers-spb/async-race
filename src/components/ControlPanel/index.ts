@@ -12,7 +12,7 @@ import { ControlPanelBtns, Props } from './types';
 import { Btns, CustomEvents, Tags } from '../../enums';
 
 import { AbstractFetch, AbstractLoader } from '../../models';
-import { isCar } from '../../models/preicates';
+import { isCar } from '../../models/predicates';
 
 import styles from './index.css';
 

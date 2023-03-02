@@ -12,7 +12,7 @@ import { Animation, DriverStatus, StartEngine } from './types';
 import { CustomEvents, Tags } from '../../enums';
 
 import { AbstractFetch, AbstractStore, Car, HashType } from '../../models';
-import { isCar, isResponse } from '../../models/preicates';
+import { isCar, isResponse } from '../../models/predicates';
 
 import styles from './index.css';
 

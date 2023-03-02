@@ -9,7 +9,7 @@ import { AsyncFetch, Loader } from '../../../../decorators';
 import { CustomEvents, RequestMethods, Tags } from '../../../../enums';
 
 import { AbstractFetch, FormProps } from '../../../../models';
-import { isCar } from '../../../../models/preicates';
+import { isCar } from '../../../../models/predicates';
 
 interface CarFormUpdate extends FormProps, AbstractFetch {
   load: (...args: Array<unknown>) => void;

@@ -9,7 +9,7 @@ import { Cache, Render } from './types';
 
 import { CustomEvents, Tags } from '../../enums';
 
-import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/preicates';
+import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
 import { AbstractStore, Car } from 'models';
 
 import styles from './index.css';

@@ -8,7 +8,7 @@ import { errorMessage } from '../../constants';
 import CustomEvents from '../../enums/CustomEvents';
 
 import { AbstractStore, Emit, EmitCallback, Update } from '../../models';
-import { isCars, isResponse } from '../../models/preicates';
+import { isCars, isResponse } from '../../models/predicates';
 
 interface AppState extends AbstractStore {}
 
