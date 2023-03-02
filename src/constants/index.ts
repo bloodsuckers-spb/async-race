@@ -2,8 +2,6 @@ import { AppForms, PaginationBtns } from 'models';
 
 export const errorMessage = 'Type of props is not valid';
 
-export const xLink = 'http://www.w3.org/1999/xlink';
-
 export const resultsHeaderProps = ['№', 'Car', 'Name'] as const;
 
 export const paginationBtn: PaginationBtns = {
