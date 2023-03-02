@@ -65,7 +65,7 @@ class RaceListItem extends Component<Tags.li> {
 
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
-    this.store.racers.add(this);
+    this.store.racers.set(this.id, this);
   }
 
   private onUpdate = <T>(arg: T): void => {
@@ -107,7 +107,9 @@ class RaceListItem extends Component<Tags.li> {
     if (id === this.id) {
       this.off(CustomEvents.updateCar, this.onUpdate);
       this.off(CustomEvents.removeCar, this.onRemove);
+      // TODO
       drawedCars.delete(`${this.id}`);
+      this.store.racers.delete(this.id);
       this.destroy();
     }
   };
@@ -167,7 +169,6 @@ class RaceListItem extends Component<Tags.li> {
   public startAnimation = async (): Promise<Animation> => {
     const { carSvg, finish } = this.track;
     const startedPosition = carSvg.node.getBoundingClientRect().x;
-    // finish.node.getBoundingClientRect().x;
     const finalPostion = finish.node.getBoundingClientRect().x;
     const framesCount = (this.time / 1000) * 60;
     const dx = (finalPostion - startedPosition) / framesCount;

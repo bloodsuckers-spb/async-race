@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-restricted-syntax */
 import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
 import { Store } from '../../decorators';
+import RaceListItem from '../RaceListItem';
 
 import { Btns, Tags } from '../../enums';
 
@@ -38,7 +41,9 @@ class RacePanel extends Component<Tags.div> {
   }
 
   private startRace = async (): Promise<void> => {
-    const racers = [...this.store.racers];
+    const racers: Array<RaceListItem> = [];
+    this.store.racers.forEach((racer) => racers.push(racer));
+    console.log(racers.length);
     const promises = await Promise.all(racers.map((racer) => racer.startEngine()));
     const started = racers.map((racer, i) => {
       racer.setDuration(promises[i]);
@@ -56,7 +61,8 @@ class RacePanel extends Component<Tags.div> {
   };
 
   private stopRace = (): void => {
-    const racers = [...this.store.racers];
+    const racers: Array<RaceListItem> = [];
+    this.store.racers.forEach((racer) => racers.push(racer));
     const stopped = racers.map((racer) => racer.stopEngine());
     Promise.allSettled(stopped).then(() =>
       racers.forEach((racer) => {

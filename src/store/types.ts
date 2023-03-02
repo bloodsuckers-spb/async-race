@@ -3,7 +3,7 @@ import Racer from 'components/RaceListItem';
 import { Car, Winner } from 'models/API';
 
 export type Store = {
-  racers: Set<Racer>;
+  racers: Map<Racer['id'], Racer>;
   drawedCars: Map<`${Car['id']}`, Car>;
   drawedWinners: Map<`${Winner['id']}`, Winner>;
   carsAmount: number;
