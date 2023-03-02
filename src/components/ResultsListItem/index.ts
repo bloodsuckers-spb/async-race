@@ -1,27 +1,22 @@
+/* eslint-disable simple-import-sort/imports */
+/* eslint-disable no-multiple-empty-lines */
 /* eslint-disable import/order */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Component from '../../base/Component';
 
 import CarCell from '../../ui/Winners/components/CarCell';
 import TableCell from '../../ui/Winners/components/TableCell';
 
-import { errorMessage } from '../../constants';
+import Loader from '../../decorators/Loader';
 
-import API from '../../enums/API';
-import CustomEvents from '../../enums/CustomEvents';
-import Tags from '../../enums/Tags';
-import RequestMethods from 'enums/RequestMethods';
+import { API, CustomEvents, Tags, RequestMethods } from '../../enums';
 
 import { AbstractLoader } from '../../models';
-import { isCar, isResponse } from '../../models/predicates';
 
-import Loader from '../../decorators/Loader';
+import { isCar, isResponse } from '../../models/predicates';
 
 import { Props } from './types';
 
 import styles from './index.css';
-
-const { winner } = styles;
 
 interface ResultsItem extends AbstractLoader, Props {
   numberCell: TableCell;
@@ -36,7 +31,7 @@ class ResultsItem extends Component<Tags.div> {
   constructor(parent: Component<keyof HTMLElementTagNameMap>, winnerData: Props) {
     super({
       tagName: Tags.div,
-      classList: [winner],
+      classList: [styles.winner],
       parent: parent.node,
     });
 
@@ -62,7 +57,7 @@ class ResultsItem extends Component<Tags.div> {
 
   private onUpdate = <T>(args: T): void => {
     if (!isResponse(args) || !isCar(args.data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     const { color, name, id } = args.data;
@@ -86,7 +81,7 @@ class ResultsItem extends Component<Tags.div> {
 
   private onRemove = <T>(id: T): void | false => {
     if (typeof id !== 'number') {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     if (id !== this.id) {
