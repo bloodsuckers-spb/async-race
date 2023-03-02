@@ -1,3 +1,4 @@
+/* eslint-disable simple-import-sort/imports */
 import Component from '../base/Component';
 
 import { CustomEvents, Routes, Tags } from '../enums';

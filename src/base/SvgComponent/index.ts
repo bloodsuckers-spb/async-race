@@ -1,12 +1,10 @@
-import { SVGNamespaceURI } from '../../constants';
-
 import { SvgComponentProps } from '../../models';
 
 class SvgComponent<T extends keyof SVGElementTagNameMap> {
+  protected static readonly namespaceURI = 'http://www.w3.org/2000/svg';
   public node: SVGElementTagNameMap[T];
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  constructor({ tagName, classList = [], nodeProps = {}, parent }: SvgComponentProps<T>) {
-    this.node = document.createElementNS(SVGNamespaceURI, tagName);
+  constructor({ tagName, nodeProps = {}, parent }: SvgComponentProps<T>) {
+    this.node = document.createElementNS(SvgComponent.namespaceURI, tagName);
     this.node.classList.add('icon');
     Object.assign(this.node, nodeProps);
     parent?.append(this.node);
