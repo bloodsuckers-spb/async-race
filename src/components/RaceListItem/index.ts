@@ -65,7 +65,7 @@ class RaceListItem extends Component<Tags.li> {
 
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
-    this.store.racers.set(this.id, this);
+    this.store.drawedCars.set(this.id, this);
   }
 
   private onUpdate = <T>(arg: T): void => {
@@ -107,9 +107,7 @@ class RaceListItem extends Component<Tags.li> {
     if (id === this.id) {
       this.off(CustomEvents.updateCar, this.onUpdate);
       this.off(CustomEvents.removeCar, this.onRemove);
-      // TODO
-      drawedCars.delete(`${this.id}`);
-      this.store.racers.delete(this.id);
+      drawedCars.delete(this.id);
       this.destroy();
     }
   };

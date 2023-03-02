@@ -1,10 +1,10 @@
-import Racer from 'components/RaceListItem';
+/* eslint-disable import/order */
+import RaceListItem from '../components/RaceListItem';
 
-import { Car, Winner } from 'models/API';
+import { Winner } from 'models/API';
 
 export type Store = {
-  racers: Map<Racer['id'], Racer>;
-  drawedCars: Map<`${Car['id']}`, Car>;
+  drawedCars: Map<RaceListItem['id'], RaceListItem>;
   drawedWinners: Map<`${Winner['id']}`, Winner>;
   carsAmount: number;
   winnersAmount: number;

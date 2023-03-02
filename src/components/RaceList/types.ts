@@ -10,5 +10,3 @@ export type Props = {
 };
 
 export type Render = (car: Car) => RaceListItem;
-
-export type Cache = (car: Car) => void;

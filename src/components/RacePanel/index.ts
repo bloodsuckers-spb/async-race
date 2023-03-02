@@ -42,7 +42,7 @@ class RacePanel extends Component<Tags.div> {
 
   private startRace = async (): Promise<void> => {
     const racers: Array<RaceListItem> = [];
-    this.store.racers.forEach((racer) => racers.push(racer));
+    this.store.drawedCars.forEach((racer) => racers.push(racer));
     const promises = await Promise.all(racers.map((racer) => racer.startEngine()));
     const started = racers.map((racer, i) => {
       racer.setDuration(promises[i]);
@@ -61,7 +61,7 @@ class RacePanel extends Component<Tags.div> {
 
   private stopRace = (): void => {
     const racers: Array<RaceListItem> = [];
-    this.store.racers.forEach((racer) => racers.push(racer));
+    this.store.drawedCars.forEach((racer) => racers.push(racer));
     const stopped = racers.map((racer) => racer.stopEngine());
     Promise.allSettled(stopped).then(() =>
       racers.forEach((racer) => {

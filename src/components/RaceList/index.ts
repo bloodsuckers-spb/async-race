@@ -5,7 +5,7 @@ import Component from '../../base/Component';
 import Store from '../../decorators/Store';
 import RaceListItem from '../RaceListItem';
 
-import { Cache, Render } from './types';
+import { Render } from './types';
 
 import { CustomEvents, Tags } from '../../enums';
 
@@ -25,19 +25,19 @@ class RaceList extends Component<Tags.ul> {
       classList: [styles.list],
     });
 
-    this.on(CustomEvents.updateCars, <T>(args: T): void => this.onUpdate(args, this.addToCache, this.render));
-    this.on(CustomEvents.addCar, <T>(args: T): void => this.onCreateCar(args, this.addToCache, this.render));
+    this.on(CustomEvents.updateCars, <T>(args: T): void => this.onUpdate(args, this.render));
+    this.on(CustomEvents.addCar, <T>(args: T): void => this.onCreateCar(args, this.render));
   }
 
-  private onUpdate = <T>(args: T, addToCache: Cache, render: Render): void => {
+  private onUpdate = <T>(args: T, render: Render): void => {
+    const { drawedCars } = this.store;
+
     if (!isCountedDataResponse(args) || !isCars(args.data)) {
       throw new Error('Type of props is not valid');
     }
-    const { drawedCars } = this.store;
 
     if (!drawedCars.size) {
       args.data.forEach((car) => {
-        addToCache(car);
         render(car);
       });
       return;
@@ -47,33 +47,26 @@ class RaceList extends Component<Tags.ul> {
       drawedCars.clear();
       this.node.textContent = '';
       args.data.forEach((car) => {
-        addToCache(car);
         render(car);
       });
     } else {
       args.data.forEach((car) => {
-        if (!drawedCars.has(`${car.id}`)) {
-          addToCache(car);
+        if (!drawedCars.has(car.id)) {
           render(car);
         }
       });
     }
   };
 
-  private onCreateCar = <T>(arg: T, addToCache: Cache, render: Render): void => {
+  private onCreateCar = <T>(arg: T, render: Render): void => {
+    const { carsCount } = this.store;
     if (!isResponse(arg) || !isCar(arg.data)) {
       throw new Error('Type of props is not valid');
     }
-    const { carsCount } = this.store;
-    if (carsCount >= 5) {
+    if (carsCount >= RaceList.listSize) {
       return;
     }
-    addToCache(arg.data);
     render(arg.data);
-  };
-
-  private addToCache = (car: Car): void => {
-    this.store.drawedCars.set(`${car.id}`, car);
   };
 
   private render = (car: Car): RaceListItem => new RaceListItem(this, car);

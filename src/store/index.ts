@@ -1,7 +1,6 @@
 import { Store } from './types';
 
 const AppStore: Store = {
-  racers: new Map(),
   drawedCars: new Map(),
   drawedWinners: new Map(),
   carsAmount: 0,
