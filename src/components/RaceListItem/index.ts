@@ -167,6 +167,7 @@ class RaceListItem extends Component<Tags.li> {
   public startAnimation = async (): Promise<Animation> => {
     const { carSvg, finish } = this.track;
     const startedPosition = carSvg.node.getBoundingClientRect().x;
+    // finish.node.getBoundingClientRect().x;
     const finalPostion = finish.node.getBoundingClientRect().x;
     const framesCount = (this.time / 1000) * 60;
     const dx = (finalPostion - startedPosition) / framesCount;
