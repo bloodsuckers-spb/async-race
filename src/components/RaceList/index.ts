@@ -18,6 +18,7 @@ interface RaceList extends AbstractStore {}
 
 @Store()
 class RaceList extends Component<Tags.ul> {
+  protected static readonly listSize = 5;
   constructor() {
     super({
       tagName: Tags.ul,
@@ -42,7 +43,7 @@ class RaceList extends Component<Tags.ul> {
       return;
     }
 
-    if (drawedCars.size === 5) {
+    if (drawedCars.size === RaceList.listSize) {
       drawedCars.clear();
       this.node.textContent = '';
       args.data.forEach((car) => {

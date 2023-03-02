@@ -43,7 +43,6 @@ class RacePanel extends Component<Tags.div> {
   private startRace = async (): Promise<void> => {
     const racers: Array<RaceListItem> = [];
     this.store.racers.forEach((racer) => racers.push(racer));
-    console.log(racers.length);
     const promises = await Promise.all(racers.map((racer) => racer.startEngine()));
     const started = racers.map((racer, i) => {
       racer.setDuration(promises[i]);
