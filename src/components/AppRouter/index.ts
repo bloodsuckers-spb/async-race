@@ -15,6 +15,7 @@ import { HandleLocation, Navigate, RenderView, RouterProps } from './types';
 interface AppRouter extends RouterProps {}
 
 class AppRouter extends EventEmitter {
+  private static readonly errorPath = '/404';
   private static count = 0;
   private initialView: AppView = {};
   protected currentView: AppView = {};
@@ -68,7 +69,7 @@ class AppRouter extends EventEmitter {
     const component = this.views.find((view) => pathname in view);
     emit(CustomEvents.changeView, pathname);
     this.currentView = component ?? this.errorView;
-    return component ? component[pathname] : this.errorView['/404']!;
+    return component ? component[pathname] : this.errorView[AppRouter.errorPath]!;
   };
 
   private renderView = (view: Component<Tags.div>): void => {
