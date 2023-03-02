@@ -17,7 +17,7 @@ import Tags from '../../enums/Tags';
 import RequestMethods from 'enums/RequestMethods';
 
 import { AbstractLoader } from '../../models';
-import { isCar, isResponse } from '../../models/predicates';
+import { isCar, isResponse } from '../../models/preicates';
 
 import styles from './index.css';
 

@@ -14,7 +14,7 @@ import CustomEvents from '../../enums/CustomEvents';
 import Tags from '../../enums/Tags';
 
 import { Winner } from '../../models/API';
-import { isWinners } from '../../models/predicates';
+import { isWinners } from '../../models/preicates';
 import { AbstractStore } from 'models';
 
 import styles from './index.css';
