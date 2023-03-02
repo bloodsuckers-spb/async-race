@@ -172,7 +172,7 @@ class RaceListItem extends Component<Tags.li> {
     return new Promise((response) => {
       const animate = (): void => {
         this.currentPosition += dx;
-        this.track.carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
+        carSvg.node.style.transform = `translateX(${this.currentPosition}px)`;
         if (this.currentPosition < finalPostion) {
           this.animationId = requestAnimationFrame(animate);
         } else {
