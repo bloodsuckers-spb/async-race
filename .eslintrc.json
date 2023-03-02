@@ -51,22 +51,22 @@
             "groups": [
               // Libs imports
               ["axios"],
-              // Base imports
-              ["base"],
+              // Emmiter
+              ["Emmiter"],
+              // Base Component
+              ["Component"],
               // Components imports
               ["components"],
               // UI Components imports
               ["ui"],
-              // Parent imports. Put `..` last.
-              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-              // Other relative imports. Put same-folder imports and `.` last.
-              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
               // Constants imports
               ["constants"],
               //Enums imports
               ["enum"],
               // Types imports
               ["models"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
               // CSS imports
               [".css$"]
             ]

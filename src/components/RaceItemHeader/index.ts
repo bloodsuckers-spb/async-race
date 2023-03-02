@@ -2,11 +2,11 @@ import Component from '../../base/Component';
 
 import CarHeading from '../../ui/CarHeading';
 
-import ControlPanel from '../ControlPanel';
-
 import Tags from '../../enums/Tags';
 
 import { Car } from '../../models/API';
+
+import ControlPanel from '../ControlPanel';
 
 import styles from './index.css';
 

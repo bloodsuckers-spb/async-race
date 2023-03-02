@@ -1,11 +1,11 @@
 /* eslint-disable import/order */
 import Component from '../../base/Component';
 
-import Store from '../../decorators/Store';
-
 import { CustomEvents, HeadingKeys, Routes, Tags, Views } from '../../enums';
 
 import { AbstractStore } from '../../models';
+
+import Store from '../../decorators/Store';
 
 interface AppHeading extends AbstractStore {
   viewName: Views | null;

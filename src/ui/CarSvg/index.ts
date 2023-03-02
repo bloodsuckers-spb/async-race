@@ -2,11 +2,11 @@
 import Component from '../../base/Component';
 import SvgComponent from '../../base/SvgComponent';
 
-import SvgUse from '../SvgUse';
-
 import SVGTags from '../../enums/SVGTags';
 
 import { HashType } from '../../models';
+
+import SvgUse from '../SvgUse';
 
 type Props = {
   parent: Component<keyof HTMLElementTagNameMap>;

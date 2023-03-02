@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import { Listener } from './types';
-
 import CustomEvents from '../../enums/CustomEvents';
+
+import { Listener } from './types';
 
 abstract class EventEmitter {
   protected static listeners = new Map<CustomEvents, Set<Listener>>();

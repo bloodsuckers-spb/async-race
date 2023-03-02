@@ -1,8 +1,8 @@
 import Component from '../../../../base/Component';
 
-import HeaderContent from '../HeaderContent';
-
 import Tags from '../../../../enums/Tags';
+
+import HeaderContent from '../HeaderContent';
 
 import styles from './index.css';
 

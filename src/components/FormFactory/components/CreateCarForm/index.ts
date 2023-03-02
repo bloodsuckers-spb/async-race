@@ -4,11 +4,11 @@ import Btn from './components/Btn';
 import ColorInput from './components/ColorInput';
 import TextInput from './components/TextInput';
 
-import { AsyncFetch, Loader } from '../../../../decorators';
-
 import { CustomEvents, RequestMethods, Tags } from '../../../../enums';
 
 import { AbstractFetch, FormProps } from '../../../../models';
+
+import { AsyncFetch, Loader } from '../../../../decorators';
 
 interface CreateCarForm extends FormProps, AbstractFetch {
   load: (...args: Array<unknown>) => void;

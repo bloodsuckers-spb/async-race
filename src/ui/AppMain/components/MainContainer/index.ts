@@ -1,8 +1,8 @@
 import Component from '../../../../base/Component';
 
-import RoutingRoot from '../RouterRoot';
-
 import Tags from '../../../../enums/Tags';
+
+import RoutingRoot from '../RouterRoot';
 
 import styles from './index.css';
 

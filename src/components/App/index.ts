@@ -1,20 +1,19 @@
-/* eslint-disable import/no-duplicates */
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable import/order */
 import Component from '../../base/Component';
 
-import { AppState } from 'components';
-import Router from 'components/AppRouter';
+import { AppState, AppRouter } from 'components';
 
 import { AsyncFetch, Loader, Store } from '../../decorators';
-
-import { Props } from './types';
 
 import { CustomEvents, RequestMethods, Tags } from '../../enums';
 
 import { AbstractFetch, AbstractLoader, AbstractStore, CallBack, Emit, Load } from '../../models';
 
+import { Props } from './types';
+
 interface App extends AbstractLoader, AbstractFetch, AbstractStore {
-  router: Router;
+  router: AppRouter;
   appState: AppState;
 }
 

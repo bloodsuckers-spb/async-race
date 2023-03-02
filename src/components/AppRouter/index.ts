@@ -1,27 +1,30 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable no-param-reassign */
-import Component from '../../base/Component';
+/* eslint-disable simple-import-sort/imports */
+
 import EventEmitter from '../../base/EventEmitter';
 
-import { HandleLocation, Navigate, RenderView, RouterProps } from './types';
+import Component from '../../base/Component';
 
 import { CustomEvents, Tags } from '../../enums';
 
 import { AppView, Emit } from '../../models';
 
-interface Router extends RouterProps {}
+import { HandleLocation, Navigate, RenderView, RouterProps } from './types';
 
-class Router extends EventEmitter {
+interface AppRouter extends RouterProps {}
+
+class AppRouter extends EventEmitter {
   private static count = 0;
   private initialView: AppView = {};
   protected currentView: AppView = {};
   constructor({ root, navLinks, errorView, views }: RouterProps) {
     super();
-    if (Router.count > 0) return;
-    Router.count += 1;
+    if (AppRouter.count > 0) return;
+    AppRouter.count += 1;
     navLinks.forEach(({ node }: Component<Tags.a>) => {
       node.onclick = (): false => {
-        Router.handleNavigate(node.href, () => Router.navigate(this.handleLocation, this.renderView, this.emit));
+        AppRouter.handleNavigate(node.href, () => AppRouter.navigate(this.handleLocation, this.renderView, this.emit));
         return false;
       };
     });
@@ -31,11 +34,11 @@ class Router extends EventEmitter {
     this.views = views;
     this.initialView = initial;
     this.currentView = this.initialView;
-    Router.navigate(this.handleLocation, this.renderView, this.emit);
+    AppRouter.navigate(this.handleLocation, this.renderView, this.emit);
     window.onpopstate = (): false =>
-      Router.handlePopstate(() => Router.navigate(this.handleLocation, this.renderView, this.emit));
+      AppRouter.handlePopstate(() => AppRouter.navigate(this.handleLocation, this.renderView, this.emit));
     window.addEventListener('DOMContentLoaded', () =>
-      Router.handleLoading(() => Router.navigate(this.handleLocation, this.renderView, this.emit))
+      AppRouter.handleLoading(() => AppRouter.navigate(this.handleLocation, this.renderView, this.emit))
     );
   }
 
@@ -74,4 +77,4 @@ class Router extends EventEmitter {
   };
 }
 
-export default Router;
+export default AppRouter;

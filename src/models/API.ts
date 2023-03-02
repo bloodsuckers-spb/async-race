@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
-import { HashType } from '.';
-
 import { CustomEvents, RequestMethods } from 'enums';
+
+import { HashType } from '.';
 
 // Abstract Headers
 export type Headers = Record<string, string>;

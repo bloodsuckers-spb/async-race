@@ -1,11 +1,11 @@
 /* eslint-disable import/no-useless-path-segments */
 import Component from '../../base/Component';
 
-import Store from '../../decorators/Store';
-
 import { CustomEvents, Routes, Tags, TitleKeys } from '../../enums';
 
 import { AbstractStore, Update } from '../../models';
+
+import Store from '../../decorators/Store';
 
 interface Subtitle extends AbstractStore {
   storeKey: TitleKeys | null;

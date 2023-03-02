@@ -1,9 +1,9 @@
 import Component from '../../../../base/Component';
 
+import Tags from '../../../../enums/Tags';
+
 import fistlistItem from '../FirstlistItem';
 import secondListItem from '../SecondListItem';
-
-import Tags from '../../../../enums/Tags';
 
 import styles from './index.css';
 

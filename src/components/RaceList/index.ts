@@ -1,16 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable import/order */
 import Component from '../../base/Component';
 
-import Store from '../../decorators/Store';
 import RaceListItem from '../RaceListItem';
 
-import { Render } from './types';
+import Store from '../../decorators/Store';
 
 import { CustomEvents, Tags } from '../../enums';
 
-import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
 import { AbstractStore, Car } from 'models';
+import { Render } from './types';
+
+import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
 
 import styles from './index.css';
 

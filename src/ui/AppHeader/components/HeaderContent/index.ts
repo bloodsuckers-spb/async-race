@@ -2,10 +2,10 @@ import Component from '../../../../base/Component';
 
 import AppHeading from '../../../../components/AppHeading';
 
+import Tags from '../../../../enums/Tags';
+
 import paginationBox from '../../../PaginationBox';
 import Nav from '../HeaderNav';
-
-import Tags from '../../../../enums/Tags';
 
 import styles from './index.css';
 

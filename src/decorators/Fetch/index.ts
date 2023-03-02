@@ -1,9 +1,9 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable class-methods-use-this */
 
-import { FetchProps } from './types';
-
 import { CustomEvents } from '../../enums';
+
+import { FetchProps } from './types';
 
 // baseLink = 'https://async-race-api-d3de.onrender.com',
 

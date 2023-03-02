@@ -1,8 +1,8 @@
 import { AxiosHeaders } from 'axios';
 
-import RaceListItem from '../RaceListItem';
-
 import { Car } from '../../models/API';
+
+import RaceListItem from '../RaceListItem';
 
 export type Props = {
   data: Array<Car>;

@@ -4,15 +4,15 @@ import Component from '../../base/Component';
 
 import Track from '../../ui/Track';
 
-import { AsyncFetch, Store } from '../../decorators';
-import RaceItemHeader from '../RaceItemHeader';
-
-import { Animation, DriverStatus, StartEngine } from './types';
-
 import { CustomEvents, Tags } from '../../enums';
 
 import { AbstractFetch, AbstractStore, Car, HashType } from '../../models';
 import { isCar, isResponse } from '../../models/predicates';
+
+import { AsyncFetch, Store } from '../../decorators';
+import RaceItemHeader from '../RaceItemHeader';
+
+import { Animation, DriverStatus, StartEngine } from './types';
 
 import styles from './index.css';
 

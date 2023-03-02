@@ -4,9 +4,6 @@ import axios from 'axios';
 
 import Component from '../../base/Component';
 
-import Store from '../../decorators/Store';
-import ResultsItem from '../ResultsListItem';
-
 import { errorMessage } from '../../constants';
 
 import API from '../../enums/API';
@@ -16,6 +13,9 @@ import Tags from '../../enums/Tags';
 import { Winner } from '../../models/API';
 import { isWinners } from '../../models/predicates';
 import { AbstractStore } from 'models';
+
+import Store from '../../decorators/Store';
+import ResultsItem from '../ResultsListItem';
 
 import styles from './index.css';
 

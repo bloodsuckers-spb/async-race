@@ -1,14 +1,13 @@
 /* eslint-disable function-paren-newline */
-import EventEmitter from '../../base/EventEmitter';
-
-import Store from '../../decorators/Store';
-
 import { errorMessage } from '../../constants';
 
 import CustomEvents from '../../enums/CustomEvents';
 
 import { AbstractStore, Emit, EmitCallback, Update } from '../../models';
 import { isCars, isResponse } from '../../models/predicates';
+
+import EventEmitter from '../../base/EventEmitter';
+import Store from '../../decorators/Store';
 
 interface AppState extends AbstractStore {}
 

@@ -1,8 +1,8 @@
-import { Component } from '../../base';
-
 import Btn from '../../ui/Button';
 
 import { Car } from '../../models';
+
+import { Component } from '../../base';
 
 export type ControlPanelBtns = {
   select: Btn;

@@ -1,11 +1,12 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-restricted-syntax */
 import Component from '../../base/Component';
+import RaceListItem from '../RaceListItem';
 
 import Btn from '../../ui/Button';
 
 import { Store } from '../../decorators';
-import RaceListItem from '../RaceListItem';
 
 import { Btns, Tags } from '../../enums';
 

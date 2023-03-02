@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// eslint-disable-next-line import/order
 import { BuildOptions } from './types/config';
 
 import ESLintPlugin from 'eslint-webpack-plugin';
@@ -29,7 +27,7 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
         },
       ],
     }),
-    // new StylelintPlugin(),
+    new StylelintPlugin(),
     new ESLintPlugin({ extensions: ['ts'] }),
   ];
 }

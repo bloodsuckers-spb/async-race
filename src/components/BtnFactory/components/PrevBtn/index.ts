@@ -1,10 +1,10 @@
-import Loader from '../../../../decorators/Loader';
-import Store from '../../../../decorators/Store';
-import PaginationBtn from '../../PagintionBtn';
-
 import CustomEvents from '../../../../enums/CustomEvents';
 
 import { AbstractLoader, AbstractStore } from '../../../../models';
+
+import Loader from '../../../../decorators/Loader';
+import Store from '../../../../decorators/Store';
+import PaginationBtn from '../../PagintionBtn';
 
 interface PrevBtn extends AbstractStore, AbstractLoader {}
 

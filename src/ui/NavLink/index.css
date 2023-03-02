@@ -1,7 +1,7 @@
-
 .link {
-  --btn-color: hsla(224 24% 46% / 0.95);
+  --btn-color: #596891;
   --text-color: #f1f1f1;
+
   display: inline-block;
   text-align: center;
   width: 100px;
@@ -12,7 +12,7 @@
   color: var(--text-color);
   background-color: var(--btn-color);
   text-decoration: none;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .link:hover {

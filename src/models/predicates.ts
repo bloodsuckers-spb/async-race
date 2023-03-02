@@ -1,6 +1,6 @@
-import { AbstractResponse, Car, CountedDataResponse, Winner } from './API';
-
 import { errorMessage } from '../constants';
+
+import { AbstractResponse, Car, CountedDataResponse, Winner } from './API';
 
 export const isResponse = <T>(arg: T | AbstractResponse): arg is AbstractResponse => {
   if (typeof arg !== 'object' || arg === null) {

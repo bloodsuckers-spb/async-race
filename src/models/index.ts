@@ -1,5 +1,7 @@
 import Component from '../base/Component';
 
+import { CustomEvents, Routes, Tags } from '../enums';
+
 import { FetchProps } from '../decorators/Fetch/types';
 import { Store } from '../store/types';
 
@@ -20,8 +22,6 @@ import {
   RequestOptions,
   Winner,
 } from './API';
-
-import { CustomEvents, Routes, Tags } from '../enums';
 
 export type NodeData = {
   textContent: string;

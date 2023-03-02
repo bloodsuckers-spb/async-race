@@ -1,6 +1,6 @@
-import EventEmitter from '../EventEmitter';
-
 import { ComponentProps } from '../../models';
+
+import EventEmitter from '../EventEmitter';
 
 class Component<T extends keyof HTMLElementTagNameMap> extends EventEmitter {
   public readonly node: HTMLElementTagNameMap[T];

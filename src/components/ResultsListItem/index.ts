@@ -5,10 +5,6 @@ import Component from '../../base/Component';
 import CarCell from '../../ui/Winners/components/CarCell';
 import TableCell from '../../ui/Winners/components/TableCell';
 
-import Loader from '../../decorators/Loader';
-
-import { Props } from './types';
-
 import { errorMessage } from '../../constants';
 
 import API from '../../enums/API';
@@ -18,6 +14,10 @@ import RequestMethods from 'enums/RequestMethods';
 
 import { AbstractLoader } from '../../models';
 import { isCar, isResponse } from '../../models/predicates';
+
+import Loader from '../../decorators/Loader';
+
+import { Props } from './types';
 
 import styles from './index.css';
 

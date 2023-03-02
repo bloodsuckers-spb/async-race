@@ -1,5 +1,6 @@
 import Component from './Component';
-import EventEmitter from './EventEmitter';
 import SvgComponent from './SvgComponent';
+
+import EventEmitter from './EventEmitter';
 
 export { Component, EventEmitter, SvgComponent };

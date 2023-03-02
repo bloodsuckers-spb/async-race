@@ -1,10 +1,10 @@
 import Component from '../../../../base/Component';
 
-import CarSvg from '../../../CarSvg';
-
 import Tags from '../../../../enums/Tags';
 
 import { HashType } from '../../../../models';
+
+import CarSvg from '../../../CarSvg';
 
 import styles from './index.css';
 
