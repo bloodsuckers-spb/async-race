@@ -1,16 +1,9 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable class-methods-use-this */
-import { customEvents, fetchMethods } from '../../constants';
+
+import { FetchProps } from './types';
 
 import { CustomEvents } from '../../enums';
-
-export type FetchProps = {
-  method: keyof typeof fetchMethods;
-  eventName: keyof typeof customEvents;
-  queryString: string;
-  options?: Record<string, string>;
-  emit: <T>(eventName: CustomEvents, params: T) => void;
-};
 
 // baseLink = 'https://async-race-api-d3de.onrender.com',
 

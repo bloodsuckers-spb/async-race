@@ -1,6 +1,6 @@
 import Component from '../base/Component';
 
-import { FetchProps } from '../decorators/Fetch';
+import { FetchProps } from '../decorators/Fetch/types';
 import { Store } from '../store/types';
 
 import {
