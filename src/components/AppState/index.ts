@@ -1,13 +1,14 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable function-paren-newline */
-import { errorMessage } from '../../constants';
+import EventEmitter from '../../base/EventEmitter';
+
+import Store from '../../decorators/Store';
 
 import CustomEvents from '../../enums/CustomEvents';
 
 import { AbstractStore, Emit, EmitCallback, Update } from '../../models';
-import { isCars, isResponse } from '../../models/predicates';
 
-import EventEmitter from '../../base/EventEmitter';
-import Store from '../../decorators/Store';
+import { isCars, isResponse } from '../../models/predicates';
 
 interface AppState extends AbstractStore {}
 
@@ -67,7 +68,7 @@ class AppState extends EventEmitter {
 
   private onUpdateCars = <T>(args: T): void => {
     if (!isResponse(args) || !isCars(args.data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
     this.store.carsCount = +args.headers['x-total-count'];
   };

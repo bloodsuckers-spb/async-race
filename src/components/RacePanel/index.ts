@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-restricted-syntax */
 import Component from '../../base/Component';
+
 import RaceListItem from '../RaceListItem';
 
 import Btn from '../../ui/Button';

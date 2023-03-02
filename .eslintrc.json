@@ -52,7 +52,7 @@
               // Libs imports
               ["axios"],
               // Emmiter
-              ["Emmiter"],
+              ["EventEmitter"],
               // Base Component
               ["Component"],
               // Components imports

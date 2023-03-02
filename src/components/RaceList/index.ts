@@ -9,9 +9,10 @@ import Store from '../../decorators/Store';
 import { CustomEvents, Tags } from '../../enums';
 
 import { AbstractStore, Car } from 'models';
-import { Render } from './types';
 
 import { isCar, isCars, isCountedDataResponse, isResponse } from '../../models/predicates';
+
+import { Render } from './types';
 
 import styles from './index.css';
 

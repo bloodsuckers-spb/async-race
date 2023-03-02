@@ -1,16 +1,16 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable no-param-reassign */
-/* eslint-disable import/order */
-
 import Component from '../../base/Component';
 
 import Btn from '../../ui/Button';
 
+import { AsyncFetch } from '../../decorators';
+
 import { Btns, CustomEvents, Tags } from '../../enums';
 
 import { AbstractFetch, AbstractLoader } from '../../models';
-import { isCar } from '../../models/predicates';
 
-import { AsyncFetch } from '../../decorators';
+import { isCar } from '../../models/predicates';
 
 import { ControlPanelBtns, Props } from './types';
 

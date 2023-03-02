@@ -1,16 +1,19 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable arrow-body-style */
 /* eslint-disable @typescript-eslint/semi */
 import Component from '../../base/Component';
 
+import RaceItemHeader from '../RaceItemHeader';
+
 import Track from '../../ui/Track';
+
+import { AsyncFetch, Store } from '../../decorators';
 
 import { CustomEvents, Tags } from '../../enums';
 
 import { AbstractFetch, AbstractStore, Car, HashType } from '../../models';
-import { isCar, isResponse } from '../../models/predicates';
 
-import { AsyncFetch, Store } from '../../decorators';
-import RaceItemHeader from '../RaceItemHeader';
+import { isCar, isResponse } from '../../models/predicates';
 
 import { Animation, DriverStatus, StartEngine } from './types';
 
