@@ -65,6 +65,7 @@ class RaceListItem extends Component<Tags.li> {
 
     this.on(CustomEvents.updateCar, this.onUpdate);
     this.on(CustomEvents.removeCar, this.onRemove);
+    this.store.racers.add(this);
   }
 
   private onUpdate = <T>(arg: T): void => {
@@ -130,7 +131,7 @@ class RaceListItem extends Component<Tags.li> {
     });
   };
 
-  private getDriveStatus = async (): Promise<DriverStatus> => {
+  public getDriveStatus = async (): Promise<DriverStatus> => {
     const { ENGINE_STATE } = RaceListItem;
     const { ENGINE_URL, id } = this;
     const response = await fetch(`${ENGINE_URL}?id=${id}&status=${ENGINE_STATE.Drive}`, {
@@ -141,7 +142,7 @@ class RaceListItem extends Component<Tags.li> {
     };
   };
 
-  private startEngine = (): Promise<StartEngine> => {
+  public startEngine = (): Promise<StartEngine> => {
     const { ENGINE_STATE } = RaceListItem;
     const { ENGINE_URL, id } = this;
     return this.awaitedFetch<StartEngine>({
@@ -150,7 +151,7 @@ class RaceListItem extends Component<Tags.li> {
     });
   };
 
-  private stopEngine = (): Promise<void> => {
+  public stopEngine = (): Promise<void> => {
     const { ENGINE_STATE } = RaceListItem;
     const { ENGINE_URL, id } = this;
     return this.awaitedFetch({
@@ -159,11 +160,11 @@ class RaceListItem extends Component<Tags.li> {
     });
   };
 
-  private setDuration = ({ distance, velocity }: StartEngine): void => {
+  public setDuration = ({ distance, velocity }: StartEngine): void => {
     this.time = Math.round(distance / velocity);
   };
 
-  private startAnimation = async (): Promise<Animation> => {
+  public startAnimation = async (): Promise<Animation> => {
     const { carSvg, finish } = this.track;
     const startedPosition = carSvg.node.getBoundingClientRect().x;
     const finalPostion = finish.node.getBoundingClientRect().x;
@@ -183,11 +184,11 @@ class RaceListItem extends Component<Tags.li> {
     });
   };
 
-  private stopAnimation = (): void => {
+  public stopAnimation = (): void => {
     cancelAnimationFrame(this.animationId);
   };
 
-  private moveToOriginPosition = (): void => {
+  public moveToOriginPosition = (): void => {
     const { node } = this.track.carSvg;
     this.currentPosition = 0;
     node.style.transform = 'translateX(0px)';
