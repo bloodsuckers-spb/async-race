@@ -1,23 +1,15 @@
+/* eslint-disable simple-import-sort/imports */
 import Component from '../../base/Component';
+
+import ControlPanel from '../ControlPanel';
 
 import CarHeading from '../../ui/CarHeading';
 
 import Tags from '../../enums/Tags';
 
-import { Car } from '../../models/API';
-
-import ControlPanel from '../ControlPanel';
+import { Props } from './types';
 
 import styles from './index.css';
-
-type Props = {
-  parent: Component<keyof HTMLElementTagNameMap>;
-  carData: Car;
-  handlers: {
-    startDriving: () => void;
-    stopDriving: () => void
-  };
-};
 
 class RaceItemHeader extends Component<Tags.header> {
   public heading: CarHeading;

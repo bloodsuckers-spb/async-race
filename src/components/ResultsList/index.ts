@@ -1,21 +1,19 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable import/order */
 /* eslint-disable no-await-in-loop */
 import axios from 'axios';
 
 import Component from '../../base/Component';
 
-import { errorMessage } from '../../constants';
-
-import API from '../../enums/API';
-import CustomEvents from '../../enums/CustomEvents';
-import Tags from '../../enums/Tags';
-
-import { Winner } from '../../models/API';
-import { isWinners } from '../../models/predicates';
-import { AbstractStore } from 'models';
-
-import Store from '../../decorators/Store';
 import ResultsItem from '../ResultsListItem';
+
+import { Store } from '../../decorators';
+
+import { API, CustomEvents, Tags } from '../../enums';
+
+import { isWinners } from '../../models/predicates';
+
+import { AbstractStore, Winner } from 'models';
 
 import styles from './index.css';
 
@@ -36,15 +34,15 @@ class ResultsContent extends Component<Tags.div> {
 
   private onGetWinners = <T>(args: T): Array<Winner> => {
     if (typeof args !== 'object' || args === null) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     if (!('data' in args) || !('count' in args)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     if (!isWinners(args.data)) {
-      throw new Error(errorMessage);
+      throw new Error('Type of props is not valid');
     }
 
     this.store.winnersCount = +`${args.count}`;

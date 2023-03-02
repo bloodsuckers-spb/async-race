@@ -5,13 +5,9 @@ import Component from '../../base/Component';
 import carsBrands from '../../constants/carsBrands';
 import carsModels from '../../constants/carsModels';
 
-import API from '../../enums/API';
-import CustomEvents from '../../enums/CustomEvents';
-import RequestMethods from '../../enums/RequestMethods';
-import Tags from '../../enums/Tags';
+import { API, CustomEvents, RequestMethods, Tags } from '../../enums';
 
-import { Emit, HashType } from '../../models';
-import { NewCar } from '../../models/API';
+import { Emit, HashType, NewCar } from '../../models';
 
 class GenerateCars extends Component<Tags.button> {
   private static readonly letters = '0123456789ABCDEF';
