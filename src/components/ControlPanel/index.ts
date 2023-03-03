@@ -34,25 +34,27 @@ class ControlPanel extends Component<Tags.div> {
       parent: parent.node,
     });
 
-    const select = new Btn({
-      text: Btns.select,
-      isDisabled: false,
-    });
+    const props = [
+      {
+        text: Btns.select,
+        isDisabled: false,
+      },
+      {
+        text: Btns.start,
+        isDisabled: false,
+      },
+      {
+        text: Btns.reset,
+        isDisabled: true,
+      },
+      {
+        text: Btns.remove,
+        isDisabled: false,
+      },
+    ];
 
-    const start = new Btn({
-      text: Btns.start,
-      isDisabled: false,
-    });
-
-    const reset = new Btn({
-      text: Btns.reset,
-      isDisabled: true,
-    });
-
-    const remove = new Btn({
-      text: Btns.remove,
-      isDisabled: false,
-    });
+    const btns = props.map((data) => new Btn(data));
+    const [select, start, reset, remove] = btns;
 
     this.btns = {
       select,
