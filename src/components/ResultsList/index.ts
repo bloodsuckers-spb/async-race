@@ -33,18 +33,9 @@ class ResultsContent extends Component<Tags.div> {
   }
 
   private onGetWinners = <T>(args: T): Array<Winner> => {
-    if (typeof args !== 'object' || args === null) {
+    if (typeof args !== 'object' || !args || !('data' in args) || !('count' in args) || !isWinners(args.data)) {
       throw new Error('Type of props is not valid');
     }
-
-    if (!('data' in args) || !('count' in args)) {
-      throw new Error('Type of props is not valid');
-    }
-
-    if (!isWinners(args.data)) {
-      throw new Error('Type of props is not valid');
-    }
-
     this.store.winnersCount = +`${args.count}`;
     return args.data;
   };

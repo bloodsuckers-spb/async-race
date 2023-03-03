@@ -57,6 +57,6 @@ const carsModels = [
   'Rio',
   'Creta',
   'Solaris',
-] as const;
+];
 
 export default carsModels;

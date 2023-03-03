@@ -90,6 +90,7 @@ class ControlPanel extends Component<Tags.div> {
     if (!isCar(data)) {
       throw new Error('Type of props is not valid');
     }
+
     const { color, name, id } = data;
 
     if (this.id !== id) {

@@ -11,7 +11,7 @@ import { Emit, HashType, NewCar } from '../../models';
 
 class GenerateCars extends Component<Tags.button> {
   private static readonly letters = '0123456789ABCDEF';
-  constructor() {
+  constructor(protected readonly brands: Array<string>, protected readonly models: Array<string>) {
     super({
       tagName: Tags.button,
       classList: ['btn'],
@@ -19,7 +19,7 @@ class GenerateCars extends Component<Tags.button> {
         textContent: 'Generate',
       },
     });
-    this.node.onclick = (): void => GenerateCars.generateCars(this.emit);
+    this.node.onclick = (): void => this.generateCars(this.emit);
   }
 
   private static get carColor(): HashType {
@@ -32,18 +32,18 @@ class GenerateCars extends Component<Tags.button> {
     return color;
   }
 
-  private static get carName(): string {
-    const modelCar = carsBrands[Math.floor(Math.random() * carsBrands.length)];
-    const nameCar = carsModels[Math.floor(Math.random() * carsModels.length)];
+  private get carName(): string {
+    const modelCar = this.brands[Math.floor(Math.random() * this.brands.length)];
+    const nameCar = this.models[Math.floor(Math.random() * this.models.length)];
     return `${modelCar} - ${nameCar}`;
   }
 
-  private static generateCars = (emit: Emit): void => {
+  private generateCars = (emit: Emit): void => {
     const promises = Array(15)
       .fill(null)
       .reduce((acc: Array<NewCar>) => {
         acc.push({
-          name: GenerateCars.carName,
+          name: this.carName,
           color: GenerateCars.carColor,
         });
         return acc;
@@ -53,4 +53,4 @@ class GenerateCars extends Component<Tags.button> {
   };
 }
 
-export default new GenerateCars();
+export default new GenerateCars(carsBrands, carsModels);
