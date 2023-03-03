@@ -53,8 +53,7 @@ class ControlPanel extends Component<Tags.div> {
       },
     ];
 
-    const btns = props.map((data) => new Btn(data));
-    const [select, start, reset, remove] = btns;
+    const [select, start, reset, remove] = props.map((data) => new Btn(data));
 
     this.btns = {
       select,
