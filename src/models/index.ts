@@ -31,6 +31,7 @@ export type NodeData = {
   type: 'text' | 'color';
   disabled: 'true' | 'false';
   readOnly: 'true';
+  onclick?: () => void
 };
 
 type SvgNodeData = {

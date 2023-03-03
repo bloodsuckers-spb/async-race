@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 /* eslint-disable simple-import-sort/imports */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-restricted-syntax */
@@ -15,28 +16,22 @@ import { AbstractStore } from '../../models';
 
 import styles from './index.css';
 
-interface RacePanel extends AbstractStore {}
+type Props = {
+  raceBtn: Btn;
+  resetBtn: Btn;
+};
+
+interface RacePanel extends AbstractStore, Props {}
 
 @Store()
 class RacePanel extends Component<Tags.div> {
-  protected raceBtn: Btn;
-  protected resetBtn: Btn;
-  constructor() {
+  constructor({ raceBtn, resetBtn }: Props) {
     super({
       tagName: Tags.div,
       classList: [styles.panel],
     });
-
-    this.raceBtn = new Btn({
-      parent: this,
-      text: Btns.race,
-      isDisabled: false,
-    });
-    this.resetBtn = new Btn({
-      parent: this,
-      text: Btns.reset,
-      isDisabled: false,
-    });
+    Object.assign(this, { raceBtn, resetBtn });
+    this.append(raceBtn, resetBtn);
 
     this.raceBtn.node.onclick = this.startRace;
     this.resetBtn.node.onclick = this.stopRace;
@@ -69,8 +64,18 @@ class RacePanel extends Component<Tags.div> {
       racers.forEach((racer) => {
         racer.stopAnimation();
         racer.moveToOriginPosition();
-      }));
+      })
+    );
   };
 }
 
-export default new RacePanel();
+export default new RacePanel({
+  raceBtn: new Btn({
+    text: Btns.race,
+    isDisabled: false,
+  }),
+  resetBtn: new Btn({
+    text: Btns.reset,
+    isDisabled: false,
+  }),
+});

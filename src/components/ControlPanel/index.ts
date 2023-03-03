@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable simple-import-sort/imports */
 /* eslint-disable no-param-reassign */
 import Component from '../../base/Component';
@@ -32,32 +34,35 @@ class ControlPanel extends Component<Tags.div> {
       parent: parent.node,
     });
 
+    const select = new Btn({
+      text: Btns.select,
+      isDisabled: false,
+    });
+
+    const start = new Btn({
+      text: Btns.start,
+      isDisabled: false,
+    });
+
+    const reset = new Btn({
+      text: Btns.reset,
+      isDisabled: true,
+    });
+
+    const remove = new Btn({
+      text: Btns.remove,
+      isDisabled: false,
+    });
+
     this.btns = {
-      select: new Btn({
-        parent: this,
-        text: Btns.select,
-        isDisabled: false,
-      }),
-      start: new Btn({
-        parent: this,
-        text: Btns.start,
-        isDisabled: false,
-      }),
-      reset: new Btn({
-        parent: this,
-        text: Btns.reset,
-        isDisabled: true,
-      }),
-      remove: new Btn({
-        parent: this,
-        text: Btns.remove,
-        isDisabled: false,
-      }),
+      select,
+      start,
+      reset,
+      remove,
     };
 
-    this.name = name;
-    this.color = color;
-    this.id = id;
+    Object.assign(this, { name, color, id });
+    this.append(select, start, reset, remove);
 
     this.btns.select.node.onclick = (): void =>
       this.emit(CustomEvents.selectCar, {
