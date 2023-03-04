@@ -73,18 +73,31 @@ class ControlPanel extends Component<Tags.div> {
       });
 
     this.btns.start.node.onclick = (): void => {
+      this.emit(CustomEvents.StartCarDriving, {});
       ControlPanel.changeBtnsState(this.btns);
       startDriving();
     };
 
     this.btns.reset.node.onclick = (): void => {
+      this.emit(CustomEvents.ResetCarDriving, {});
       ControlPanel.changeBtnsState(this.btns);
       stopDriving();
     };
 
     this.btns.remove.node.onclick = this.onDeleteCar;
     this.on(CustomEvents.selectCar, this.onSelectCar);
+    this.on(CustomEvents.StartRace, () => ControlPanel.disableAllBtns(this.btns, true));
+    this.on(CustomEvents.ResetRace, () => ControlPanel.disableAllBtns(this.btns, false));
   }
+
+  private static disableAllBtns = ({ select, start, reset, remove }: ControlPanelBtns, status: boolean): void => {
+    [select, start, reset, remove].forEach(({ node }) => {
+      node.disabled = status;
+    });
+    if (!status) {
+      reset.node.disabled = true;
+    }
+  };
 
   private static changeBtnsState = ({ select, start, reset, remove }: ControlPanelBtns): void => {
     [select, start, reset, remove].forEach(({ node }) => {

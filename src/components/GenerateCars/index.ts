@@ -20,6 +20,11 @@ class GenerateCars extends Component<Tags.button> {
       },
     });
     this.node.onclick = (): void => this.generateCars(this.emit);
+
+    this.on(CustomEvents.StartRace, this.changeBtnState);
+    this.on(CustomEvents.ResetRace, this.changeBtnState);
+    this.on(CustomEvents.StartCarDriving, this.changeBtnState);
+    this.on(CustomEvents.ResetCarDriving, this.changeBtnState);
   }
 
   private static get carColor(): HashType {
@@ -50,6 +55,10 @@ class GenerateCars extends Component<Tags.button> {
       }, [])
       .map((car) => axios[RequestMethods.post](`${API.garageLink}`, car));
     Promise.all(promises).then(() => emit(CustomEvents.generateCars, {}));
+  };
+
+  private changeBtnState = (): void => {
+    this.node.disabled = !this.node.disabled;
   };
 }
 

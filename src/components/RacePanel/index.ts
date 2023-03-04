@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable function-paren-newline */
 /* eslint-disable simple-import-sort/imports */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -10,7 +11,7 @@ import Btn from '../../ui/Button';
 
 import { Store } from '../../decorators';
 
-import { Btns, Tags } from '../../enums';
+import { Btns, Tags, CustomEvents } from '../../enums';
 
 import { AbstractStore } from '../../models';
 
@@ -30,12 +31,36 @@ class RacePanel extends Component<Tags.div> {
       tagName: Tags.div,
       classList: [styles.panel],
     });
+
     Object.assign(this, { raceBtn, resetBtn });
     this.append(raceBtn, resetBtn);
 
-    this.raceBtn.node.onclick = this.startRace;
-    this.resetBtn.node.onclick = this.stopRace;
+    this.raceBtn.node.onclick = (): void => {
+      this.changeBtnsState();
+      this.emit(CustomEvents.StartRace, {});
+      this.startRace();
+    };
+
+    this.resetBtn.node.onclick = (): void => {
+      this.changeBtnsState();
+      this.emit(CustomEvents.ResetRace, {});
+      this.stopRace();
+    };
+
+    this.on(CustomEvents.StartCarDriving, this.changeStartBtnState);
+    this.on(CustomEvents.ResetCarDriving, this.changeStartBtnState);
   }
+
+  private changeBtnsState = (): void => {
+    [this.raceBtn, this.resetBtn].forEach(({ node }) => {
+      node.disabled = !node.disabled;
+    });
+  };
+
+  private changeStartBtnState = (): void => {
+    const { node } = this.raceBtn;
+    node.disabled = !node.disabled;
+  };
 
   private startRace = async (): Promise<void> => {
     const racers: Array<RaceListItem> = [];
@@ -76,6 +101,6 @@ export default new RacePanel({
   }),
   resetBtn: new Btn({
     text: Btns.reset,
-    isDisabled: false,
+    isDisabled: true,
   }),
 });

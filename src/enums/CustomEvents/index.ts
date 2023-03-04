@@ -8,7 +8,6 @@ enum CustomEvents {
   typeCarName = 'typeCarName',
   addCar = 'addCar',
   selectCar = 'selectCar',
-  GetWinners = 'GetWinners',
   getCar = 'getCar',
   updateWinner = 'updateWinner',
   deleteWinner = 'deleteWinner',
@@ -18,6 +17,11 @@ enum CustomEvents {
   changeCurrentPage = 'changeCurrentPage',
   generateCars = 'generateCars',
   carsLoading = 'carsLoading',
+  GetWinners = 'GetWinners',
+  StartRace = 'StartRace',
+  ResetRace = 'ResetRace',
+  StartCarDriving = 'StartCarDriving',
+  ResetCarDriving = 'ResetCarDriving'
 }
 
 export default CustomEvents;
